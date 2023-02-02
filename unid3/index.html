@@ -6,11 +6,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>mip-NeRF</title>
-
+    <title>UniD3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="/css/styles.css">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="manifest" href="/site.webmanifest">
     <!-- <base href="/"> -->
 
         <!--FACEBOOK-->
@@ -22,7 +25,7 @@
     <meta property="og:url" content="https://mhh0318.github.io/unid3/"/>
     <meta property="og:title" content="UniD3" />
     <meta property="og:description" content="Project page for UniD3: Unified Discrete Diffusion for Simultaneous Vision-Language Generation." />
-
+    <script type="module" src="https://unpkg.com/@google/model-viewer@2.0.1/dist/model-viewer.min.js"></script>
 
 
 <!--     <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
@@ -43,299 +46,219 @@
     
     <script src="js/app.js"></script>
 </head>
-
-<!-- <body>
-    <div class="highlight-clean" style="padding-bottom: 10px;">
-    <div class="container" id="main">
-        <div class="row">
-            <h2 class="col-md-12 text-center">
-                <b>UniD3</b>: Unified Discrete Diffusion for Simultaneous <br> Vision-Language Generation</br> 
-                <small>
-                    ICLR 2023
-                </small>
-            </h2>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <ul class="list-inline">
-                    <li>
-                        <a href="https://mhh0318.github.io">
-                          Minghui Hu
-                        </a>
-                        </br>Nanyang Technological University
-                    </li>
-                    <li>
-                        <a href="https://chuanxiaz.com/">
-                            Chuanxia Zheng
-                        </a>
-                        </br>Oxford University
-                    </li>
-                    <li>
-                        <a href="https://scholar.google.com/citations?user=VRgciTQAAAAJ&hl">
-                          Heliang Zheng
-                        </a>
-                        </br>JD Explore Academy
-                    </li><br>
-                    <li>
-                        <a href="https://personal.ntu.edu.sg/astjcham/">
-                          Tat-Jen Cham
-                        </a>
-                        </br>Nanyang Technological University
-                    </li>
-                    <li>
-                        <a href="https://wang-chaoyue.github.io/">
-                          Chaoyue Wang
-                        </a>
-                        </br>JD Explore Academy
-                    </li>
-                    <li>
-
-                        Zuopeng Yang
-
-                        </br>Shanghai Jiao Tong University
-                    </li>
-                    <li>
-                        <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">
-                            Dacheng Tao
-                          </a>
-                          </br>JD Explore Academy
-                    </li>
-                    <li>
-                        <a href="https://www3.ntu.edu.sg/home/epnsugan/">
-                            P.N.Suganthan
-                          </a>
-                          </br>Qatar University
-                    </li>
-                </ul>
+    <body>
+        <div class="highlight-clean" style="padding-bottom: 10px;">
+            <div class="container" style="max-width: 768px;">
+                <h1 class="text-center"><b>UniD3</b>: Unified Discrete Diffusion for Simultaneous Vision-Language Generation</h1>
             </div>
-        </div> -->
-
-
-        <body>
-            <!-- <div class="banner">
-              <video class="video lazy"
-                  poster="https://dreamfusion-cdn.ajayj.com/sept28/banner_1x6_customhue_A.jpg"
-                  autoplay loop playsinline muted>
-                <source data-src="https://dreamfusion-cdn.ajayj.com/sept28/banner_1x6_customhue_A.mp4" type="video/mp4"></source>
-              </video>
+            <div class="container" style="max-width: 768px;">
+                <div class="row authors">
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io">Minghui Hu</a></h5>
+                        <h6 class="text-center">Nanyang Technological University</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://chuanxiaz.com/">Chuanxia Zheng</a></h5>
+                        <h6 class="text-center">Oxford University</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://scholar.google.com/citations?user=VRgciTQAAAAJ&hl">Heliang Zheng</a></h5>
+                        <h6 class="text-center">JD Explore Academy</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a></h5>
+                        <h6 class="text-center">Nanyang Technological University</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://wang-chaoyue.github.io/">Chaoyue Wang</a></h5>
+                        <h6 class="text-center">JD Explore Academy</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center">Zuopeng Yang</h5>
+                        <h6 class="text-center">Shanghai Jiao Tong University</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a></h5>
+                        <h6 class="text-center">JD Explore Academy</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a></h5>
+                        <h6 class="text-center">Qatar University</h6>
+                    </div>
+                </div>    
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-12 col-md-offset-5 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://openreview.net/pdf?id=Qb-AoSw4Jnm">
+                            <image src="img/paperclip.png" height="60px">
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://recorder-v3.slideslive.com/?share=75742&s=46fd4642-e778-4156-bc73-151f85156f30">
+                            <image src="img/youtube_icon.png" height="60px">
+                                <h4><strong>Video</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/lyndonzheng/TFill">
+                            <image src="img/github.png" height="60px">
+                                <h4><strong>Code</strong></h4>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="TODO">
+                            <image src="img/github.png" height="60px">
+                                <h4><strong>Code</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div> -->
-            <div class="highlight-clean" style="padding-bottom: 10px;">
-                <div class="container" style="max-width: 768px;">
-                    <h1 class="text-center"><b>UniD3</b>: Unified Discrete Diffusion for Simultaneous  Vision-Language Generation</h1>
-                </div>
-                <div class="container" style="max-width: 768px;">
-                    <div class="row authors">
-                        <div class="col-sm-3">
-                            <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io">Minghui Hu</a></h5>
-                            <h6 class="text-center">Nanyang Technological University</h6>
-                        </div>
-                        <div class="col-sm-3">
-                            <h5 class="text-center"><a class="text-center" href="https://chuanxiaz.com/">Chuanxia Zheng</a></h5>
-                            <h6 class="text-center">Oxford University</h6>
-                        </div>
-                        <div class="col-sm-3">
-                            <h5 class="text-center"><a class="text-center" href="https://scholar.google.com/citations?user=VRgciTQAAAAJ&hl">Heliang Zheng</a></h5>
-                            <h6 class="text-center">JD Explore Academy</h6>
-                        </div>
-                        <div class="col-sm-3">
-                            <h5 class="text-center"><a class="text-center" href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a></h5>
-                            <h6 class="text-center">Nanyang Technological University</h6>
-                        </div>
-                        <div class="col-sm-3">
-                            <h5 class="text-center"><a class="text-center" href="https://wang-chaoyue.github.io/">Chaoyue Wang</a></h5>
-                            <h6 class="text-center">JD Explore Academy</h6>
-                        </div>
-                        <div class="col-sm-3">
-                            <h5 class="text-center">Zuopeng Yang</h5>
-                            <h6 class="text-center">Shanghai Jiao Tong University</h6>
-                        </div>
-                        <div class="col-sm-3">
-                            <h5 class="text-center"><a class="text-center" href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a></h5>
-                            <h6 class="text-center">JD Explore Academy</h6>
-                        </div>
-                        <div class="col-sm-3">
-                            <h5 class="text-center"><a class="text-center" href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a></h5>
-                            <h6 class="text-center">Qatar University</h6>
-                        </div>
-                    </div>    
-                </div>
-                <div class="buttons" style="margin-bottom: 8px;">
-                    <a class="btn btn-light" role="button" href="https://arxiv.org/abs/2209.14988">
-                        <svg style="width:24px;height:24px;margin-left:-12px;margin-right:12px" viewBox="0 0 24 24">
-                            <path fill="currentColor" d="M16 0H8C6.9 0 6 .9 6 2V18C6 19.1 6.9 20 8 20H20C21.1 20 22 19.1 22 18V6L16 0M20 18H8V2H15V7H20V18M4 4V22H20V24H4C2.9 24 2 23.1 2 22V4H4M10 10V12H18V10H10M10 14V16H15V14H10Z"></path>
-                        </svg>Paper
-                    </a>
-                    <a class="btn btn-light disabled border border-dark" aria-disabled="true" role="button" href="#">
-                        <svg style="visibility:hidden;width:0px;height:24px;margin-left:-12px;margin-right:12px" width="0px" height="24px" viewBox="0 0 375 531">
-                            <polygon stroke="#000000" points="0.5,0.866 459.5,265.87 0.5,530.874 "/>
-                        </svg>
-                        Project
-                    </a>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Abstract</h2>
+                    <p>
+                        <!-- <strong> -->
+                            The recently developed discrete diffusion models perform extraordinarily well in the text-to-image task, showing significant promise for handling the multi-modality signals. In this work, we harness these traits and present a unified multimodal generation model that can conduct both the "modality translation" and "multi-modality generation" tasks using a single model, performing text-based, image-based, and even vision-language simultaneous generation. Specifically, we unify the discrete diffusion process for multimodal signals by proposing a unified transition matrix. Moreover, we design a mutual attention module with fused embedding layer and a unified objective function to emphasise the inter-modal linkages, which are vital for multi-modality generation. Extensive experiments indicate that our proposed method can perform comparably to the state-of-the-art solutions in various generation tasks.
+                        <!-- </strong> -->
+                    </p>
+                    <image src="img/tasks.png" class="img-responsive" alt="overview"><br>
+                    <h6 class="caption">Once trained, UniD3 can not only inherit the ability to manipulate the provided text or image, but is also able to unify the text and image generation, e.g., unconditional vision-language pairings generation, cross modal manipulation, text guided image completion, and image conditional text caption.</h6>
                 </div>
             </div>
-            <hr class="divider" />
-            <div class="container" style="max-width: 768px;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Abstract</h2>
-                        <p>
-                            <!-- <strong> -->
-                                Recent breakthroughs in text-to-image synthesis have been driven by diffusion models trained on billions of image-text pairs. Adapting this approach to 3D synthesis would require large-scale datasets of labeled 3D assets and efficient architectures for denoising 3D data, neither of which currently exist. In this work, we circumvent these limitations by using a pretrained 2D text-to-image diffusion model to perform text-to-3D synthesis. We introduce a loss based on probability density distillation that enables the use of a 2D diffusion model as a prior for optimization of a parametric image generator. Using this loss in a DeepDream-like procedure, we optimize a randomly-initialized 3D model (a Neural Radiance Field, or NeRF) via gradient descent such that its 2D renderings from random angles achieve a low loss. The resulting 3D model of the given text can be viewed from any angle, relit by arbitrary illumination, or composited into any 3D environment. Our approach requires no 3D training data and no modifications to the image diffusion model, demonstrating the effectiveness of pretrained image diffusion models as priors.
-                            <!-- </strong> -->
-                        </p>
-                    </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Overall Pipeline</h2>
+                    <p>
+                        <!-- <strong> -->
+                            The pipeline of UniD3. With an offline model (red background part), the given inputs
+                            are represented by discrete token sequence in separate domain. The fusion embedding concatenate
+                            the tokens in different modal and embed them to the same space. The unified diffusion (in blue
+                            background) will construct the joint distribution of all modalities based on the fused embedding
+                            with a fixed unified Markov transition matrix.
+                        <!-- </strong> -->
+                    </p>
+                    <image src="img/UniD3.png" class="img-responsive" alt="overview"><br>
+                    <h6 class="caption">(1) An offline model to generate a compact yet expressive discrete representation for both images and texts via discrete VAE (dVAE) and Byte-Pair Encoding (BPE), respectively (the pink part in Figure). <br>(2) A novel unified discrete diffusion model to estimate the joint distribution of such latent visual and language codes (the cyan part in Figure).</br> </h6>
                 </div>
             </div>
-            <div class="container" style="max-width: 768px;">
-                <div class="row captioned_videos">
-                    <div class="col-md-12">
-                        <!-- Large format devices -->
-                        <video class="video lazy d-none d-xs-none d-sm-block" autoplay loop playsinline muted poster="https://dreamfusion-cdn.ajayj.com/sept28/wipe_opposite_6x4_smoothstep.jpg">
-                            <source data-src="https://dreamfusion-cdn.ajayj.com/sept28/wipe_opposite_6x4_smoothstep.mp4" type="video/mp4"></source>
-                        </video>
-                        <!-- Small format devices -->
-                        <video class="video lazy d-xs-block d-sm-none" autoplay loop playsinline muted poster="https://dreamfusion-cdn.ajayj.com/sept28/shaded_3x3_smoothstep.jpg">
-                            <source data-src="https://dreamfusion-cdn.ajayj.com/sept28/shaded_3x3_smoothstep.mp4" type="video/mp4"></source>
-                        </video>
-                        <h6 class="caption">Given a caption, DreamFusion generates relightable 3D objects with high-fidelity appearance, depth, and normals. Objects are represented as a Neural Radiance Field and leverage a pretrained text-to-image diffusion prior such as Imagen.</h6>
-                    </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Mutual Attention</h2>
+                    <p>
+                        <!-- <strong> -->
+                            The input to the neural network covers all modalities, and a simple self-attention mechanism can scarcely highlight the inter-modal linkages. In order to solve this problem, we propose a mutual attention module to capture the inter-modal linkages as well as the cross-modal connections. The mutual attention block consists of one self-attention, two parallel mutual attention operations and one feed-forward module. Each block receives a sequence of mixed-modal tokens as input that traverses a layer of self-attention to capture the inherent connection within the modalities.
+                        <!-- </strong> -->
+                    </p>
+                    <image src="img/mutual.png" class="img-responsive" alt="overview"><br>
+                    <h6 class="caption"> Illustration of mutual attention blocks. A unified transformer is composed of several blocks stacked on top of one another. </h6>
                 </div>
             </div>
-            <hr class="divider" />
-            <div class="container" style="max-width: 768px;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Generate 3D from text yourself!</h2>
-                    </div>
-                </div>
-                <div class="row compositional captioned_videos">
-                    <div class="col-sm-8 text">
-                        <p class="selectable left" id="compositional_tags_depth_0"></p>
-                    </div>
-                    <div class="col-sm-4 my-auto">
-                        <div class="video-compare-container">
-                            <video id="compositionalVideo" class="video" autoplay loop playsinline muted>
-                                <div class="screen" id="compositionalScreen"></div>
-                                <source id="compositionalVideoSrc" src="https://dreamfusion-cdn.ajayj.com/journey_sept28/cropped/full_continuous/a_DSLR_photo_of_a_squirrel___rgbdn_hq_15000.mp4" type="video/mp4">
-                            </video>
-                            <!-- <video onplay="resizeAndPlay(this)" style="height: 0px;" id="compositionalVideo" class="video lazy" autoplay loop playsinline muted>
-                                <source id="compositionalVideoSrc" data-src="https://dreamfusion-cdn.ajayj.com/journey_sept28/full/a_DSLR_photo_of_a_squirrel___rgbdn_hq_15000.mp4" type="video/mp4">
-                            </video> -->
-                            <!-- <canvas height="752" class="videoMerge" id="compositionalVideoMerge" width="1002"></canvas> -->
-                        </div>
-                        <!-- <h6 class="caption" id="compositionalCaption">a DSLR photo of a squirrel</h6> -->
-                    </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Transition Matrix</h2>
+                    <p>
+                        <!-- <strong> -->
+                            The presence of a transition matrix determines the nature of the discrete diffusion model, which also provides us with more choices for
+                            token evolution. Thus we may wonder if it is feasible to design transition matrices that capture the global connections between various modalities.
+                        <!-- </strong> -->
+                    </p>
+                    <p>The Markov transition matrix of the discrete diffusion model should satisfy the following requirements:
+                        <br>1. each column in Q_t should sum to one to conserve probability mass; 
+                        <br>2. each column in the cumulative-product Q'_t should converge to either a known stationary distribution or a learnt prior when t becomes large.
+                    </p>
+                    <p> On the basis of these criteria, we construct a unified transition matrix Q_t capable of encapsulating discrete representations among various modalities. 
+                    </p>    
+                    <image src="img/tm.png" class="img-responsive" alt="overview"><br>
+                    <!-- <h6 class="caption"> </h6> -->
                 </div>
             </div>
-            <hr class="divider" />
-            <div class="container" style="max-width: 768px;">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <h2>Example generated objects</h2>
-                        <p>DreamFusion generates objects and scenes from diverse captions. <a href="/gallery.html">Search through hundreds of generated assets in our full gallery.</a></p>
-                    </div>
-                    <div class="col-sm-4 my-auto">
-                        <a href="/gallery.html" class="btn btn-primary btn-lg btn-search"><svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewbox="0 0 600 550">
-                            <path fill="none" stroke="#fff" stroke-width="36" stroke-linecap="round" d="m280,278a153,153 0 1,0-2,2l170,170m-91-117 110,110-26,26-110-110"/>
-                            </svg>Search assets
-                        </a>
-                    </div>
-                </div>
-                <div class="row captioned_videos" id="randomVideos">
-                    <!-- <div class="col-4">
-                        <div class="video-compare-container" style="width: 100%">
-                            <video class="video lazy" id="ex1" loop playsinline autoplay muted onplay="resizeAndPlay(this)" style="height: 0px;">
-                                <source data-src="https://dreamfusion-cdn.ajayj.com/gallery/a_teddy_bear_pushing_a_shopping_cart_full_of_fruits_and_vegetables_rgbdn_hq_15000.mp4" type="video/mp4"></source>
-                            </video>
-                            <canvas height="752" class="videoMerge" id="ex1Merge" width="1002"></canvas>
-                        </div>
-                        <h6 class="caption">A teddy bear pushing a shopping cart full of fruits and vegetables.</h6>
-                    </div>
-                    <div class="col-4">
-                        <div class="video-compare-container" style="width: 100%">
-                            <video class="video lazy" id="ex2" loop playsinline autoplay muted onplay="resizeAndPlay(this)" style="height: 0px;">
-                                <source data-src="https://dreamfusion-cdn.ajayj.com/gallery/a_sliced_loaf_of_fresh_bread_rgbdn_hq_15000.mp4" type="video/mp4"></source>
-                            </video>
-                            <canvas height="752" class="videoMerge" id="ex2Merge" width="1002"></canvas>
-                        </div>
-                        <h6 class="caption">a sliced loaf of fresh bread.</h6>
-                    </div>
-                    <div class="col-4">
-                        <div class="video-compare-container" style="width: 100%">
-                            <video class="video lazy" id="ex3" loop playsinline autoplay muted onplay="resizeAndPlay(this)" style="height: 0px;">
-                                <source data-src="https://dreamfusion-cdn.ajayj.com/gallery/a_zoomed_out_DSLR_photo_of_Sydney_opera_house,_aerial_view_rgbdn_hq_15000.mp4" type="video/mp4"></source>
-                            </video>
-                            <canvas height="752" class="videoMerge" id="ex3Merge" width="1002"></canvas>
-                        </div>
-                        <h6 class="caption">a zoomed out DSLR photo of Sydney opera house, aerial view.</h6>
-                    </div> -->
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>More Results</h2>
+                    <h3>Generated vision-language Pairs from CUB-200 and MSCOCO.</h3>
+                    <p>
+                        <!-- <strong> -->
+                             Both the image and caption are generated simultaneously. The quality of the created photos and text is comprehensible, and there is a correlation between the descriptions and the visuals.
+                        <!-- </strong> -->
+                    </p> 
+                    <image src="img/001.png" class="img-responsive" alt="overview"><br>
+                    <!-- <h6 class="caption"> </h6> -->
+                    <hr class="divider" />                    
+                    <h3>Image Captions on CUB</h3>
+                    <!-- <p>
+                        <strong> -->
+                        <!-- </strong>
+                    </p>  -->
+                    <image src="img/002.png" class="img-responsive" alt="overview"><br>
+                    <hr class="divider" />                    
+                    <h3>Cross Modal Inpainting</h3>
+                    <p>
+                        In this experiment, we obscured a portion of the image and modified the text description as well. Depending on the unmasked images, our model may supplement the caption that is derived from a portion of the image. Moreover, based on the amended description, the model may enhance the appearance of the masked component.
+                    </p> 
+                    <image src="img/003.png" class="img-responsive" alt="overview"><br>
                 </div>
             </div>
-            <hr class="divider" />
-            <div class="container" style="max-width: 768px;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Composing objects into a scene</h2>
-                        <!-- <p>Our generated NeRF models can be exported to meshes using the marching cubes algorithm for easy integration into 3D renderers or modeling software.</p> -->
-                        <video class="video lazy" autoplay loop playsinline controls muted poster="https://dreamfusion-cdn.ajayj.com/carouselx24_128tall.jpg">
-                            <source src="https://dreamfusion-cdn.ajayj.com/carouselx24_128tall.mp4" type="video/mp4"></source>
-                        </video>
-                    </div>
+        </div>
+
+        <hr class="divider" />
+       
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Citation</h2>
+                    <code>
+                        @article{hu2022unified,<br>
+                        &nbsp; title  = {Unified Discrete Diffusion for Simultaneous Vision-Language Generation},<br>
+                        &nbsp; author = {Hu, Minghui and Zheng, Chuanxia and Zheng, Heliang and Cham, Tat-Jen and Wang, Chaoyue and Yang, Zuopeng and Tao, Dacheng and Suganthan, Ponnuthurai N},<br>
+                        &nbsp; journal = {arXiv},<br>
+                        &nbsp; year   = {2022},<br>
+                    }</code>
                 </div>
             </div>
-            <hr class="divider" />
-            <div class="container meshes" id="meshContainer" style="max-width: 768px;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Mesh exports</h2>
-                        <p>Our generated NeRF models can be exported to meshes using the marching cubes algorithm for easy integration into 3D renderers or modeling software.</p>
-                    </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>
+                        Acknowledgements
+                    </h3>
+                    <p class="text-justify">
+                    The website template was borrowed from <a href="https://dreamfusion3d.github.io/">DreamFusion</a>.
+                    </p>
                 </div>
             </div>
-            <hr class="divider" />
-            <div class="container" style="max-width: 768px;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>How does DreamFusion work?</h2>
-                        <p>Given a caption, DreamFusion uses a text-to-image generative model called Imagen to optimize a 3D scene. We propose <strong>Score Distillation Sampling (SDS)</strong>, a way to generate samples from a diffusion model by optimizing a loss function. SDS allows us to optimize samples in an arbitrary parameter space, such as a 3D space, as long as we can map back to images differentiably. We use a 3D scene parameterization similar to Neural Radiance Fields, or NeRFs, to define this differentiable mapping. SDS alone produces reasonable scene appearance, but DreamFusion adds additional regularizers and optimization strategies to improve geometry. The resulting trained NeRFs are coherent, with high-quality normals, surface geometry and depth, and are relightable with a Lambertian shading model.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <video class="video lazy" controls muted poster="https://dreamfusion-cdn.ajayj.com/dreamfusion_overview.jpg">
-                            <source data-src="https://dreamfusion-cdn.ajayj.com/dreamfusion_overview.mp4" type="video/mp4"></source>
-                        </video>
-                    </div>
-                </div>
-            </div>
-            <hr class="divider" />
-            <div class="container" style="max-width: 768px;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Citation</h2>
-                        <code>
-                            @article{poole2022dreamfusion,<br>
-                            &nbsp; author = {Poole, Ben and Jain, Ajay and Barron, Jonathan T. and Mildenhall, Ben},<br>
-                            &nbsp; title  = {DreamFusion: Text-to-3D using 2D Diffusion},<br>
-                            &nbsp; journal = {arXiv},<br>
-                            &nbsp; year   = {2022},<br>
-                        }</code>
-                    </div>
-                </div>
-            </div>
-            <script src="https://polyfill.io/v3/polyfill.js?features=IntersectionObserver"></script>
-            <script src="/assets/js/yall.js"></script>
-            <script>
-                yall(
-                    {
-                        observeChanges: true
-                    }
-                );
-            </script>
-            <script src="/assets/js/scripts.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
-            <script src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/js/webflow.fd002feec.js"></script>
-            <!-- Import the component -->
-        </body>
+        </div>
+
+        <script src="https://polyfill.io/v3/polyfill.js?features=IntersectionObserver"></script>
+        <script src="/assets/js/yall.js"></script>
+        <script>
+            yall(
+                {
+                    observeChanges: true
+                }
+            );
+        </script>
+        <script src="/assets/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/js/webflow.fd002feec.js"></script>
+        <!-- Import the component -->
+    </body>
 </html>
