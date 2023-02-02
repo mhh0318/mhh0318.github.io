@@ -42,7 +42,7 @@
             <td style="padding:20px;width:100%;vertical-align:middle">
               <heading>Research</heading>
               <p>
-                My research focuses on generative models, multi-modality learning and their applications in various domain, especially on 2D Image Generation, Music/ Audio Generation. Previously, I also worked on randomized neural networks.
+                My research focuses on generative models, multi-modality learning, and its applications in many domains, particularly 2D Image Generation and Music/Audio Generation. Prior to this, I also worked with random neural networks.
               </p>
             </td>
           </tr>
@@ -96,7 +96,48 @@
   </td>
 </tr>
 		  
+<tr onmouseout="vqddm_stop()" onmouseover="vqddm_start()">
+  <td style="padding:20px;width:25%;vertical-align:middle">
+    <div class="one">
+      <div class="two" id='vqddm_image'>
+      <img src="images/vqddm_mod.png" width="160"></div>
+      <img src='images/vqddm_raw.png' width="160">
+    </div>
+    <script type="text/javascript">
+      function vqddm_start() {
+        document.getElementById('vqddm_image').style.opacity = "1";
+      }
 
+      function vqddm_stop() {
+        document.getElementById('vqddm_image').style.opacity = "0";
+      }
+      vqddm_stop()
+    </script>
+  </td>
+  <td style="padding:20px;width:75%;vertical-align:middle">
+    <a href="https://mhh0318.github.io/VQDDM/">
+      <papertitle>Global Context with Discrete Diffusion in Vector Quantised Modelling for Image Generation.</papertitle>
+    </a>
+    <br>
+    <strong>Minghui Hu</strong>,
+		<a href="https://scholar.google.com/citations?user=7CobseIAAAAJ&hl=en">Yujie Wang</a>,
+    <a href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a>,
+    <a href="http://marsyang.site/">Jianfei Yang</a>,
+    <a href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a>
+    <br>
+    <em>CVPR</em>, 2022 &nbsp
+    <br>
+    <!-- <a href="https://mhh0318.github.io/unid3/">project page</a> -->
+    <!-- / -->
+    <a href="https://arxiv.org/abs/2112.01799">arXiv</a>
+    /
+    <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Hu_Global_Context_With_Discrete_Diffusion_in_Vector_Quantised_Modelling_for_CVPR_2022_paper.pdf">PDF</a>
+    <p></p>
+    <p>
+    Instead of AutoRegresive Transformers, we use Discrete Diffusion Model to obtain a better global context for image generation.
+    </p>
+  </td>
+</tr>
 
 
 
