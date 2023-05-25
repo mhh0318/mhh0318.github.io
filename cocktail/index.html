@@ -216,7 +216,7 @@
                         Our proposed gControlNet shares the same objective function as the diffusion model, aiming to predict the noise added at time t. The only distinction lies in the incorporation of multimodal information:
                     </p>
                     \[
-                    \mathcal{L} = \mathbb{E}_{\boldsymbol{z}_0, t, \boldsymbol{c}_p, \hat{\boldsymbol{c}}_m, \mathbb{E}psilon \sim \mathcal{N}(0,1)} \left[ \Vert \mathbb{E}psilon - \mathbb{E}psilon_{\theta}\left(\boldsymbol{z}_t, t, \boldsymbol{c}_p,\hat{\boldsymbol{c}}_m \right) \Vert ^2_2 \right]
+                    \mathcal{L} = \mathbb{E}_{\boldsymbol{z}_{0}, t, \boldsymbol{c}_p, \hat{\boldsymbol{c}}_m, \epsilon \sim \mathcal{N}(0,1)} \left[ \Vert \epsilon - \epsilon_{\theta}\left(\boldsymbol{z}_t, t, \boldsymbol{c}_p,\hat{\boldsymbol{c}}_m \right) \Vert ^2_2 \right]
                     \]
                     <!-- <image src="img/tm.png" class="img-responsive" alt="overview"><br> -->
                     <!-- <h6 class="caption"> </h6> -->
