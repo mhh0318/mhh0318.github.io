@@ -55,55 +55,104 @@
         </tbody></table>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
 
-          <tr onmouseout="oms_stop()" onmouseover="oms_start()">
-            <td style="padding:20px;width:25%;vertical-align:middle">
-              <div class="one">
-                <div class="two" id='oms_image'>
-                <img src="images/oms_0.png" width="160"></div>
-                <img src='images/oms_1.png' width="160">
-              </div>
-              <script type="text/javascript">
-                function oms_start() {
-                  document.getElementById('oms_image').style.opacity = "1";
-                }
-          
-                function oms_stop() {
-                  document.getElementById('oms_image').style.opacity = "0";
-                }
-                oms_stop()
-              </script>
-            </td>
-            <td style="padding:20px;width:75%;vertical-align:middle">
-              <a href="https://jabir-zheng.github.io/OneMoreStep/">
-                <papertitle>One More Step: A Versatile Plug-and-Play Module for Rectifying Diffusion Schedule Flaws and Enhancing Low-Frequency Controls</papertitle>
-              </a>
-              <br>
-              <strong>Minghui Hu</strong>,
-              Jianbin Zheng,
-              <a href="https://chuanxiaz.com/">Chuanxia Zheng</a>,
-              <a href="https://wang-chaoyue.github.io/">Chaoyue Wang</a>,
-              <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a>,
-              <a href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a>
-              <br>
-              <em>arxiv</em>, 2023 &nbsp
-              <br>
-              <a href="https://jabir-zheng.github.io/OneMoreStep/">project page</a>
-              /
-              <a href="http://arxiv.org/abs/2311.15744">arXiv</a>
-              /
-              <!-- <a href="data/Cocktail.pdf">PDF</a>
-              / -->
-              <a href="https://github.com/mhh0318/OneMoreStep">code</a>
-              /
-              <a href="https://huggingface.co/spaces/h1t/oms_sdxl_lcm">HF Space</a>
-              <p></p>
-              <p>
-              We develop a versatile plug-and-play module to fix the scheduler flaws for diffusion models.
-              </p>
-            </td>
-          </tr>
-          
-          
+
+
+<tr onmouseout="tcd_stop()" onmouseover="tcd_start()">
+  <td style="padding:20px;width:25%;vertical-align:middle">
+    <div class="one">
+      <div class="two" id='tcd_image'>
+      <img src="images/tcd_1.png" width="160"></div>
+      <img src='images/tcd_0.png' width="160">
+    </div>
+    <script type="text/javascript">
+      function tcd_start() {
+        document.getElementById('tcd_image').style.opacity = "1";
+      }
+
+      function tcd_stop() {
+        document.getElementById('tcd_image').style.opacity = "0";
+      }
+      tcd_stop()
+    </script>
+  </td>
+  <td style="padding:20px;width:75%;vertical-align:middle">
+    <a href="https://mhh0318.github.io/tcd/">
+      <papertitle>Trajectory Consistency Distillation</papertitle>
+    </a>
+    <br>
+    Jianbin Zheng *,
+    <strong>Minghui Hu *</strong>,
+    <a href="https://wang-chaoyue.github.io/">Chaoyue Wang</a>,
+    <a href="https://www2.scut.edu.cn/ft/2021/1102/c29779a449569/page.htm">Changxing Ding</a>,
+    <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a>,
+    <a href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a>
+    <br>
+    <em>arxiv</em>, 2024 &nbsp
+    <br>
+    <a href="https://mhh0318.github.io/tcd/">project page</a>
+    /
+    <a href="https://arxiv.org/abs/2306.00964">arXiv</a>
+    /
+    <a href="https://github.com/mhh0318/Cocktail">code</a>
+    /
+    <a href="data/Cocktail.pdf">HF Space</a>
+    <p></p>
+    <p>
+    We distill a consistency model based on diffusion trajectory to improve the sample quality.
+    </p>
+    <p style="font-size: 80%;"> * equal contribution </p>
+  </td>
+</tr>
+
+<tr onmouseout="oms_stop()" onmouseover="oms_start()">
+  <td style="padding:20px;width:25%;vertical-align:middle">
+    <div class="one">
+      <div class="two" id='oms_image'>
+      <img src="images/oms_0.png" width="160"></div>
+      <img src='images/oms_1.png' width="160">
+    </div>
+    <script type="text/javascript">
+      function oms_start() {
+        document.getElementById('oms_image').style.opacity = "1";
+      }
+
+      function oms_stop() {
+        document.getElementById('oms_image').style.opacity = "0";
+      }
+      oms_stop()
+    </script>
+  </td>
+  <td style="padding:20px;width:75%;vertical-align:middle">
+    <a href="https://jabir-zheng.github.io/OneMoreStep/">
+      <papertitle>One More Step: A Versatile Plug-and-Play Module for Rectifying Diffusion Schedule Flaws and Enhancing Low-Frequency Controls</papertitle>
+    </a>
+    <br>
+    <strong>Minghui Hu</strong>,
+    Jianbin Zheng,
+    <a href="https://chuanxiaz.com/">Chuanxia Zheng</a>,
+    <a href="https://wang-chaoyue.github.io/">Chaoyue Wang</a>,
+    <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a>,
+    <a href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a>
+    <br>
+    <em>CVPR</em>, 2024 &nbsp
+    <br>
+    <a href="https://jabir-zheng.github.io/OneMoreStep/">project page</a>
+    /
+    <a href="http://arxiv.org/abs/2311.15744">arXiv</a>
+    /
+    <!-- <a href="data/Cocktail.pdf">PDF</a>
+    / -->
+    <a href="https://github.com/mhh0318/OneMoreStep">code</a>
+    /
+    <a href="https://huggingface.co/spaces/h1t/oms_sdxl_lcm">HF Space</a>
+    <p></p>
+    <p>
+    We develop a versatile plug-and-play module to fix the scheduler flaws for diffusion models.
+    </p>
+  </td>
+</tr>
+
+
 <tr onmouseout="cocktail_stop()" onmouseover="cocktail_start()">
   <td style="padding:20px;width:25%;vertical-align:middle">
     <div class="one">
@@ -151,6 +200,33 @@
   </td>
 </tr>
       
+<tr>
+  <td style="padding:20px;width:25%;vertical-align:middle">
+    <img src='images/SDRVFL.png' width="160">
+  </td>
+  <td style="padding:20px;width:75%;vertical-align:middle">
+    <a href="https://mhh0318.github.io/">
+      <papertitle>Self-Distillation for Randomized Neural Networks</papertitle>
+    </a>
+    <br>
+    <strong>Minghui Hu</strong>,
+    <a href="https://scholar.google.com.sg/citations?user=PrIHu7QAAAAJ&hl=en">Ruobin Gao</a>,
+    <a href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a>,
+    <br>
+    <em>T-NNLS</em> &nbsp
+    <br>
+    <!-- <a href="https://mhh0318.github.io/">project page</a>
+    / -->
+    <a href="https://ieeexplore.ieee.org/abstract/document/10220213/">IEEE</a>
+    <!-- /
+    <a href="data/MMoT.pdf">PDF</a> -->
+    <p></p>
+    <p>
+        We integrate self-distillation into the randomized neural network to improve the generalization performance.
+    </p>
+  </td>
+</tr>
+
 
 <tr onmouseout="mmot_stop()" onmouseover="mmot_start()">
   <td style="padding:20px;width:25%;vertical-align:middle">
@@ -183,7 +259,7 @@
     <a href="https://www2.scut.edu.cn/ft/2021/1102/c29779a449569/page.htm">Changxing Ding</a>,
     <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a>,
     <br>
-    <em>arxiv</em>, 2023 &nbsp
+    <em>IJCV</em> &nbsp
     <br>
     <a href="https://jabir-zheng.github.io/MMoT/">project page</a>
     /
@@ -317,6 +393,44 @@
   </td>
 </tr>
 		  
+<tr onmouseout="usrvfl_stop()" onmouseover="usrvfl_start()">
+  <td style="padding:20px;width:25%;vertical-align:middle">
+    <div class="one">
+      <div class="two" id='usrvfl_image'>
+      <img src="images/usrvfl_0.png" width="160"></div>
+      <img src='images/usrvfl_1.png' width="160">
+    </div>
+    <script type="text/javascript">
+      function usrvfl_start() {
+        document.getElementById('usrvfl_image').style.opacity = "1";
+      }
+
+      function usrvfl_stop() {
+        document.getElementById('usrvfl_image').style.opacity = "0";
+      }
+      vqddm_stop()
+    </script>
+  </td>
+  <td style="padding:20px;width:75%;vertical-align:middle">
+    <a href="https://mhh0318.github.io/VQDDM/">
+      <papertitle>Representation Learning Using Deep Random Vector Functional Link Networks for Clustering</papertitle>
+    </a>
+    <br>
+    <strong>Minghui Hu</strong>,
+    <a href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a>
+    <br>
+    <em>PR</em> &nbsp
+    <br>
+    <!-- <a href="https://mhh0318.github.io/unid3/">project page</a> -->
+    <!-- / -->
+    <a href="https://www.sciencedirect.com/science/article/abs/pii/S0031320322002254">Elsevier</a>
+    <p></p>
+    <p>
+    We use manifold regularisation to learn the representation from the randomised networks.
+    </p>
+  </td>
+</tr>
+
 <tr onmouseout="vqddm_stop()" onmouseover="vqddm_start()">
   <td style="padding:20px;width:25%;vertical-align:middle">
     <div class="one">
@@ -366,15 +480,17 @@
       <heading>Academic Services</heading>
       <p><font size="4"><b>Conference Program Committee Member</b></font></p>
     <table>
-      <tr><td>CVPR</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2022,&nbsp;2023,&nbsp;2024</td></tr>
+      <tr><td>CVPR</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2022&nbsp;-&nbsp;2024</td></tr>
       <tr><td>ICCV</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2023</td></tr>
+      <tr><td>ECCV</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2024</td></tr>
+      <tr><td>ACM MM</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2024</td></tr>
       <tr><td>NeurIPS</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2023</td></tr>
       <tr><td>ICLR</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2023,&nbsp;2024</td></tr>
-      <tr><td>ICASSP</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2023;&nbsp;2024</td></tr>
-      <tr><td>IJCNN</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2020;&nbsp;2021;&nbsp;2022,&nbsp;2023</td></tr>
+      <tr><td>ICASSP</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2023,&nbsp;2024</td></tr>
+      <tr><td>IJCNN</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2020&nbsp;-&nbsp;2024</td></tr>
     </table>
       <p><font size="4"><b>Journal Reviewer</b></font></p>
-      <p>PR, TNNLS, TCyb, NeuNet, Neucom, ASOC, EAAI, IJCV</p>
+      <p>T-NNLS, T-Cyb, PR, NeuNet, Neucom, ASOC, EAAI, IJCV</p>
     </td>
   </tr>
 </tbody></table>
