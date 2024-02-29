@@ -129,3 +129,8 @@ name {
 span.highlight {
   background-color: #ffffd0;
 }
+.news {
+  width: 640px;
+  height: 150px;
+  overflow-y: scroll;
+}
