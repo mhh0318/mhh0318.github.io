@@ -214,6 +214,7 @@
         </div>
 
         <div class="highlight-clean" style="padding-bottom: 10px;">
+
         <hr class="divider" />
         <div class="container" style="max-width: 1024px;">
             <div class="row">
@@ -250,12 +251,13 @@
             </div>
         </div>
 
+      
         <hr class="divider" />
         <div class="container" style="max-width: 1024px;">
             <!-- <h3>Comparision with SDXL</h3> -->
             <h2>Better than Teacher w/o Additional Supervision</h2>
             <p>
-             TCD even outperforms  SDXL with DPM-Solver-2S at high NFE. It is worth noting that we do not use any addition discriminator or LPIPs supervision during training. Refer to our paper for more implement details.
+              TCD maintains superior generative quality at both low NFEs and high NFEs, even exceeding the performance of DPM-Solver++(2S) with origin SDXL. It is worth noting that there is no additional discriminator or LPIPS supervision included during training.
             </p>
             <p>
              We demonstrate some examples at 20 NFEs below.
@@ -308,7 +310,7 @@
         <hr class="divider"/>
         <div class="container" style="max-width: 1024px;">
             <h2>Flexible NFEs</h2>
-            <p>For TCD, the NFEs can be varied at will (compared with Turbo series), without adversely affecting the quality of the results (compared with LCMs).<p>
+            <p>The NFEs for TCD sampling can be varied at will (compared with Turbo series), without adversely affecting the quality of the results (compared with LCMs).<p>
             <p>
             We compare the performance of TCD and LCM at increasing NFEs. Due to accumulated errors in multistep sampling, LCM experiences a loss of image detail, leading to a degradation in performance, whereas TCD addresses this issue. 
             </p>
@@ -359,12 +361,12 @@
                 </div>
                 
               </div>
-
+            </div>
         <hr class="divider" />
         <div class="container" style="max-width: 1024px;">
-            <h2>Freely Change the Detail Level</h2>
+            <h2>Freely Change the Detailing</h2>
             <p>
-            At the same NFE, TCD also outperforms LCM in terms of image quality. With decreasing 𝛾, the image become more clear and detailed.
+              During inference, the level of detail in the image can be simply modified by adjusing one hyper-parameter gamma. This option does not require the introduction of any additional parameters.
             </p>
 
             <div class="container-fluid">
@@ -413,14 +415,14 @@
 
         <hr class="divider" />
         <div class="container" style="max-width: 1024px;">
-            <h3>Versatility</h3>
+            <h2>Versatility</h2>
             <p>
-                TCD can be adapted to various SDXL-based expansions and plugins in the community, for instance, LoRA, controlnet, IP Adapter, and other base models, e.g. Animagine XL.
+                TCD can be adapted to various SDXL-based expansions and plugins in the community, for instance, LoRA, ControlNet, IP Adapter, and other base models, e.g. Animagine XL.
             </p>
         <img src="img/versatility.png" alt="overview" style="width: 100%; height: auto;">
         </div>
         </div>
-    </div>
+        </div>
 
         <hr class="divider" />
         <div class="container" style="max-width: 1024px;">
