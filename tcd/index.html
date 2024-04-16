@@ -47,9 +47,12 @@
 </head>
     <body>
         <div class="highlight-clean" style="padding-bottom: 10px;">
-            <div class="container" style="max-width: 768px;">
+            <div class="container">
                 <h1 class="text-center"><b>Trajectory Consistency Distillation</b></h1>
-            </div>
+
+
+                <h3 class="text-center">Improved Latent Consistency Distillation by Semi-Linear Consistency Function with Trajectory Mapping</h3>
+              </div>
             <div class="container" style="max-width: 768px;">
                 <div class="row authors">
                     <div class="col-sm-3">
@@ -249,8 +252,7 @@
               <br>
             and we have never intended to claim credits. <br><br>
             As we have mentioned in our email, we would like to extend a formal apology to the CTM authors for the clearly inadequate level of referencing in our paper. We will provide more credits in the revised manuscript. </li>
-            <br>
-            <li> The  <a href="https://arxiv.org/abs/2402.19159v1">first arXiv version</a> is only preprint will not be featured in any peer-reviewed conference proceedings.</li>
+
             <br>
             <li>In the updated <a href="https://arxiv.org/abs/2402.19159v2">second arXiv version</a>, we have expanded our discussion to elucidate the relationship with CTM. Additionally, we have removed some proofs that were previously included for completeness.
             </li>
@@ -300,7 +302,7 @@
                         </div>
                     </div>
                     <p style="margin-top: 20px;">
-                    The trajectory consistency function diminishes the distillation errors by broadening the scope of the self-consistency boundary condition and endowing the TCD with the ability to accurately trace the entire trajectory of the Probability Flow ODE. Additionally, strategic stochastic sampling is specifically designed to circumvent the accumulated errors inherent in multi-step consistency sampling, which is meticulously tailored to complement the TCD model. 
+                    The trajectory consistency function diminishes the distillation errors by broadening the scope of the self-consistency boundary condition with a semi-linear consistency function and endowing the TCD with the ability to accurately trace the entire trajectory of the Probability Flow ODE.
                     </p>
                     <p>
                     Experiments demonstrate that  <strong>TCD not only significantly enhances image quality at low NFEs but also yields more detailed results compared to the teacher model at high NFEs.</strong> 
@@ -371,7 +373,7 @@
             <h2>Flexible NFEs</h2>
             <p>The NFEs for TCD sampling can be varied at will (compared with Turbo series), without adversely affecting the quality of the results (compared with LCMs).<p>
             <p>
-            We compare the performance of TCD and LCM at increasing NFEs. Due to accumulated errors in multistep sampling, LCM experiences a loss of image detail, leading to a degradation in performance, whereas TCD addresses this issue. 
+            We compare the performance of TCD and LCM at increasing NFEs. 
             </p>
             <div class="container-fluid">
                 <div class="row no-gutters align-items-center"> <!-- align-items-center will vertically align the contents of this row -->
@@ -425,7 +427,7 @@
         <div class="container" style="max-width: 1024px;">
             <h2>Freely Change the Detailing</h2>
             <p>
-              During inference, the level of detail in the image can be simply modified by adjusing one hyper-parameter gamma. This option does not require the introduction of any additional parameters.
+              During inference, the level of detail in the image can be simply modified by adjusing one hyper-parameter gamma. This option does not require the introduction of any additional trainable 32parameters.
             </p>
 
             <div class="container-fluid">
