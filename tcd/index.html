@@ -58,32 +58,32 @@
                     </div>
                     <div class="col-sm-3">
                         <!-- <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io">Minghui Hu * </a></h5> -->
-                        <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io">Minghui Hu * <sup>†</sup></a></h5>
+                        <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io/tcd">Minghui Hu * </a></h5>
                         <h6 class="text-center">Nanyang Technological University</h6>
                     </div>
                     <div class="col-sm-3">
-                        <h5 class="text-center"><a class="text-center">Zhongyi Fan</a></h5>
+                        <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io/tcd">Zhongyi Fan</a></h5>
                         <h6 class="text-center">Beijing Institute of Technology</h6>
                     </div>
                     <div class="col-sm-3">
-                        <h5 class="text-center"><a class="text-center" href="https://wang-chaoyue.github.io/">Chaoyue Wang</a></h5>
+                        <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io/tcd">Chaoyue Wang</a></h5>
                         <h6 class="text-center">University of Sydney</h6>
                     </div>
                     <div class="col-sm-4">
-                        <h5 class="text-center"><a class="text-center" href="https://www2.scut.edu.cn/ft/2021/1102/c29779a449569/page.htm">Changxing Ding</a></h5>
+                        <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io/tcd">Changxing Ding</a></h5>
                         <h6 class="text-center">South China University of Technology</h6>
                     </div>
                     <div class="col-sm-4">
-                        <h5 class="text-center"><a class="text-center" href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a></h5>
+                        <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io/tcd">Dacheng Tao</a></h5>
                         <h6 class="text-center">Nanyang Technological University</h6>
                     </div>
                     <div class="col-sm-4">
-                        <h5 class="text-center"><a class="text-center" href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a></h5>
+                        <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io/tcd">Tat-Jen Cham</a></h5>
                         <h6 class="text-center">Nanyang Technological University</h6>
                     </div>
                 </div>    
                 <p class="text-center", style="font-size: 80%;">
-                  * Equal contribution; &nbsp; <sup>†</sup> Corresponding author
+                  * Equal contribution
                   </p>
             </div>
 
@@ -216,7 +216,7 @@
 
         <hr class="divider" />
         <div class="container">
-          <h2>A Solemn Statement Regarding the Plagiarism Allegations</h2>
+          <h3>A Solemn Statement Regarding the Plagiarism Allegations</h3> (Update 16 Apr.)
           <h4>
               <strong>We regret to hear about the serious accusations from the CTM team.</strong>
           </h4>
@@ -233,21 +233,32 @@
           <!-- <h4><strong>Before this post, we already had several rounds of communication with CTM's authors. We shall proceed to elucidate the situation here.</strong></h4> -->
           
           <ol class="list-num">
-              <li>In our first arXiv pre-print, we have indicated "mainly borrows the proof from CTM" and have never intended to claim credits. As we have mentioned in our email, we would like to extend a formal apology to the CTM authors for the clearly inadequate level of referencing in our paper. We will provide more credits in the revised manuscript. Moreover, the current version of the manuscript is only preprint will not be featured in any peer-reviewed conference proceedings. </li>
-  
-              <li>Furthermore, the sections under accusation bear no relation to the core contributions of TCD. The represented accused parts are supplementary rather than fundamental. Additionally, upon review, we also noticed that the accused proof inconsistent with TCD raw hypothesis. Hence, we have provided a rigorous proof of our theoretical aspects within the framework of our study, which is predicated upon DPMSolver and DEIS. We also provide the proof in the email.</li>
-  
-              <li>CTM and TCD are different from motivation, method to experiments. The experimental results also cannot be obtained from any type of CTM algorithm.
-                <ul>
-                  <li>Here we provide a simple method to check: use our sampler here to sample the checkpoint <a href="https://github.com/sony/ctm">CTM released</a>, or vice versa.</li>
-                  <li><a href="https://github.com/sony/ctm">CTM</a> also provided a training script. We welcome anyone to reproduce the experiments on SDXL based on the CTM algorithm.</li>
-              </ul>
-              </li>
+            <li> In the <a href="https://arxiv.org/abs/2402.19159v1">first arXiv version</a>, we have provided citations and discussion in A. Related Works: </li>
+            <div style="font-style: italic; text-indent: 20px; padding-left: 30px; padding-right: 30px; border: 1px solid black;">
+              Kim et al. (2023) proposes a universal framework for CMs and DMs. The core design is similar to ours, with the main differences being that we focus on reducing error in CMs, subtly leverage the semi-linear structure of the PF ODE for parameterization, and avoid the need for adversarial training. 
+            </div>
+            <br>
+            <li>In the <a href="https://arxiv.org/abs/2402.19159v1">first arXiv version</a>, we have indicated in D.3 Proof of Theorem 4.2
+              <div style="font-style: italic; text-indent: 20px; padding-left: 30px; padding-right: 30px; border: 1px solid black;">
+                In this section, our derivation mainly borrows the proof from (Kim et al., 2023; Chen et al., 2022).
+              </div>
+            and have never intended to claim credits. <br>
+            As we have mentioned in our email, we would like to extend a formal apology to the CTM authors for the clearly inadequate level of referencing in our paper. We will provide more credits in the revised manuscript. Moreover, the first version of the manuscript is only preprint will not be featured in any peer-reviewed conference proceedings. </li>
+            <br>
+            <li>In the updated <a href="https://arxiv.org/abs/2402.19159v2">second arXiv version</a>, we have expanded our discussion to elucidate the relationship with the CTM framework. Additionally, we have eliminated some proofs that were previously included for completeness, refining the content for better focus and avoiding potential  misunderstandings.
+            </li>
+            <br>
+            <li>CTM and TCD are different from motivation, method to experiments. The experimental results also cannot be obtained from any type of CTM algorithm.
+              <ul>
+                <li>Here we provide a simple method to check: use our sampler here to sample the checkpoint <a href="https://github.com/sony/ctm">CTM released</a>, or vice versa.</li>
+                <li><a href="https://github.com/sony/ctm">CTM</a> also provided a training script. We welcome anyone to reproduce the experiments on SDXL based on the CTM algorithm.</li>
+            </ul>
+            </li>
           </ol>
   
           <h5>We believe the assertion of plagiarism is not only severe but also detrimental to the academic integrity of the involved parties. We earnestly hope that everyone involved gains a more comprehensive understanding of this matter.</h5>
   
-          <h5>All related docs, e.g. email chain and proof, can be found <a href="https://drive.google.com/file/d/19c1QMfOMgp3McR4FCBk4pjdf22avyp8X/view" class="external-link">here</a>.</h5>
+          <!-- <h5>All related docs, e.g. email chain and proof, can be found <a href="https://drive.google.com/file/d/19c1QMfOMgp3McR4FCBk4pjdf22avyp8X/view" class="external-link">here</a>.</h5> -->
       </div>
 
       <hr class="divider" />
@@ -463,6 +474,17 @@
         <hr class="divider" />
         <div class="container" style="max-width: 1024px;">
             <div class="row">
+              <div class="col-md-12">
+                <h2>Related and Concurrent Work</h2>
+                <ul>
+                  <li> Luo S, Tan Y, Huang L, et al. Latent consistency models: Synthesizing high-resolution images with few-step inference. arXiv preprint arXiv:2310.04378, 2023.</li>
+                  <li> Luo S, Tan Y, Patil S, et al. LCM-LoRA: A universal stable-diffusion acceleration module. arXiv preprint arXiv:2311.05556, 2023. </li> 
+                  <li> Lu C, Zhou Y, Bao F, et al. DPM-Solver: A fast ode solver for diffusion probabilistic model sampling in around 10 steps. Advances in Neural Information Processing Systems, 2022, 35: 5775-5787.</li>
+                  <li> Lu C, Zhou Y, Bao F, et al. DPM-solver++: Fast solver for guided sampling of diffusion probabilistic models. arXiv preprint arXiv:2211.01095, 2022.</li>
+                  <li> Zhang Q, Chen Y. Fast sampling of diffusion models with exponential integrator. ICLR 2023, Kigali, Rwanda, May 1-5, 2023.</li>
+                  <li> Kim D, Lai C H, Liao W H, et al. Consistency Trajectory Models: Learning Probability Flow ODE Trajectory of Diffusion. ICLR 2024.</li>
+                </ul>
+            </div>
                 <div class="col-md-12">
                     <h2>Citation</h2>
                     <code>
