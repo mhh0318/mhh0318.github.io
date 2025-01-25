@@ -34,10 +34,9 @@
       --bg: #ffffff;
       --bg-alt: #f3f4f6;
       --link-color: #2e3ed1;
-      --link-color-rgb: 46, 62, 209;
-      --link-hover-color: #c500b5;
-      --link: #1772d0;
-      --link-hover: #4291e3;
+      --link-color-rgb: 0, 102, 204;  /* 蓝色的 RGB 值 */
+      --link: rgb(var(--link-color-rgb));
+      --link-hover: rgb(0, 68, 153);
       --border: #ddd;
       --code-bg: #ede5f3;
     }
@@ -45,10 +44,13 @@
     [data-theme="dark"] {
       --bg: #1a1a1a;
       --text: #ffffff;
-      --link: #6bb5ff;
-      --link-hover: #98ccff;
+      /* --link: #6bb5ff; */
+      /* --link-hover: #98ccff; */
       --border: #444;
       --code-bg: #2d2a2e;
+      --link-color-rgb: 102, 179, 255;  /* 暗色模式下的蓝色 RGB 值 */
+      --link: rgb(var(--link-color-rgb));
+      --link-hover: rgb(153, 204, 255);
     }
 
     body {
