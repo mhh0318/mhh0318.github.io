@@ -19,7 +19,6 @@
       <input type="checkbox" id="theme-toggle">
       <span class="slider"></span>
     </label>
-    <span class="theme-label">Dark Mode Preferred</span>
   </div>
 
   <div class="gradient-bg"></div>
@@ -524,8 +523,16 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
+      gap: 5px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
       z-index: 1000;
-      gap: 5px; /* 添加开关和文字之间的间距 */
+    }
+
+    /* 添加隐藏状态的样式 */
+    .theme-switch-wrapper.hidden {
+      opacity: 0;
+      transform: translateY(-10px);
+      pointer-events: none;
     }
 
     .theme-switch {
@@ -613,18 +620,6 @@
       text-underline-offset: 4px; 
       font-weight: 600; 
       padding: 0 2px; 
-    }
-
-    /* 添加说明文字样式 */
-    .theme-label {
-      font-size: 12px;
-      color: var(--text);
-      opacity: 0.7;
-      transition: opacity 0.3s ease;
-    }
-
-    .theme-label:hover {
-      opacity: 1;
     }
 
   </style>
@@ -1448,6 +1443,24 @@
       document.documentElement.setAttribute('data-theme', 'light');
       localStorage.setItem('theme', 'light');
     }
+  });
+
+  // 添加滚动监听控制
+  let lastScrollTop = 0;
+  const switchWrapper = document.querySelector('.theme-switch-wrapper');
+  const scrollThreshold = 100; // 滚动多少距离后隐藏
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // 当滚动超过阈值时隐藏
+    if (scrollTop > scrollThreshold) {
+      switchWrapper.classList.add('hidden');
+    } else {
+      switchWrapper.classList.remove('hidden');
+    }
+    
+    lastScrollTop = scrollTop;
   });
   </script>
 </body>
