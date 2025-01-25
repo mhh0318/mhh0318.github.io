@@ -611,11 +611,11 @@
     }
 
     [data-theme="dark"] .hiring-tag .tooltip {
-      background: rgba(82, 103, 124, 0.127);
+      background: rgba(82, 103, 124, 0.25);
     }
 
     [data-theme="dark"] .hiring-tag .tooltip::before {
-      border-bottom-color: rgba(82, 103, 124, 0.127);
+      border-bottom-color: rgba(82, 103, 124, 0.25);
     }
 
     .email-code {
@@ -1483,6 +1483,26 @@
     }
     
     lastScrollTop = scrollTop;
+  });
+
+  // 添加双击跳转逻辑
+  document.addEventListener('DOMContentLoaded', () => {
+    const hiringTag = document.querySelector('.hiring-tag');
+    const link = hiringTag.querySelector('a');
+    let lastClickTime = 0;
+    
+    link.addEventListener('click', (e) => {
+      e.preventDefault(); // 阻止默认跳转
+      
+      const currentTime = new Date().getTime();
+      const timeDiff = currentTime - lastClickTime;
+      
+      if (timeDiff < 500) { // 如果两次点击间隔小于500ms，执行跳转
+        window.location.href = link.href;
+      }
+      
+      lastClickTime = currentTime;
+    });
   });
   </script>
 </body>
