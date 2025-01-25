@@ -1,16 +1,381 @@
 <!DOCTYPE HTML>
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>Minghui Hu | NTU</title>
+  <title>Minghui Hu | SpellBrush</title>
   
   <meta name="author" content="Jon Barron">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌐</text></svg>">
+	<link rel="icon" type="image/webp" href="https://spellbrush.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.f1ddcf09.webp&w=1080&q=75">
+  <link rel="shortcut icon" type="image/webp" href="https://spellbrush.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.f1ddcf09.webp&w=1080&q=75">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
+  <div class="gradient-bg"></div>
+  <div class="noise-overlay"></div>
+  
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #7c3aed;
+      --text: #1f2937;
+      --bg: #ffffff;
+      --bg-alt: #f3f4f6;
+      --link-color: #2e3ed1;
+      --link-color-rgb: 46, 62, 209;
+      --link-hover-color: #c500b5;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    p {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: 1rem;  /* 16px */
+      margin-bottom: 1.2em;  
+    }
+
+    .gradient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        45deg,
+        rgba(37, 99, 235, 0.15),
+        rgba(124, 58, 237, 0.2),
+        rgba(37, 99, 235, 0.15),
+        rgba(124, 58, 237, 0.2)
+      );
+      background-size: 400% 400%;
+      animation: gradientAnimation 60s ease infinite;
+      z-index: -2;
+    }
+
+    @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 40%;
+    }
+    50% {
+      background-position: 80% 40%;
+    }
+    100% {
+      background-position: 0% 40%;
+    }
+    }
+
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.4;
+      background-image: 
+        repeating-linear-gradient(
+          120deg,
+          rgba(255,255,255, 0.05),
+          rgba(255,255,255, 0.05) 1px,
+          transparent 1px,
+          transparent 2px
+        ),
+        repeating-linear-gradient(
+          30deg,
+          rgba(255,255,255, 0.03),
+          rgba(255,255,255, 0.03) 1px,
+          transparent 1px,
+          transparent 2px
+        ),
+        linear-gradient(
+          rgba(255,255,255, 0.1) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255, 0.1) 1px,
+          transparent 1px
+        );
+      background-size: 
+        3px 3px,
+        3px 3px,
+        50px 50px,
+        50px 50px;
+      filter: contrast(120%) brightness(100%);
+    }
+
+    /* 添加微妙的纸张纹理动画 */
+    @keyframes paper {
+      0% {
+        transform: translate(0, 0);
+      }
+      50% {
+        transform: translate(0.5px, 0.5px);
+      }
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+
+    .noise-overlay {
+      animation: paper 8s ease-in-out infinite;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3em;
+      font-weight: 700;
+      background: linear-gradient(120deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2em;
+      font-weight: 600;
+      color: var(--text);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.5em;
+      margin: 2em 0 1em;
+      display: block;
+    }
+
+    .news {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2em;
+      box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease;
+    }
+
+    .news:hover {
+      transform: translateY(-2px);
+    }
+
+
+    papertitle {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 500;
+      font-size: 1.1em;
+      background: linear-gradient(120deg, #3c9e97, #ff6b6b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    papertitle:hover {
+      transform: scale(1.02);
+      background: linear-gradient(120deg, #ff6b6b, #3c9e97);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1em 0;
+    }
+
+    .social-links a {
+      padding: 0.5em 1em;
+      border-radius: 8px;
+      background: rgba(37, 99, 235, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      name {
+        font-size: 2em;
+      }
+
+      heading {
+        font-size: 1.5em;
+      }
+
+      .social-links {
+        flex-wrap: wrap;
+      }
+    }
+
+    em {
+      font-family: 'Merriweather', serif;
+      font-style: italic;
+      font-weight: 700;
+    }
+
+    td img {
+      transition: all 0.3s ease;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    td img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    a:not(:has(papertitle)) {
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      font-size: 16px;
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+      color: var(--link-color);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 4px;
+      background: 
+        linear-gradient(
+          to right,
+          rgba(var(--link-color-rgb), 0.1) 50%,
+          transparent 50%
+        );
+      background-size: 200% 100%;
+      background-position: right bottom;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+      padding: 0 4px;
+      margin: 0 -4px;
+      white-space: nowrap;
+    }
+
+    a:not(:has(papertitle)):hover {
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      color: var(--link-hover-color);
+      background-position: left bottom;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(var(--link-color-rgb), 0.15);
+    }
+
+    a:not(:has(papertitle)):active {
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      transform: translateY(0px);
+      box-shadow: 0 1px 4px rgba(var(--link-color-rgb), 0.1);
+    }
+
+    a:not(:has(papertitle))::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      right: 4px;
+      bottom: 0;
+      height: 1px;
+      background: currentColor;
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    a:not(:has(papertitle)):hover::after {
+      opacity: 1;
+    }
+
+    a:has(papertitle) {
+      text-decoration: none;
+      color: var(--link-color);
+      transition: color 0.3s ease;
+      background: none;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    a:has(papertitle):hover {
+      color: var(--link-hover-color);
+    }
+
+    heading {
+      text-align: right;
+      background: linear-gradient(120deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 600;
+      position: relative;
+      padding-bottom: 0.5em; 
+    }
+
+    heading::after {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-size: 16px; 
+      line-height: 1.6; 
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 3px;  /* 下划线粗细 */
+      background: linear-gradient(120deg, var(--primary), var(--secondary));
+      border-radius: 2px;  /* 让下划线两端圆润 */
+    }
+
+    strong {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+    }
+
+    .review-section {
+      font-family: 'Playfair Display', serif;
+      margin: 20px 0;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin: 20px 0 10px 0;
+    }
+
+    .review-table {
+      font-family: 'Playfair Display', serif;
+      border-spacing: 20px 8px;
+      margin-left: -20px;
+    }
+
+    .review-table td:first-child {
+      font-family: 'Space Grotesk', serif;
+      font-weight: 700;
+    }
+
+    .journal-list {
+      font-family: 'Space Grotesk', serif;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+  </style>
+
   <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
     <tr style="padding:0px">
       <td style="padding:0px">
@@ -20,17 +385,24 @@
               <p style="text-align:center">
                 <name>Minghui Hu</name>
               </p>
-              <p style="text-align:center">
-                <name style="font-family: 'STKaiti'; font-size: 24px;">胡明辉</name>
-              </p>
-              <p>I received my PhD degree from <a href="https://www.ntu.edu.sg">Nanyang Technological University</a> in Singapore, advised by <a href="https://www3.ntu.edu.sg/home/epnsugan/">Prof. P. N. Suganthan</a>. Previousely, I received my MSc. degree in <a href="https://www.ntu.edu.sg/eee"> Electric and Electrical Engineering</a> from NTU in 2019. Parallel to my doctoral studies, I hold a position as a researcher at <a href="https://www.ntu.edu.sg/temasek-labs">Temasek Lab @ NTU</a>, under the supervision of <a href="https://www.ntu.edu.sg/temasek-labs/research-focus/research-areas/center-for-communication-and-signal-processing">Dr. Sirajudeen s/o Gulam Razul</a>.
+              <!-- <p style="text-align:center">
+                <name style="font-family: 'Noto Serif TC'; font-size: 24px;">胡明輝</name>
+              </p> -->
+              <p>He is currently a researcher at <a href="https://www.spellbrush.com">SpellBrush</a>, previously interned at <a href="https://www.sensetime.com">Sensetime Research</a> and <a href="https://www.minimaxi.com/en">MiniMax</a>. </p>
+              <p>He received his Ph.D and MSc. from <a href="https://www.ntu.edu.sg">Nanyang Technological University</a>, Singapore, under the supervision of <a href="https://www3.ntu.edu.sg/home/epnsugan/">Prof. P. N. Suganthan</a>. 
+               Concurrent with his doctoral research, he served as a researcher at <a href="https://www.ntu.edu.sg/temasek-labs">Temasek Laboratories @ NTU</a>, where he conducted research under the supervision of <a href="https://www.ntu.edu.sg/temasek-labs/research-focus/research-areas/center-for-communication-and-signal-processing">Dr. Sirajudeen s/o Gulam Razul</a>.
               </p>
               <p>
-                I've had the distinct privilege of collaborating with <a href="https://personal.ntu.edu.sg/astjcham/">Prof. T.J.Cham</a> and <a href="https://dr.ntu.edu.sg/cris/rp/rp02343">Prof. Dacheng Tao</a> from <a href="https://www.ntu.edu.sg/scse">NTU</a>, &nbsp;<a href="https://chuanxiaz.com/">Dr. Chuanxia Zheng</a> from <a href="https://www.robots.ox.ac.uk/~vgg/">VGG, University of Oxford</a> and <a href="https://wang-chaoyue.github.io/">Dr. Chaoyue Wang</a> from University of Sydney.
-                I also had memorable experiences as a research intern <a href="https://www.sensetime.com">Sensetime Research</a>, JD Explore Academy and <a href="https://api.minimax.chat">MiniMax</a>.
+                He has had the privilege of collaborating closely with <a href="https://personal.ntu.edu.sg/astjcham/">Prof. Tat-Jen Cham</a> and <a href="https://dr.ntu.edu.sg/cris/rp/rp02343">Prof. Dacheng Tao</a> from <a href="https://www.ntu.edu.sg/computing">College of Computing and Data Science, NTU</a>.
+                Meanwhile, <a href="https://chuanxiaz.com/">Dr. Chuanxia Zheng</a> from <a href="https://www.robots.ox.ac.uk/~vgg/">VGG, University of Oxford</a>, and <a href="https://wang-chaoyue.github.io/">Dr. Chaoyue Wang</a> offered invaluable mentorship and support to his academic development.
               </p>
               <p style="text-align:center">
-                <a href="mailto:e200008@e.ntu.edu.com">Email</a> &nbsp/&nbsp
+                <code style="background-color: #ede5f3; padding: 4px 8px; border-radius: 4px; font-family: 'Courier New', Courier, monospace;">
+                  Mail: e200008 [at] e.ntu.edu.sg
+                </code>
+              </p>
+              <p style="text-align:center">
+                <!-- <a href="mailto:e200008@e.ntu.edu.sg">Email</a> &nbsp/&nbsp -->
                 <!-- <a href="data/Minghui_cv.pdf">CV</a> &nbsp/&nbsp -->
                 <a href="https://scholar.google.com/citations?user=9jfGj64AAAAJ&hl">Google Scholar</a> &nbsp/&nbsp
                 <a href="https://github.com/mhh0318/">Github</a> &nbsp/&nbsp
@@ -38,35 +410,98 @@
               </p>
             </td>
             <td style="padding:2.5%;width:45%;max-width:45%">
-              <a href="images/me.jpg"><img style="width:80%;max-width:100%" alt="profile photo" src="images/me.jpg" class="hoverZoomLink"></a>
+              <img style="width:80%;max-width:100%" alt="profile photo" src="images/me.jpg" class="hoverZoomLink">
             </td>
           </tr>
         </tbody></table>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
               <td style="padding:20px;width:100%;vertical-align:middle">
-              <heading>News</heading>
-              <div class="news">
-              <ul style="text-align:justify;height: 150px;">
-              <li class="font"><font color="red">[2024.06]  <a target="_blank" href="https://zongrui.page/ECCV2024-GCS-BEG/">GCS</a>, a project with <a target="_blank" href="https://zongrui.page/">Zongrui</a>, is accepted by ECCV2024.</font></li>  
-              <li class="font">[2024.02]  <a target="_blank" href="https://jabir-zheng.github.io/MMoT/">MMoT</a> is accepted by IJCV. Congrats <a target="_blank" href="https://jabir-zheng.github.io">Jianbin</a>.</font></li>  
-              <li class="font">[2024.02]  <a target="_blank" href="https://jabir-zheng.github.io/OneMoreStep/">OneMoreStep</a> is accepted by CVPR2024.</font></li>  
-              <li class="font">[2023.11] An <a target="_blank" href="https://link.springer.com/chapter/10.1007/978-981-99-8067-3_37">ICONIP2023 submission</a> wins the Best Student Award. Congrats <a target="_blank" href="https://scholar.google.com/citations?user=vEYtdJoAAAAJ&hl">Ruilin</a>.</font></li>  
-              <li class="font">[2023.09] <a target="_blank" href="https://mhh0318.github.io/cocktail/">Cocktail🍸</a> is accepted by NeurIPS2023.</font></li>
-              <li class="font">[2023.08] <a target="_blank" href="https://ieeexplore.ieee.org/document/10220213/">Self-Distillation for Randomized Neural Networks</a> is accepted by T-NNLS.</font></li>
-              <li class="font">[2023.07] <a target="_blank" href="https://ieeexplore.ieee.org/document/10105944">SE(2)LiO</a> is accepted by RA-L and presented at IROS2023. Congrats <a target="_blank" href="https://jabir-zheng.github.io">Jiaying Chen</a>.</font></li>
-              <li class="font">[2023.01] <a target="_blank" href="https://mhh0318.github.io/unid3/">UniD3</a> is accepted by ICLR2023.</font></li>
-              <li class="font">[2022.03] <a target="_blank" href="https://mhh0318.github.io/">VQ-DDM</a> is accepted by CVPR2022.</font></li>
-              </ul>
+              <!-- <heading>News</heading>
+              <div class="timeline-container">
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <div class="timeline-content">
+                      <div class="timeline-date">2024.06</div>
+                      <div class="timeline-text">
+                        <a target="_blank" href="https://zongrui.page/ECCV2024-GCS-BEG/">GCS</a>, a project with <a target="_blank" href="https://zongrui.page/">Zongrui</a>, is accepted by ECCV2024.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-content">
+                      <div class="timeline-date">2024.02</div>
+                      <div class="timeline-text">
+                        <a target="_blank" href="https://jabir-zheng.github.io/MMoT/">MMoT</a> is accepted by IJCV. Congrats <a target="_blank" href="https://jabir-zheng.github.io">Jianbin</a>.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-content">
+                      <div class="timeline-date">2024.02</div>
+                      <div class="timeline-text">
+                        <a target="_blank" href="https://jabir-zheng.github.io/OneMoreStep/">OneMoreStep</a> is accepted by CVPR2024.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-content">
+                      <div class="timeline-date">2023.11</div>
+                      <div class="timeline-text">
+                        An <a target="_blank" href="https://link.springer.com/chapter/10.1007/978-981-99-8067-3_37">ICONIP2023 submission</a> wins the Best Student Award. Congrats <a target="_blank" href="https://scholar.google.com/citations?user=vEYtdJoAAAAJ&hl">Ruilin</a>.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-content">
+                      <div class="timeline-date">2023.09</div>
+                      <div class="timeline-text">
+                        <a target="_blank" href="https://mhh0318.github.io/cocktail/">Cocktail🍸</a> is accepted by NeurIPS2023.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-content">
+                      <div class="timeline-date">2023.08</div>
+                      <div class="timeline-text">
+                        <a target="_blank" href="https://ieeexplore.ieee.org/document/10220213/">Self-Distillation for Randomized Neural Networks</a> is accepted by T-NNLS.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-content">
+                      <div class="timeline-date">2023.07</div>
+                      <div class="timeline-text">
+                        <a target="_blank" href="https://ieeexplore.ieee.org/document/10105944">SE(2)LiO</a> is accepted by RA-L and presented at IROS2023. Congrats <a target="_blank" href="https://jabir-zheng.github.io">Jiaying Chen</a>.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-content">
+                      <div class="timeline-date">2023.01</div>
+                      <div class="timeline-text">
+                        <a target="_blank" href="https://mhh0318.github.io/unid3/">UniD3</a> is accepted by ICLR2023.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <div class="timeline-content">
+                      <div class="timeline-date">2022.03</div>
+                      <div class="timeline-text">
+                        <a target="_blank" href="https://mhh0318.github.io/">VQ-DDM</a> is accepted by CVPR2022.
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </td>
           </tr>
-        </tbody></table>
+        </tbody></table> -->
 
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
           <td style="padding:20px;width:100%;vertical-align:middle">
-            <heading>Research</heading>
+            <heading>Publications</heading>
             <p>
               My research focuses on generative models, multi-modality learning, and its applications in many domains, particularly 2D Image Generation. Prior to this, I was working on 
               a network model with a simple topology named randomized neural networks.
@@ -79,6 +514,54 @@
 
 
 <tr>
+
+<tr onmouseout="smx_stop()" onmouseover="smx_start()">
+  <td style="padding:20px;width:25%;vertical-align:middle">
+    <div class="one">
+      <div class="two" id='smx_image'>
+      <img src="images/smx_1.png" width="160"></div>
+      <img src='images/smx_0.png' width="160">
+    </div>
+    <script type="text/javascript">
+      function smx_start() {
+        document.getElementById('smx_image').style.opacity = "1";
+      }
+
+      function smx_stop() {
+        document.getElementById('smx_image').style.opacity = "0";
+      }
+      smx_stop()
+    </script>
+  </td>
+  <td style="padding:20px;width:75%;vertical-align:middle">
+    <a href="https://mhh0318.github.io/">
+      <papertitle>Semantix: An Energy-guided Sampler for Semantic Style Transfer</papertitle>
+    </a>
+    <br>
+    <a>Huiang He*</a>,
+    <strong>Minghui Hu *</strong>,
+    <a>Chuanxia Zheng</a>,
+    <a>Chaoyue Wang</a>,
+    <a>Tat-Jen Cham</a>
+    <br>
+    <em>ICLR</em>, 2025 &nbsp
+    <br>
+    <!-- <a href="https://mhh0318.github.io/tcd/">project page</a> -->
+    <!-- / -->
+    <a href="https://openreview.net/forum?id=si37wk8U5D">OpenReview</a>
+    <!-- / -->
+    <!-- <a href="https://github.com/jabir-zheng/TCD">code</a> -->
+    <p></p>
+    <p>
+    We propose a energy-guided sampler for semantic style transfer.
+    </p>
+    <p style="font-size: 80%;"> * equal contribution </p>
+  </td>
+</tr>
+
+
+
+
   <td style="padding:20px;width:25%;vertical-align:middle">
     <div id="container", style="position: relative; width: 160px; height: 160px;">
         <video id="gcs_video" src="images/gcs.mp4" width="160" loop style="position: absolute; display: none;"></video>
@@ -450,10 +933,9 @@
     <br>
     <strong>Minghui Hu</strong>,
 		<a href="https://chuanxiaz.com/">Chuanxia Zheng</a>,
-    Zuopeng Yang,
+    <a href="https://dblp.org/pid/254/9451.html">Zuopeng Yang</a>,
     <a href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a>,
     <a href="https://wang-chaoyue.github.io/">Chaoyue Wang</a>,
-    <a href="https://dblp.org/pid/254/9451.html">Zuopeng Yang</a>,
     <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a>,
     <a href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a>
     <br>
@@ -556,21 +1038,23 @@
   <tr>
     <td>
       <heading>Academic Services</heading>
-      <p><font size="4"><b>Conference Program Committee Member</b></font></p>
-    <table>
-      <tr><td>CVPR</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2022&nbsp;-&nbsp;2024</td></tr>
-      <tr><td>ICCV</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2023</td></tr>
-      <tr><td>ECCV</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2024</td></tr>
-      <tr><td>ACM MM</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2024</td></tr>
-      <tr><td>NeurIPS</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2023,&nbsp;2024</td></tr>
-      <tr><td>ICLR</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2023,&nbsp;2024</td></tr>
-      <tr><td>ACCV</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2024</td></tr>
-      <tr><td>ICASSP</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2023,&nbsp;2024</td></tr>
-      <tr><td>IJCNN</td><td>&nbsp;&nbsp;&nbsp;&nbsp;2020&nbsp;-&nbsp;2024</td></tr>
-    </table>
-      <p><font size="4"><b>Journal Reviewer</b></font></p>
-      <p>T-NNLS, T-Cyb, PR, NeuNet, Neucom, ASOC, EAAI, IJCV</p>
-    </td>
+<div class="review-section"></div>
+  <h3 class="section-title">Conference Reviewer</h3>
+  <table class="review-table">
+    <tr><td>CVPR</td><td>2022 - 2025</td></tr>
+    <tr><td>ICCV</td><td>2023</td></tr>
+    <tr><td>ECCV</td><td>2024</td></tr>
+    <tr><td>ACM MM</td><td>2024</td></tr>
+    <tr><td>NeurIPS</td><td>2023, 2024</td></tr>
+    <tr><td>ICLR</td><td>2023 - 2025</td></tr>
+    <tr><td>ACCV</td><td>2024</td></tr>
+    <tr><td>ICASSP</td><td>2023, 2024</td></tr>
+    <tr><td>IJCNN</td><td>2020 - 2024</td></tr>
+  </table>
+
+  <h3 class="section-title">Journal Reviewer</h3>
+  <p class="journal-list">T-PAMI, T-NNLS, T-Cyb, IJCV, PR, NeuNet, Neucom, ASOC, EAAI</p>
+</div>
   </tr>
 </tbody></table>
 
@@ -590,8 +1074,8 @@
     <br>
     <p align="right">
       <font size="2">
-      Yep it's another <a href="https://jonbarron.info">Jon Barron</a> website. <br>
-      Last updated Jul. 2024.
+      Modified from <a href="https://jonbarron.info">Jon Barron</a>'s website. <br>
+      Last updated Feb. 2025.
   </font>
     </p>
     </td>
@@ -600,6 +1084,13 @@
 
 
 
+
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>
 
       </td>
     </tr>
