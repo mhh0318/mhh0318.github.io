@@ -54,24 +54,24 @@
       background: linear-gradient(
         45deg,
         rgba(37, 99, 235, 0.15),
-        rgba(124, 58, 237, 0.2),
+        rgba(124, 58, 237, 0.3),
         rgba(37, 99, 235, 0.15),
-        rgba(124, 58, 237, 0.2)
+        rgba(124, 58, 237, 0.3)
       );
       background-size: 400% 400%;
-      animation: gradientAnimation 60s ease infinite;
+      animation: gradientAnimation 15s ease infinite;
       z-index: -2;
     }
 
     @keyframes gradientAnimation {
     0% {
-      background-position: 0% 40%;
+      background-position: 10% 40%;
     }
     50% {
       background-position: 80% 40%;
     }
     100% {
-      background-position: 0% 40%;
+      background-position: 10% 40%;
     }
     }
 
@@ -83,7 +83,7 @@
       height: 100%;
       z-index: -1;
       pointer-events: none;
-      opacity: 0.4;
+      opacity: 0.25;
       background-image: 
         repeating-linear-gradient(
           120deg,
@@ -114,9 +114,9 @@
         50px 50px,
         50px 50px;
       filter: contrast(120%) brightness(100%);
+      animation: paper 3s steps(2) infinite;
     }
 
-    /* 添加微妙的纸张纹理动画 */
     @keyframes paper {
       0% {
         transform: translate(0, 0);
@@ -127,10 +127,6 @@
       100% {
         transform: translate(0, 0);
       }
-    }
-
-    .noise-overlay {
-      animation: paper 8s ease-in-out infinite;
     }
 
     .container {
@@ -179,8 +175,8 @@
     papertitle {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 500;
-      font-size: 1.1em;
-      background: linear-gradient(120deg, #3c9e97, #ff6b6b);
+      font-size: 1.3em;
+      background: linear-gradient(120deg, var(--primary-dark), var(--secondary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       transition: all 0.3s ease;
@@ -188,8 +184,8 @@
     }
     
     papertitle:hover {
-      transform: scale(1.02);
-      background: linear-gradient(120deg, #ff6b6b, #3c9e97);
+      transform: scale(1.03);
+      background: linear-gradient(120deg, var(--secondary), var(--primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -228,6 +224,22 @@
 
       .social-links {
         flex-wrap: wrap;
+      }
+
+      /* 添加以下移动端样式 */
+      table[style*="width:100%"] td {
+        display: block;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 10px !important;
+      }
+
+      /* 调整图片在移动端的大小 */
+      td img.hoverZoomLink {
+        width: 200px !important;
+        max-width: 80% !important;
+        margin: 0 auto;
+        display: block;
       }
     }
 
@@ -374,6 +386,60 @@
       line-height: 1.6;
       margin-top: 10px;
     }
+
+    .footer-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin: 20px 0;
+    }
+
+    .map-container {
+      width: 100px; 
+      height: 100px;
+    }
+
+    .map-container a,
+    .map-container a:hover,
+    .map-container a:visited,
+    .map-container a:active {
+      background-image: none !important;
+      text-decoration: none !important;
+      border-bottom: none !important;
+      box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+      transition: none !important;
+      animation: none !important;
+      transform: none !important;
+    }
+
+    .map-container a::before,
+    .map-container a::after {
+      display: none !important;
+      content: none !important;
+    }
+
+
+    .footer-text {
+      font-size: 11px;
+      color: #666;
+      text-align: right;
+      margin: 0;
+    }
+
+    /* 更新分隔符样式 */
+    .publication-divider {
+      height: 1px;
+      margin: 30px 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--link-color-rgb), 0.5),
+        transparent
+      );
+      opacity: 0.5;
+    }
+
   </style>
 
   <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
@@ -502,18 +568,23 @@
           <tr>
           <td style="padding:20px;width:100%;vertical-align:middle">
             <heading>Publications</heading>
+            <p>  
+            His research focuses on visual generative models, including the pre-training and post-training of foundation models.
+            </p>
             <p>
-              My research focuses on generative models, multi-modality learning, and its applications in many domains, particularly 2D Image Generation. Prior to this, I was working on 
-              a network model with a simple topology named randomized neural networks.
+            His recent work includes scalable methods for pre-training conditional generation models, such as text- and visual-conditioned models for image, video, and 3D asset generation. Additionally, he explores flexible post-training techniques aimed at accelerating distillation and preference alignment.
             </p>
           </td>
         </tr>
       </tbody></table>
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
         
+  <tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
+  </td>
+</tr>
 
-
-<tr>
 
 <tr onmouseout="smx_stop()" onmouseover="smx_start()">
   <td style="padding:20px;width:25%;vertical-align:middle">
@@ -538,7 +609,7 @@
       <papertitle>Semantix: An Energy-guided Sampler for Semantic Style Transfer</papertitle>
     </a>
     <br>
-    <a>Huiang He*</a>,
+    <a>Huiang He *</a>,
     <strong>Minghui Hu *</strong>,
     <a>Chuanxia Zheng</a>,
     <a>Chaoyue Wang</a>,
@@ -556,6 +627,11 @@
     We propose a energy-guided sampler for semantic style transfer.
     </p>
     <p style="font-size: 80%;"> * equal contribution </p>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
   </td>
 </tr>
 
@@ -610,6 +686,11 @@
     <p style="font-size: 80%;"> * equal contribution </p>
   </td>
 </tr>
+<tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
+  </td>
+</tr>
 
 
 
@@ -662,6 +743,11 @@
     <p style="font-size: 80%;"> * equal contribution </p>
   </td>
 </tr>
+<tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
+  </td>
+</tr>
 
 <tr onmouseout="oms_stop()" onmouseover="oms_start()">
   <td style="padding:20px;width:25%;vertical-align:middle">
@@ -712,6 +798,11 @@
     </p>
   </td>
 </tr>
+<tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
+  </td>
+</tr>
 
 
 <tr onmouseout="cocktail_stop()" onmouseover="cocktail_start()">
@@ -760,6 +851,11 @@
     </p>
   </td>
 </tr>
+<tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
+  </td>
+</tr>
       
 <tr>
   <td style="padding:20px;width:25%;vertical-align:middle">
@@ -785,6 +881,11 @@
     <p>
         We integrate self-distillation into the randomized neural network to improve the generalization performance.
     </p>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
   </td>
 </tr>
 
@@ -833,6 +934,11 @@
     </p>
   </td>
 </tr>
+<tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
+  </td>
+</tr>
 
 
 <tr>
@@ -860,6 +966,11 @@
     <p>
       We propose a hybrid LiDAR-inertial SLAM framework that leverages both the on-board perception system and prior information such as motion dynamics to improve localization performance.
     </p>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
   </td>
 </tr>
 
@@ -904,6 +1015,11 @@
     <p>
       We propose to exploit Soft-Dynamic Time Warping (Soft-DTW) for knowledge distillation, which aligns the feature maps along the temporal dimension before calculating the discrepancy.
     </p>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
   </td>
 </tr>
 
@@ -952,7 +1068,12 @@
     </p>
   </td>
 </tr>
-		  
+<tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
+  </td>
+</tr>
+
 <tr onmouseout="usrvfl_stop()" onmouseover="usrvfl_start()">
   <td style="padding:20px;width:25%;vertical-align:middle">
     <div class="one">
@@ -988,6 +1109,11 @@
     <p>
     We use manifold regularisation to learn the representation from the randomised networks.
     </p>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    <div class="publication-divider"></div>
   </td>
 </tr>
 
@@ -1034,6 +1160,7 @@
   </td>
 </tr>
 
+
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
   <tr>
     <td>
@@ -1059,16 +1186,12 @@
 </tbody></table>
 
 
-<table align="right" style="width:20%;border:0px;border-spacing:0px;border-collapse:separate;vertical-align:bottom;">
-  <tbody>
+<!-- <table align="right" style="width:20%;border:0px;border-spacing:0px;border-collapse:separate;vertical-align:bottom;">
     <tr>
       <td style="padding:15px;width:10%;vertical-align:middle">
-        <script async type="text/javascript" id="clustrmaps" 
-          src="//clustrmaps.com/globe.js?d=afeIQSK3lal5Bc8L-8eaHbv1W5ZtwqTyvLzoEYsw1R4">
-        </script>
+<script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=afeIQSK3lal5Bc8L-8eaHbv1W5ZtwqTyvLzoEYsw1R4"></script>
       </td>
     </tr>
-  </tbody>
 </table>
 
 <table width="100%" align="center" border="0" cellspacing="0" cellpadding="20">
@@ -1079,12 +1202,25 @@
       <font size="2">
       Modified from <a href="https://jonbarron.info">Jon Barron</a>'s website. <br>
       Last updated Feb. 2025.
-  </font>
-    </p>
+  </font> -->
+    <!-- </p>
     </td>
   </tr>
-</table>
+</table> -->
 
+
+<div class="footer-container">
+  <div class="map-container">
+    <script type="text/javascript" id="clstr_globe" 
+      src="//clustrmaps.com/globe.js?d=afeIQSK3lal5Bc8L-8eaHbv1W5ZtwqTyvLzoEYsw1R4">
+    </script>
+  </div>
+  
+  <p class="footer-text">
+    Modified from <a href="https://jonbarron.info">Jon Barron</a>'s website.<br>
+    Last updated Feb. 2025.
+  </p>
+</div>
 
 
 
