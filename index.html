@@ -1,1490 +1,668 @@
-<!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-  <title>Minghui Hu | SpellBrush</title>
-  
-  <meta name="author" content="Jon Barron">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
-	<link rel="icon" type="image/webp" href="https://spellbrush.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.f1ddcf09.webp&w=1080&q=75">
-  <link rel="shortcut icon" type="image/webp" href="https://spellbrush.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.f1ddcf09.webp&w=1080&q=75">
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-</head>
-
-<body>
-  <div class="theme-switch-wrapper">
-    <span class="theme-label">Dark Mode Preferred</span>
-    <label class="theme-switch">
-      <input type="checkbox" id="theme-toggle">
-      <span class="slider"></span>
-    </label>
-  </div>
-
-  <div class="gradient-bg"></div>
-  <div class="noise-overlay"></div>
-  
+  <title>Minghui Hu</title>
+  <link rel="icon" type="image/webp" href="https://spellbrush.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.f1ddcf09.webp&w=1080&q=75">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --secondary: #7c3aed;
-      --text: #000000;
-      --bg: #ffffff;
-      --bg-alt: #f3f4f6;
-      --link-color: #2e3ed1;
-      --link-color-rgb: 0, 102, 204;  /* 蓝色的 RGB 值 */
-      --link: rgb(var(--link-color-rgb));
-      --link-hover: rgb(0, 68, 153);
-      --border: #ddd;
-      --code-bg: #ede5f3;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    [data-theme="dark"] {
-      --bg: #1a1a1a;
-      --text: #ffffff;
-      /* --link: #6bb5ff; */
-      /* --link-hover: #98ccff; */
-      --border: #444;
-      --code-bg: #2d2a2e;
-      --link-color-rgb: 102, 179, 255;  /* 暗色模式下的蓝色 RGB 值 */
-      --link: rgb(var(--link-color-rgb));
-      --link-hover: rgb(153, 204, 255);
+    :root {
+      --background: #FFFFFF;
+      --foreground: #1a1a1a;
+      --muted: #fafafa;
+      --muted-foreground: #737373;
+      --border: #e5e5e5;
+      --border-dark: #1a1a1a;
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      overflow-x: hidden;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      background: var(--background);
+      color: var(--foreground);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
     }
 
-    p {
-      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-size: 1rem;  /* 16px */
-      margin-bottom: 1.2em;  
-    }
-
-    .gradient-bg {
+    /* Subtle Noise Texture */
+    body::before {
+      content: '';
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(
-        45deg,
-        rgba(37, 99, 235, 0.15),
-        rgba(124, 58, 237, 0.3),
-        rgba(37, 99, 235, 0.15),
-        rgba(124, 58, 237, 0.3)
-      );
-      background-size: 400% 400%;
-      animation: gradientAnimation 15s ease infinite;
-      z-index: -2;
-    }
-
-    @keyframes gradientAnimation {
-    0% {
-      background-position: 10% 40%;
-    }
-    50% {
-      background-position: 80% 40%;
-    }
-    100% {
-      background-position: 10% 40%;
-    }
-    }
-
-    .noise-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
       pointer-events: none;
-      opacity: 0.25;
-      background-image: 
-        repeating-linear-gradient(
-          120deg,
-          rgba(255,255,255, 0.05),
-          rgba(255,255,255, 0.05) 1px,
-          transparent 1px,
-          transparent 2px
-        ),
-        repeating-linear-gradient(
-          30deg,
-          rgba(255,255,255, 0.03),
-          rgba(255,255,255, 0.03) 1px,
-          transparent 1px,
-          transparent 2px
-        ),
-        linear-gradient(
-          rgba(255,255,255, 0.1) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255,255,255, 0.1) 1px,
-          transparent 1px
-        );
-      background-size: 
-        3px 3px,
-        3px 3px,
-        50px 50px,
-        50px 50px;
-      filter: contrast(120%) brightness(100%);
-      animation: paper 3s steps(2) infinite;
-    }
-
-    @keyframes paper {
-      0% {
-        transform: translate(0, 0);
-      }
-      50% {
-        transform: translate(0.5px, 0.5px);
-      }
-      100% {
-        transform: translate(0, 0);
-      }
+      z-index: 9999;
+      opacity: 0.015;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 60px 40px 80px;
     }
 
-    name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 3em;
-      font-weight: 700;
-      background: linear-gradient(120deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: -0.02em;
+    header {
+      margin-bottom: 80px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
     }
 
-    heading {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2em;
-      font-weight: 600;
-      color: var(--text);
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 0.5em;
-      margin: 2em 0 1em;
-      display: block;
-    }
-
-    .news {
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 2em;
-      box-shadow: 
-        0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      transition: transform 0.3s ease;
-    }
-
-    .news:hover {
-      transform: translateY(-2px);
-    }
-
-
-    papertitle {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 500;
-      font-size: 1.3em;
-      background: linear-gradient(120deg, var(--primary-dark), var(--secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      transition: all 0.3s ease;
-      display: inline-block;
-    }
-    
-    papertitle:hover {
-      transform: scale(1.03);
-      background: linear-gradient(120deg, var(--secondary), var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .social-links {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin: 1em 0;
-    }
-
-    .social-links a {
-      padding: 0.5em 1em;
-      border-radius: 8px;
-      background: rgba(37, 99, 235, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .social-links a:hover {
-      background: var(--primary);
-      color: white;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 1rem;
-      }
-
-      name {
-        font-size: 2em;
-      }
-
-      heading {
-        font-size: 1.5em;
-      }
-
-      .social-links {
-        flex-wrap: wrap;
-      }
-
-      /* 添加以下移动端样式 */
-      table[style*="width:100%"] td {
-        display: block;
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 10px !important;
-      }
-
-      /* 调整图片在移动端的大小 */
-      td img.hoverZoomLink {
-        width: 200px !important;
-        max-width: 80% !important;
-        margin: 0 auto;
-        display: block;
-      }
-    }
-
-    em {
-      font-family: 'Merriweather', serif;
-      font-style: italic;
-      font-weight: 700;
-    }
-
-    td img {
-      transition: all 0.3s ease;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    td img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-    }
-
-    a:not(:has(papertitle)) {
-      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-      font-size: 16px;
-      position: relative;
-      display: inline-block;
-      text-decoration: none;
-      color: var(--link);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border-radius: 4px;
-      background: 
-        linear-gradient(
-          to right,
-          rgba(var(--link-color-rgb), 0.1) 50%,
-          transparent 50%
-        );
-      background-size: 200% 100%;
-      background-position: right bottom;
-      box-decoration-break: clone;
-      -webkit-box-decoration-break: clone;
-      padding: 0 4px;
-      margin: 0 -4px;
-      white-space: nowrap;
-    }
-
-    a:not(:has(papertitle)):hover {
-      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-      color: var(--link-hover);
-      background-position: left bottom;
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px rgba(var(--link-color-rgb), 0.15);
-    }
-
-    a:not(:has(papertitle)):active {
-      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-      transform: translateY(0px);
-      box-shadow: 0 1px 4px rgba(var(--link-color-rgb), 0.1);
-    }
-
-    a:not(:has(papertitle))::after {
-      content: '';
-      position: absolute;
-      left: 4px;
-      right: 4px;
-      bottom: 0;
-      height: 1px;
-      background: currentColor;
-      opacity: 0;
-      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    a:not(:has(papertitle)):hover::after {
-      opacity: 1;
-    }
-
-    a:has(papertitle) {
-      text-decoration: none;
-      color: var(--link);
-      transition: color 0.3s ease;
-      background: none;
-      box-shadow: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    a:has(papertitle):hover {
-      color: var(--link-hover);
-    }
-
-    heading {
-      text-align: right;
-      background: linear-gradient(120deg, var(--primary), var(--secondary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      font-weight: 600;
-      position: relative;
-      padding-bottom: 0.5em; 
-    }
-
-    heading::after {
-      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      font-size: 16px; 
-      line-height: 1.6; 
-      content: '';
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 100%;
-      height: 3px;  /* 下划线粗细 */
-      background: linear-gradient(120deg, var(--primary), var(--secondary));
-      border-radius: 2px;  /* 让下划线两端圆润 */
-    }
-
-    strong {
-      font-family: 'Merriweather', serif;
-      font-weight: 700;
-    }
-
-    .review-section {
+    h1 {
       font-family: 'Playfair Display', serif;
-      margin: 20px 0;
+      font-size: 36px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--foreground);
+    }
+
+    .intro {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--foreground);
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    .intro p {
+      margin-bottom: 1em;
+    }
+
+    .intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    .intro a {
+      color: var(--foreground);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 200ms;
+    }
+
+    .intro a:hover {
+      border-bottom-color: var(--foreground);
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--muted-foreground);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    .links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 14px;
+      transition: color 200ms;
+      letter-spacing: 0.01em;
+    }
+
+    .links a:hover {
+      color: var(--foreground);
+    }
+
+    .section {
+      margin-bottom: 70px;
     }
 
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin: 20px 0 10px 0;
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      color: var(--foreground);
     }
 
-    .review-table {
-      font-family: 'Playfair Display', serif;
-      border-spacing: 20px 8px;
-      margin-left: -20px;
+    .section-title.small {
+      font-size: 20px;
+      font-weight: 400;
     }
 
-    .review-table td:first-child {
-      font-family: 'Space Grotesk', serif;
-      font-weight: 700;
+    /* Services Section */
+    .services {
+      display: grid;
+      gap: 24px;
     }
 
-    .journal-list {
-      font-family: 'Space Grotesk', serif;
+    .service-category {
+      display: flex;
+      gap: 16px;
+      line-height: 1.8;
+    }
+
+    .service-label {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--foreground);
+      flex-shrink: 0;
+      min-width: 100px;
+    }
+
+    .service-list {
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 300;
+      color: var(--muted-foreground);
+      flex: 1;
+    }
+
+    /* Publications Collapsible Section */
+    .publications-wrapper {
+      margin-bottom: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .publications-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 16px 0;
+      transition: opacity 200ms;
+    }
+
+    .publications-toggle:hover {
+      opacity: 0.6;
+    }
+
+    .publications-toggle-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+    }
+
+    .publications-toggle-icon {
+      font-size: 16px;
+      color: var(--muted-foreground);
+      transition: transform 300ms;
+    }
+
+    .publications-wrapper.expanded .publications-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .publications-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 500ms ease;
+    }
+
+    .publications-wrapper.expanded .publications-content {
+      max-height: 10000px;
+    }
+
+    .publications-list {
+      padding-top: 16px;
+      list-style: none;
+    }
+
+    .publication {
+      margin-bottom: 24px;
+    }
+
+    .publication:last-child {
+      margin-bottom: 0;
+    }
+
+    .pub-content {
+      width: 100%;
+    }
+
+    .pub-title {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .pub-title a {
+      color: var(--foreground);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+
+    .pub-title a:hover {
+      color: var(--muted-foreground);
+    }
+
+    .pub-meta {
+      font-size: 14px;
       line-height: 1.6;
-      margin-top: 10px;
+      color: var(--muted-foreground);
+      font-weight: 300;
     }
 
-    .footer-container {
+    .pub-meta strong {
+      font-weight: 400;
+      color: var(--foreground);
+    }
+
+    .pub-venue {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--foreground);
+    }
+
+    .pub-links {
+      display: inline;
+      font-size: 13px;
+    }
+
+    .pub-links::before {
+      content: " · ";
+      color: var(--muted-foreground);
+    }
+
+    .pub-links a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      transition: color 200ms;
+      border-bottom: 1px solid transparent;
+    }
+
+    .pub-links a:hover {
+      color: var(--foreground);
+      border-bottom-color: var(--foreground);
+    }
+
+    .pub-links a:not(:last-child)::after {
+      content: " · ";
+      color: var(--muted-foreground);
+      border: none;
+    }
+
+    .footer {
+      margin-top: 60px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      margin: 20px 0;
+      align-items: center;
+      gap: 24px;
     }
 
     .map-container {
-      width: 100px; 
-      height: 100px;
+      width: 120px;
+      height: 120px;
+      opacity: 0.5;
+      transition: opacity 200ms;
     }
 
-    .map-container a,
-    .map-container a:hover,
-    .map-container a:visited,
-    .map-container a:active {
-      background-image: none !important;
-      text-decoration: none !important;
-      border-bottom: none !important;
-      box-shadow: none !important;
-      -webkit-box-shadow: none !important;
-      transition: none !important;
-      animation: none !important;
-      transform: none !important;
+    .map-container:hover {
+      opacity: 0.8;
     }
-
-    .map-container a::before,
-    .map-container a::after {
-      display: none !important;
-      content: none !important;
-    }
-
 
     .footer-text {
-      font-size: 11px;
-      color: #666;
-      text-align: right;
-      margin: 0;
-    }
-
-    /* 更新分隔符样式 */
-    .publication-divider {
-      height: 1px;
-      margin: 30px 0;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(var(--link-color-rgb), 0.5),
-        transparent
-      );
-      opacity: 0.5;
-    }
-
-    /* 更新 Hiring Now 标签和工具提示样式 */
-    .hiring-tag {
-      position: relative;
-      display: inline-block;
-      font-weight: 500;
-      cursor: pointer;
-      transition: color 0.3s;
-      z-index: 999;
-    }
-
-
-    .hiring-tag .tooltip {
-      visibility: hidden;
-      position: absolute;
-      top: 130%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-20px);
-      background: rgba(115, 40, 172, 0.262);
-      color: white;
-      text-align: center;
-      padding: 12px 16px;
-      border-radius: 12px;
-      font-family: 'Playfair Display', serif;
-      /* font-style: italic; */
-      font-size: 14px;
-      width: max-content;
-      max-width: 250px;
-      opacity: 0;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      backdrop-filter: blur(5px);
-      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      z-index: 1000;
-      margin-top: 15px; /* 为箭头留出空间 */
-    }
-
-    .hiring-tag .tooltip::before {
-      content: '';
-      position: absolute;
-      top: -8px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-bottom: 8px solid rgba(115, 40, 172, 0.262);
-      width: 0;
-      height: 0;
-      background: transparent; 
-    }
-
-    .hiring-tag:hover .tooltip {
-      visibility: visible;
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .theme-switch-wrapper {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 3px;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      z-index: 1000;
-    }
-    .theme-label {
-      font-size: 10px;
-      color: var(--text);
-      opacity: 0.6;
-      transition: opacity 0.3s ease;
-      letter-spacing: 0.5px;
-    }
-
-    .theme-label:hover {
-      opacity: 1;
-    }
-    .theme-switch-wrapper.hidden {
-      opacity: 0;
-      transform: translateY(-10px);
-      pointer-events: none;
-    }
-
-    .theme-switch {
-      display: inline-block;
-      width: 44px;
-      height: 24px;
-      position: relative;
-    }
-
-    .theme-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #e4e4e4;
-      transition: .3s;
-      border-radius: 24px;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "☀️";
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 18px;
-      width: 18px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: .3s;
-      border-radius: 50%;
       font-size: 12px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      text-align: center;
+      line-height: 1.7;
+      font-weight: 300;
+      color: var(--muted-foreground);
+      letter-spacing: 0.01em;
     }
 
-    input:checked + .slider {
-      background-color: #90caf9;
+    .footer-text a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
     }
 
-    input:checked + .slider:before {
-      transform: translateX(20px);
-      content: "🌙";
+    .footer-text a:hover {
+      border-bottom-color: var(--muted-foreground);
     }
 
-    [data-theme="dark"] table {
-      border-color: var(--border);
-    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 60px 28px 80px;
+      }
 
-    [data-theme="dark"] .publication-divider {
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-      );
-    }
+      h1 {
+        font-size: 36px;
+        margin-bottom: 24px;
+      }
 
-    [data-theme="dark"] .hiring-tag .tooltip {
-      background: rgba(82, 103, 124, 0.25);
-    }
+      .section-title {
+        font-size: 24px;
+      }
 
-    [data-theme="dark"] .hiring-tag .tooltip::before {
-      border-bottom-color: rgba(82, 103, 124, 0.25);
-    }
+      .section {
+        margin-bottom: 80px;
+      }
 
-    .email-code {
-      background-color: var(--code-bg);
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-family: 'Courier New', Courier, monospace;
-      transition: background-color 0.3s ease;
-    }
+      header {
+        margin-bottom: 80px;
+      }
 
-    .hiring-tag .tooltip strong {
-      text-decoration: underline;
-      text-decoration-style: wavy; 
-      text-decoration-color: rgba(255, 255, 255, 0.6); 
-      text-underline-offset: 4px; 
-      font-weight: 600; 
-      padding: 0 2px; 
-    }
+      .contact {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
 
-    /* 添加悬停效果 */
-    .theme-switch:hover .slider {
-      background-color: #d4d4d4;
-    }
+      .publications-wrapper {
+        margin-bottom: 60px;
+      }
 
-    input:checked + .slider:hover {
-      background-color: #64b5f6;
-    }
+      .map-container {
+        width: 100px;
+        height: 100px;
+      }
 
+      .pub-title {
+        font-size: 15px;
+      }
+
+      .pub-meta {
+        font-size: 13px;
+      }
+    }
   </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Minghui Hu</h1>
 
-  <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-    <tr style="padding:0px">
-      <td style="padding:0px">
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr style="padding:0px">
-            <td style="padding:2.5%;width:70%;vertical-align:middle">
-              <p style="text-align:center">
-                <name>Minghui Hu</name>
-              </p>
-              <!-- <p style="text-align:center">
-                <name style="font-family: 'Noto Serif TC'; font-size: 24px;">胡明輝</name>
-              </p> -->
-              <p>He is currently a researcher at 
-                <span class="hiring-tag"><a href="https://www.spellbrush.com">SpellBrush</a> <span class="tooltip">We are hiring! Drop me an email if you're passionate about <strong>anime</strong>, <strong>game</strong> and (or) <strong>generative models</strong>. Let us shape the future of Anime Generation and Game Design together.</span></span>, 
-                previously interned at <a href="https://www.sensetime.com">Sensetime Research</a> and 
-                <a href="https://www.minimaxi.com/en">MiniMax</a>.</p>
-              <p>He received his Ph.D and MSc. from <a href="https://www.ntu.edu.sg">Nanyang Technological University</a>, Singapore, under the supervision of <a href="https://www3.ntu.edu.sg/home/epnsugan/">Prof. P. N. Suganthan</a>. 
-               Concurrent with his doctoral research, he served as a researcher at <a href="https://www.ntu.edu.sg/temasek-labs">Temasek Laboratories @ NTU</a>, where he conducted research under the supervision of <a href="https://www.ntu.edu.sg/temasek-labs/research-focus/research-areas/center-for-communication-and-signal-processing">Dr. Sirajudeen s/o Gulam Razul</a>.
-              </p>
-              <p>
-                He has had the privilege of collaborating closely with <a href="https://personal.ntu.edu.sg/astjcham/">Prof. Tat-Jen Cham</a> and <a href="https://dr.ntu.edu.sg/cris/rp/rp02343">Prof. Dacheng Tao</a> from <a href="https://www.ntu.edu.sg/computing">College of Computing and Data Science, NTU</a>.
-                Meanwhile, <a href="https://chuanxiaz.com/">Dr. Chuanxia Zheng</a> from <a href="https://www.robots.ox.ac.uk/~vgg/">VGG, University of Oxford</a>, and <a href="https://wang-chaoyue.github.io/">Dr. Chaoyue Wang</a> offered invaluable mentorship and support to his academic development.
-              </p>
-              <p style="text-align:center">
-                <code class="email-code">
-                  Mail: e200008 [at] e.ntu.edu.sg
-                </code>
-              </p>
-              <p style="text-align:center">
-                <!-- <a href="mailto:e200008@e.ntu.edu.sg">Email</a> &nbsp/&nbsp -->
-                <!-- <a href="data/Minghui_cv.pdf">CV</a> &nbsp/&nbsp -->
-                <a href="https://scholar.google.com/citations?user=9jfGj64AAAAJ&hl">Google Scholar</a> &nbsp/&nbsp
-                <a href="https://github.com/mhh0318/">Github</a> &nbsp/&nbsp
-                <a href="https://www.linkedin.com/in/minghui-hu-b62626168/">LinkedIn</a>
-              </p>
-            </td>
-            <td style="padding:2.5%;width:45%;max-width:45%">
-              <img style="width:80%;max-width:100%" alt="profile photo" src="images/me.jpg" class="hoverZoomLink">
-            </td>
-          </tr>
-        </tbody></table>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-              <td style="padding:20px;width:100%;vertical-align:middle">
-              <!-- <heading>News</heading>
-              <div class="timeline-container">
-                <div class="timeline">
-                  <div class="timeline-item">
-                    <div class="timeline-content">
-                      <div class="timeline-date">2024.06</div>
-                      <div class="timeline-text">
-                        <a target="_blank" href="https://zongrui.page/ECCV2024-GCS-BEG/">GCS</a>, a project with <a target="_blank" href="https://zongrui.page/">Zongrui</a>, is accepted by ECCV2024.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="timeline-content">
-                      <div class="timeline-date">2024.02</div>
-                      <div class="timeline-text">
-                        <a target="_blank" href="https://jabir-zheng.github.io/MMoT/">MMoT</a> is accepted by IJCV. Congrats <a target="_blank" href="https://jabir-zheng.github.io">Jianbin</a>.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="timeline-content">
-                      <div class="timeline-date">2024.02</div>
-                      <div class="timeline-text">
-                        <a target="_blank" href="https://jabir-zheng.github.io/OneMoreStep/">OneMoreStep</a> is accepted by CVPR2024.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="timeline-content">
-                      <div class="timeline-date">2023.11</div>
-                      <div class="timeline-text">
-                        An <a target="_blank" href="https://link.springer.com/chapter/10.1007/978-981-99-8067-3_37">ICONIP2023 submission</a> wins the Best Student Award. Congrats <a target="_blank" href="https://scholar.google.com/citations?user=vEYtdJoAAAAJ&hl">Ruilin</a>.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="timeline-content">
-                      <div class="timeline-date">2023.09</div>
-                      <div class="timeline-text">
-                        <a target="_blank" href="https://mhh0318.github.io/cocktail/">Cocktail🍸</a> is accepted by NeurIPS2023.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="timeline-content">
-                      <div class="timeline-date">2023.08</div>
-                      <div class="timeline-text">
-                        <a target="_blank" href="https://ieeexplore.ieee.org/document/10220213/">Self-Distillation for Randomized Neural Networks</a> is accepted by T-NNLS.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="timeline-content">
-                      <div class="timeline-date">2023.07</div>
-                      <div class="timeline-text">
-                        <a target="_blank" href="https://ieeexplore.ieee.org/document/10105944">SE(2)LiO</a> is accepted by RA-L and presented at IROS2023. Congrats <a target="_blank" href="https://jabir-zheng.github.io">Jiaying Chen</a>.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="timeline-content">
-                      <div class="timeline-date">2023.01</div>
-                      <div class="timeline-text">
-                        <a target="_blank" href="https://mhh0318.github.io/unid3/">UniD3</a> is accepted by ICLR2023.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="timeline-item">
-                    <div class="timeline-content">
-                      <div class="timeline-date">2022.03</div>
-                      <div class="timeline-text">
-                        <a target="_blank" href="https://mhh0318.github.io/">VQ-DDM</a> is accepted by CVPR2022.
-                      </div>
-                    </div>
-                  </div>
-                </div>
+      <div class="intro">
+        <p>Researcher at <a href="https://www.spellbrush.com"><strong>SpellBrush</strong></a>, focusing on visual generative models.</p>
+        <p>Core contributor of <a href="https://nijijourney.com"><strong>niji journey</strong></a> and <a href="https://www.midjourney.com"><strong>Midjourney</strong></a> Video, participated in Midjourney v7 Draft.</p>
+        <p>Previously: <a href="https://www.sensetime.com">Sensetime</a>, <a href="https://www.minimaxi.com/en">MiniMax</a></p>
+        <p>PhD from <a href="https://www.ntu.edu.sg">Nanyang Technological University</a>, supervised by <a href="https://www3.ntu.edu.sg/home/epnsugan/">Prof. P. N. Suganthan</a> and <a href="https://personal.ntu.edu.sg/astjcham/">Prof. Tat-Jen Cham</a>.</p>
+      </div>
+
+      <div class="contact">
+        <span class="email">minghui@spellbrush.com</span>
+        <div class="links">
+          <a href="https://scholar.google.com/citations?user=9jfGj64AAAAJ&hl">Scholar</a>
+          <a href="https://github.com/mhh0318/">GitHub</a>
+          <a href="https://www.linkedin.com/in/minghui-hu-b62626168/">LinkedIn</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title small">Academic Services</h2>
+      <div class="services">
+        <div class="service-category">
+          <div class="service-label">Conferences</div>
+          <div class="service-list">
+            CVPR (2022–26) · ICCV (2023, 2025) · ECCV (2024, 2026) · NeurIPS (2023–26) · ICLR (2023–26) · ICML (2025-26) · etc.
+          </div>
+        </div>
+        <div class="service-category">
+          <div class="service-label">Journals</div>
+          <div class="service-list">
+            T-PAMI · T-NNLS · T-Cyb · IJCV · Pattern Recognition · etc.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="publications-wrapper" id="publicationsWrapper">
+      <div class="publications-toggle" onclick="togglePublications()">
+        <span class="publications-toggle-title">View Publications</span>
+        <span class="publications-toggle-icon">↓</span>
+      </div>
+      <div class="publications-content">
+        <ol class="publications-list">
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://openreview.net/forum?id=d7itDxMD1n">Monocular Normal Estimation via Shading Sequence Estimation</a>
               </div>
-            </td>
-          </tr>
-        </tbody></table> -->
+              <div class="pub-meta">
+                Zongrui Li, Xinhua Ma, <strong>Minghui Hu</strong>, Yunqing Zhao, Yingchen Yu, Qian Zheng, Chang Liu, Xudong Jiang, Song Bai
+              </div>
+              <div class="pub-venue">
+                ICLR 2026<span class="pub-links"><a href="https://openreview.net/forum?id=d7itDxMD1n">OpenReview</a></span>
+              </div>
+            </div>
+          </li>
 
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-          <tr>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            <heading>Publications</heading>
-            <p>  
-            His research focuses on visual generative models, including the pre-training and post-training of foundation models.
-            </p>
-            <p>
-            His recent work includes scalable methods for pre-training conditional generation models, such as text- and visual-conditioned models for image, video, and 3D asset generation. Additionally, he explores flexible post-training techniques aimed at accelerating distillation and preference alignment.
-            </p>
-          </td>
-        </tr>
-      </tbody></table>
-        <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        
-  <tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://doi.ieeecomputersociety.org/10.1109/TPAMI.2026.3652081">Incremental online learning of randomized neural network with forward regularization</a>
+              </div>
+              <div class="pub-meta">
+                Junda Wang, <strong>Minghui Hu</strong>, Ning Li, Abdulaziz Al-Ali, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                IEEE T-PAMI
+              </div>
+            </div>
+          </li>
 
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://mhh0318.github.io/">Semantix: An Energy-guided Sampler for Semantic Style Transfer</a>
+              </div>
+              <div class="pub-meta">
+                Huiang He*, <strong>Minghui Hu*</strong>, Chuanxia Zheng, Chaoyue Wang, Tat-Jen Cham
+              </div>
+              <div class="pub-venue">
+                ICLR 2025<span class="pub-links"><a href="https://openreview.net/forum?id=si37wk8U5D">OpenReview</a></span>
+              </div>
+            </div>
+          </li>
 
-<tr onmouseout="smx_stop()" onmouseover="smx_start()">
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <div class="one">
-      <div class="two" id='smx_image'>
-      <img src="images/smx_1.png" width="160"></div>
-      <img src='images/smx_0.png' width="160">
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://zongrui.page/ECCV2024-GCS-BEG/">Connecting Consistency Distillation to Score Distillation for Text-to-3D Generation</a>
+              </div>
+              <div class="pub-meta">
+                Zongrui Li*, <strong>Minghui Hu*</strong>, Qian Zheng, Xudong Jiang
+              </div>
+              <div class="pub-venue">
+                ECCV 2024<span class="pub-links"><a href="https://zongrui.page/ECCV2024-GCS-BEG/">Project</a><a href="https://arxiv.org/abs/2407.13584">arXiv</a><a href="https://github.com/LMozart/ECCV2024-GCS-BEG">Code</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://mhh0318.github.io/tcd/">Trajectory Consistency Distillation</a>
+              </div>
+              <div class="pub-meta">
+                Jianbin Zheng*, <strong>Minghui Hu*</strong>, Zhongyi Fan, Chaoyue Wang, Changxing Ding, Dacheng Tao, Tat-Jen Cham
+              </div>
+              <div class="pub-venue">
+                Tech Report 2024<span class="pub-links"><a href="https://mhh0318.github.io/tcd/">Project</a><a href="https://arxiv.org/abs/2402.19159">arXiv</a><a href="https://github.com/jabir-zheng/TCD">Code</a><a href="https://huggingface.co/h1t/TCD-SDXL-LoRA">Model</a><a href="https://huggingface.co/spaces/h1t/TCD">Demo</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://jabir-zheng.github.io/OneMoreStep/">One More Step: A Versatile Plug-and-Play Module for Rectifying Diffusion Schedule Flaws and Enhancing Low-Frequency Controls</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, Jianbin Zheng, Chuanxia Zheng, Chaoyue Wang, Dacheng Tao, Tat-Jen Cham
+              </div>
+              <div class="pub-venue">
+                CVPR 2024<span class="pub-links"><a href="https://jabir-zheng.github.io/OneMoreStep/">Project</a><a href="http://arxiv.org/abs/2311.15744">arXiv</a><a href="https://github.com/mhh0318/OneMoreStep">Code</a><a href="https://huggingface.co/h1t/oms_b_openclip_xl">Model</a><a href="https://huggingface.co/spaces/h1t/oms_sdxl_lcm">Demo</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://mhh0318.github.io/cocktail/">Cocktail: Mixing Multi-Modality Controls for Text-Conditional Image Generation</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, Jianbin Zheng, Daqing Liu, Chuanxia Zheng, Chaoyue Wang, Dacheng Tao, Tat-Jen Cham
+              </div>
+              <div class="pub-venue">
+                NeurIPS 2023<span class="pub-links"><a href="https://mhh0318.github.io/cocktail/">Project</a><a href="https://arxiv.org/abs/2306.00964">arXiv</a><a href="https://github.com/mhh0318/Cocktail">Code</a><a href="https://huggingface.co/h1t/cocktail">Model</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10220213/">Self-Distillation for Randomized Neural Networks</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, Ruobin Gao, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                IEEE T-NNLS<span class="pub-links"><a href="https://ieeexplore.ieee.org/abstract/document/10220213/">IEEE</a><a href="https://github.com/mhh0318/KDRVFL">Code</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://jabir-zheng.github.io/MMoT/">MMoT: Mixture-of-Modality-Tokens Transformer for Composed Multimodal Conditional Image Synthesis</a>
+              </div>
+              <div class="pub-meta">
+                Jianbin Zheng, Daqing Liu, Chaoyue Wang, <strong>Minghui Hu</strong>, Zuopeng Yang, Changxing Ding, Dacheng Tao
+              </div>
+              <div class="pub-venue">
+                IJCV<span class="pub-links"><a href="https://jabir-zheng.github.io/MMoT/">Project</a><a href="https://arxiv.org/abs/2305.05992">arXiv</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://ieeexplore.ieee.org/document/10105944">Versatile LiDAR-Inertial Odometry with SE(2) Constraints for Ground Vehicles</a>
+              </div>
+              <div class="pub-meta">
+                Jiaying Chen, Han Wang, <strong>Minghui Hu</strong>, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                RA-L & IROS 2023<span class="pub-links"><a href="https://ieeexplore.ieee.org/document/10105944">IEEE</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10094960">Class-Incremental Learning on Multivariate Time Series Via Shape-Aligned Temporal Distillation</a>
+              </div>
+              <div class="pub-meta">
+                Zhongzheng Qiao, <strong>Minghui Hu</strong>, Xudong Jiang, P.N. Suganthan, Ramasamy Savitha
+              </div>
+              <div class="pub-venue">
+                ICASSP 2023<span class="pub-links"><a href="https://ieeexplore.ieee.org/abstract/document/10094960">IEEE</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://mhh0318.github.io/unid3/">Unified Discrete Diffusion for Simultaneous Vision-Language Generation</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, Chuanxia Zheng, Zuopeng Yang, Tat-Jen Cham, Chaoyue Wang, Dacheng Tao, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                ICLR 2023<span class="pub-links"><a href="https://mhh0318.github.io/unid3/">Project</a><a href="https://arxiv.org/abs/2211.14842">arXiv</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0031320322002254">Representation Learning Using Deep Random Vector Functional Link Networks for Clustering</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                Pattern Recognition<span class="pub-links"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0031320322002254">Elsevier</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://mhh0318.github.io/VQDDM/">Global Context with Discrete Diffusion in Vector Quantised Modelling for Image Generation</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, Yujie Wang, Tat-Jen Cham, Jianfei Yang, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                CVPR 2022<span class="pub-links"><a href="https://arxiv.org/abs/2112.01799">arXiv</a></span>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
     </div>
-    <script type="text/javascript">
-      function smx_start() {
-        document.getElementById('smx_image').style.opacity = "1";
-      }
 
-      function smx_stop() {
-        document.getElementById('smx_image').style.opacity = "0";
-      }
-      smx_stop()
-    </script>
-  </td>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://mhh0318.github.io/">
-      <papertitle>Semantix: An Energy-guided Sampler for Semantic Style Transfer</papertitle>
-    </a>
-    <br>
-    <a>Huiang He *</a>,
-    <strong>Minghui Hu *</strong>,
-    <a>Chuanxia Zheng</a>,
-    <a>Chaoyue Wang</a>,
-    <a>Tat-Jen Cham</a>
-    <br>
-    <em>ICLR</em>, 2025 &nbsp
-    <br>
-    <!-- <a href="https://mhh0318.github.io/tcd/">project page</a> -->
-    <!-- / -->
-    <a href="https://openreview.net/forum?id=si37wk8U5D">OpenReview</a>
-    <!-- / -->
-    <!-- <a href="https://github.com/jabir-zheng/TCD">code</a> -->
-    <p></p>
-    <p>
-    We propose a energy-guided sampler for semantic style transfer.
-    </p>
-    <p style="font-size: 80%;"> * equal contribution </p>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
-
-
-
-
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <div id="container", style="position: relative; width: 160px; height: 160px;">
-        <video id="gcs_video" src="images/gcs.mp4" width="160" loop style="position: absolute; display: none;"></video>
-        <img id="angel_image" src='images/gcs.png' width="160" style="position: absolute;">
-    </div>
-    <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const video = document.getElementById('gcs_video');
-        const image = document.getElementById('angel_image');
-    
-        image.addEventListener('mouseover', () => {
-            video.currentTime = 0; // Set video to start from the beginning
-            video.style.display = 'block'; // Make the video visible
-            video.play(); // Play the video
-            image.style.opacity = "0"; // Make the image transparent
-        });
-    
-        image.addEventListener('mouseout', () => {
-            video.pause(); // Pause the video when mouse leaves the image
-            video.style.display = 'none'; // Hide the video
-            image.style.opacity = "1"; // Restore the image's opacity
-        });
-    });
-    </script>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://zongrui.page/ECCV2024-GCS-BEG/">
-      <papertitle>Connecting Consistency Distillation to Score Distillation for Text-to-3D Generation</papertitle>
-    </a>
-    <br>
-    <a href="https://zongrui.page/">Zongrui Li *</a>,
-    <strong>Minghui Hu *</strong>,
-    <a href="https://person.zju.edu.cn/en/zq">Qian Zheng</a>,
-    <a href="https://personal.ntu.edu.sg/exdjiang/">Xudong Jiang</a>,
-    <br>
-    <em>ECCV</em>, 2024 &nbsp
-    <br>
-    <a href="https://zongrui.page/ECCV2024-GCS-BEG/">project page</a>
-    /
-    <a href="https://arxiv.org/abs/2407.13584">arXiv</a>
-    /
-    <a href="https://github.com/LMozart/ECCV2024-GCS-BEG">code</a>
-    <p></p>
-    <p>
-    We analyze current SDS-based text-to-3D generation methods and propose an improved version with a bright normalizing trick for Gaussian Splatting.
-    </p>
-    <p style="font-size: 80%;"> * equal contribution </p>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
-
-
-
-<tr onmouseout="tcd_stop()" onmouseover="tcd_start()">
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <div class="one">
-      <div class="two" id='tcd_image'>
-      <img src="images/tcd_1.png" width="160"></div>
-      <img src='images/tcd_0.png' width="160">
-    </div>
-    <script type="text/javascript">
-      function tcd_start() {
-        document.getElementById('tcd_image').style.opacity = "1";
-      }
-
-      function tcd_stop() {
-        document.getElementById('tcd_image').style.opacity = "0";
-      }
-      tcd_stop()
-    </script>
-  </td>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://mhh0318.github.io/tcd/">
-      <papertitle>Trajectory Consistency Distillation</papertitle>
-    </a>
-    <br>
-    <a>Jianbin Zheng *</a>,
-    <strong>Minghui Hu *</strong>,
-    <a>Zhongyi Fan</a>,
-    <a>Chaoyue Wang</a>,
-    <a>Changxing Ding</a>,
-    <a>Dacheng Tao</a>,
-    <a>Tat-Jen Cham</a>
-    <br>
-    <em>Tech Report</em>, 2024 &nbsp
-    <br>
-    <a href="https://mhh0318.github.io/tcd/">project page</a>
-    /
-    <a href="https://arxiv.org/abs/2402.19159">arXiv</a>
-    /
-    <a href="https://github.com/jabir-zheng/TCD">code</a>
-    /
-    <a href="https://huggingface.co/h1t/TCD-SDXL-LoRA">HF Model</a>
-    /
-    <a href="https://huggingface.co/spaces/h1t/TCD">HF Space</a>
-    <p></p>
-    <p>
-    We distill a consistency model based on diffusion trajectory to improve the sample quality.
-    </p>
-    <p style="font-size: 80%;"> * equal contribution </p>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
-
-<tr onmouseout="oms_stop()" onmouseover="oms_start()">
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <div class="one">
-      <div class="two" id='oms_image'>
-      <img src="images/oms_0.png" width="160"></div>
-      <img src='images/oms_1.png' width="160">
-    </div>
-    <script type="text/javascript">
-      function oms_start() {
-        document.getElementById('oms_image').style.opacity = "1";
-      }
-
-      function oms_stop() {
-        document.getElementById('oms_image').style.opacity = "0";
-      }
-      oms_stop()
-    </script>
-  </td>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://jabir-zheng.github.io/OneMoreStep/">
-      <papertitle>One More Step: A Versatile Plug-and-Play Module for Rectifying Diffusion Schedule Flaws and Enhancing Low-Frequency Controls</papertitle>
-    </a>
-    <br>
-    <strong>Minghui Hu</strong>,
-    <a href="https://jabir-zheng.github.io">Jianbin Zheng</a>,
-    <a href="https://chuanxiaz.com/">Chuanxia Zheng</a>,
-    <a href="https://wang-chaoyue.github.io/">Chaoyue Wang</a>,
-    <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a>,
-    <a href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a>
-    <br>
-    <em>CVPR</em>, 2024 &nbsp
-    <br>
-    <a href="https://jabir-zheng.github.io/OneMoreStep/">project page</a>
-    /
-    <a href="http://arxiv.org/abs/2311.15744">arXiv</a>
-    /
-    <!-- <a href="data/Cocktail.pdf">PDF</a>
-    / -->
-    <a href="https://github.com/mhh0318/OneMoreStep">code</a>
-    /
-    <a href="https://huggingface.co/h1t/oms_b_openclip_xl">HF Model</a>
-    /
-    <a href="https://huggingface.co/spaces/h1t/oms_sdxl_lcm">HF Space</a>
-    <p></p>
-    <p>
-    We develop a versatile plug-and-play module to fix the scheduler flaws for diffusion models.
-    </p>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
-
-
-<tr onmouseout="cocktail_stop()" onmouseover="cocktail_start()">
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <div class="one">
-      <div class="two" id='cocktail_image'>
-      <img src="images/jb_1.png" width="160"></div>
-      <img src='images/jb_0.png' width="160">
-    </div>
-    <script type="text/javascript">
-      function cocktail_start() {
-        document.getElementById('cocktail_image').style.opacity = "1";
-      }
-
-      function cocktail_stop() {
-        document.getElementById('cocktail_image').style.opacity = "0";
-      }
-      cocktail_stop()
-    </script>
-  </td>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://mhh0318.github.io/cocktail/">
-      <papertitle>Cocktail🍸: Mixing Multi-Modality Controls for Text-Conditional Image Generation</papertitle>
-    </a>
-    <br>
-    <strong>Minghui Hu</strong>,
-    <a href="https://jabir-zheng.github.io">Jianbin Zheng</a>,
-    <a href="https://daqingliu.github.io/">Daqing Liu</a>,
-    <a href="https://chuanxiaz.com/">Chuanxia Zheng</a>,
-    <a href="https://wang-chaoyue.github.io/">Chaoyue Wang</a>,
-    <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a>,
-    <a href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a>
-    <br>
-    <em>NeurIPS</em>, 2023 &nbsp
-    <br>
-    <a href="https://mhh0318.github.io/cocktail/">project page</a>
-    /
-    <a href="https://arxiv.org/abs/2306.00964">arXiv</a>
-    /
-    <a href="https://github.com/mhh0318/Cocktail">code</a>
-    /
-    <a href="https://huggingface.co/h1t/cocktail">HF Model</a>
-    <p></p>
-    <p>
-    We develop a generalized HypreNetwork for multi-modality control based on text-to-image generative model.
-    </p>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
-      
-<tr>
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <img src='images/SDRVFL.png' width="160">
-  </td>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://mhh0318.github.io/">
-      <papertitle>Self-Distillation for Randomized Neural Networks</papertitle>
-    </a>
-    <br>
-    <strong>Minghui Hu</strong>,
-    <a href="https://scholar.google.com.sg/citations?user=PrIHu7QAAAAJ&hl=en">Ruobin Gao</a>,
-    <a href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a>,
-    <br>
-    <em>T-NNLS</em> &nbsp
-    <br>
-    <!-- <a href="https://mhh0318.github.io/">project page</a>
-    / -->
-    <a href="https://ieeexplore.ieee.org/abstract/document/10220213/">IEEE</a>
-    /
-    <a href="https://github.com/mhh0318/KDRVFL">Code</a>
-    <p></p>
-    <p>
-        We integrate self-distillation into the randomized neural network to improve the generalization performance.
-    </p>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
-
-
-<tr onmouseout="mmot_stop()" onmouseover="mmot_start()">
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <div class="one">
-      <div class="two" id='mmot_image'>
-      <img src="images/mmot_0.png" width="160"></div>
-      <img src='images/mmot_1.png' width="160">
-    </div>
-    <script type="text/javascript">
-      function mmot_start() {
-        document.getElementById('mmot_image').style.opacity = "1";
-      }
-
-      function mmot_stop() {
-        document.getElementById('mmot_image').style.opacity = "0";
-      }
-      mmot_stop()
-    </script>
-  </td>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://jabir-zheng.github.io/MMoT/">
-      <papertitle>MMoT: Mixture-of-Modality-Tokens Transformer for Composed Multimodal Conditional Image Synthesis</papertitle>
-    </a>
-    <br>
-    <a href="https://jabir-zheng.github.io">Jianbin Zheng</a>,
-    <a href="https://daqingliu.github.io/">Daqing Liu</a>,
-    <a href="https://wang-chaoyue.github.io/">Chaoyue Wang</a>,
-    <strong>Minghui Hu</strong>,
-    <a href="https://dblp.org/pid/254/9451.html">Zuopeng Yang</a>,
-    <a href=" ">Changxing Ding</a>,
-    <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a>,
-    <br>
-    <em>IJCV</em> &nbsp
-    <br>
-    <a href="https://jabir-zheng.github.io/MMoT/">project page</a>
-    /
-    <a href="https://arxiv.org/abs/2305.05992">arXiv</a>
-    <!-- /
-    <a href="data/MMoT.pdf">PDF</a> -->
-    <p></p>
-    <p>
-      We introduce a Mixture-of-Modality-Tokens Transformer (MMoT) that adaptively fuses fine-grained multimodal control signals for multi-modality image generation.
-    </p>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
-
-
-<tr>
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <img src='images/ral.png' width="160">
-  </td>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://mhh0318.github.io/">
-      <papertitle>Versatile LiDAR-Inertial Odometry with SE(2) Constraints for Ground Vehicles</papertitle>
-    </a>
-    <br>
-    <a>Jiaying Chen</a>,
-    <a href="https://wanghan.pro/">Han Wang</a>,
-    <strong>Minghui Hu</strong>,
-    <a href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a>,
-    <br>
-    <em>RA-L & IROS</em>, 2023 &nbsp
-    <br>
-    <!-- <a href="https://mhh0318.github.io/">project page</a>
-    / -->
-    <a href="https://ieeexplore.ieee.org/document/10105944">IEEE</a>
-    <!-- /
-    <a href="data/MMoT.pdf">PDF</a> -->
-    <p></p>
-    <p>
-      We propose a hybrid LiDAR-inertial SLAM framework that leverages both the on-board perception system and prior information such as motion dynamics to improve localization performance.
-    </p>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
-
-
-<tr onmouseout="dtw_stop()" onmouseover="dtw_start()">
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <div class="one">
-      <div class="two" id='dtw_image'>
-      <img src="images/dtw_0.png" width="160"></div>
-      <img src='images/dtw_1.png' width="160">
-    </div>
-    <script type="text/javascript">
-      function dtw_start() {
-        document.getElementById('dtw_image').style.opacity = "1";
-      }
-
-      function dtw_stop() {
-        document.getElementById('dtw_image').style.opacity = "0";
-      }
-      dtw_stop()
-    </script>
-  </td>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://mhh0318.github.io/">
-      <papertitle>Class-Incremental Learning on Multivariate Time Series Via Shape-Aligned Temporal Distillation</papertitle>
-    </a>
-    <br>
-    <a href="https://scholar.google.com/citations?user=7rbhsrEAAAAJ">Zhongzheng Qiao</a>,
-    <strong>Minghui Hu</strong>,
-    <a href="https://personal.ntu.edu.sg/exdjiang/">Xudong Jiang</a>,
-    <a href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a>,
-    <a href="https://rsavitha.webs.com/">Ramasamy Savitha</a>,
-    <br>
-    <em>ICASSP</em>, 2023 &nbsp
-    <br>
-    <!-- <a href="https://mhh0318.github.io/">project page</a>
-    / -->
-    <a href="https://ieeexplore.ieee.org/abstract/document/10094960">IEEE</a>
-    <!-- /
-    <a href="data/MMoT.pdf">PDF</a> -->
-    <p></p>
-    <p>
-      We propose to exploit Soft-Dynamic Time Warping (Soft-DTW) for knowledge distillation, which aligns the feature maps along the temporal dimension before calculating the discrepancy.
-    </p>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
-
-
-<tr onmouseout="unid3_stop()" onmouseover="unid3_start()">
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <div class="one">
-      <div class="two" id='unid3_image'>
-      <img src="images/unid3_clean.png" width="160"></div>
-      <img src='images/unid3_noisy.png' width="160">
-    </div>
-    <script type="text/javascript">
-      function unid3_start() {
-        document.getElementById('unid3_image').style.opacity = "1";
-      }
-
-      function unid3_stop() {
-        document.getElementById('unid3_image').style.opacity = "0";
-      }
-      unid3_stop()
-    </script>
-  </td>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://mhh0318.github.io/unid3/">
-      <papertitle>Unified Discrete Diffusion for Simultaneous Vision-Language Generation</papertitle>
-    </a>
-    <br>
-    <strong>Minghui Hu</strong>,
-		<a href="https://chuanxiaz.com/">Chuanxia Zheng</a>,
-    <a href="https://dblp.org/pid/254/9451.html">Zuopeng Yang</a>,
-    <a href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a>,
-    <a href="https://wang-chaoyue.github.io/">Chaoyue Wang</a>,
-    <a href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a>,
-    <a href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a>
-    <br>
-    <em>ICLR</em>, 2023 &nbsp
-    <br>
-    <a href="https://mhh0318.github.io/unid3/">project page</a>
-    /
-    <a href="https://arxiv.org/abs/2211.14842">arXiv</a>
-    /
-    <a href="data/UniD3.pdf">PDF</a>
-    <p></p>
-    <p>
-    We construct a unified discrete diffusion model for simultaneous vision-language generation.
-    </p>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
-
-<tr onmouseout="usrvfl_stop()" onmouseover="usrvfl_start()">
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <div class="one">
-      <div class="two" id='usrvfl_image'>
-      <img src="images/usrvfl_0.png" width="160"></div>
-      <img src='images/usrvfl_1.png' width="160">
-    </div>
-    <script type="text/javascript">
-      function usrvfl_start() {
-        document.getElementById('usrvfl_image').style.opacity = "1";
-      }
-
-      function usrvfl_stop() {
-        document.getElementById('usrvfl_image').style.opacity = "0";
-      }
-      vqddm_stop()
-    </script>
-  </td>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://mhh0318.github.io/VQDDM/">
-      <papertitle>Representation Learning Using Deep Random Vector Functional Link Networks for Clustering</papertitle>
-    </a>
-    <br>
-    <strong>Minghui Hu</strong>,
-    <a href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a>
-    <br>
-    <em>PR</em> &nbsp
-    <br>
-    <!-- <a href="https://mhh0318.github.io/unid3/">project page</a> -->
-    <!-- / -->
-    <a href="https://www.sciencedirect.com/science/article/abs/pii/S0031320322002254">Elsevier</a>
-    <p></p>
-    <p>
-    We use manifold regularisation to learn the representation from the randomised networks.
-    </p>
-  </td>
-</tr>
-<tr>
-  <td colspan="2">
-    <div class="publication-divider"></div>
-  </td>
-</tr>
-
-<tr onmouseout="vqddm_stop()" onmouseover="vqddm_start()">
-  <td style="padding:20px;width:25%;vertical-align:middle">
-    <div class="one">
-      <div class="two" id='vqddm_image'>
-      <img src="images/vqddm_mod.png" width="160"></div>
-      <img src='images/vqddm_raw.png' width="160">
-    </div>
-    <script type="text/javascript">
-      function vqddm_start() {
-        document.getElementById('vqddm_image').style.opacity = "1";
-      }
-
-      function vqddm_stop() {
-        document.getElementById('vqddm_image').style.opacity = "0";
-      }
-      vqddm_stop()
-    </script>
-  </td>
-  <td style="padding:20px;width:75%;vertical-align:middle">
-    <a href="https://mhh0318.github.io/VQDDM/">
-      <papertitle>Global Context with Discrete Diffusion in Vector Quantised Modelling for Image Generation</papertitle>
-    </a>
-    <br>
-    <strong>Minghui Hu</strong>,
-		<a href="https://scholar.google.com/citations?user=7CobseIAAAAJ&hl=en">Yujie Wang</a>,
-    <a href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a>,
-    <a href="http://marsyang.site/">Jianfei Yang</a>,
-    <a href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a>
-    <br>
-    <em>CVPR</em>, 2022 &nbsp
-    <br>
-    <!-- <a href="https://mhh0318.github.io/unid3/">project page</a> -->
-    <!-- / -->
-    <a href="https://arxiv.org/abs/2112.01799">arXiv</a>
-    /
-    <a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Hu_Global_Context_With_Discrete_Diffusion_in_Vector_Quantised_Modelling_for_CVPR_2022_paper.pdf">PDF</a>
-    <p></p>
-    <p>
-    Instead of AutoRegresive Transformers, we use Discrete Diffusion Model to obtain a better global context for image generation.
-    </p>
-  </td>
-</tr>
-
-
-<table width="100%" align="center" border="0" cellspacing="0" cellpadding="20"><tbody>
-  <tr>
-    <td>
-      <heading>Academic Services</heading>
-<div class="review-section"></div>
-  <h3 class="section-title">Conference Reviewer</h3>
-  <table class="review-table">
-    <tr><td>CVPR</td><td>2022 - 2025</td></tr>
-    <tr><td>ICCV</td><td>2023</td></tr>
-    <tr><td>ECCV</td><td>2024</td></tr>
-    <tr><td>NeurIPS</td><td>2023, 2024</td></tr>
-    <tr><td>ICLR</td><td>2023 - 2025</td></tr>
-    <tr><td>ICML</td><td>2025</td></tr>
-    <tr><td>ACCV</td><td>2024</td></tr>
-    <tr><td>ACM MM</td><td>2024</td></tr>
-    <tr><td>ICASSP</td><td>2023, 2024</td></tr>
-    <tr><td>IJCNN</td><td>2020 - 2024</td></tr>
-  </table>
-
-  <h3 class="section-title">Journal Reviewer</h3>
-  <p class="journal-list">T-PAMI, T-NNLS, T-Cyb, IJCV, PR,  InfoFusion, NeuNet, Neucom, ASoC, EAAI</p>
-</div>
-  </tr>
-</tbody></table>
-
-
-<div class="footer-container">
-  <div class="map-container">
-    <script type="text/javascript" id="clstr_globe" 
-      src="//clustrmaps.com/globe.js?d=afeIQSK3lal5Bc8L-8eaHbv1W5ZtwqTyvLzoEYsw1R4">
-    </script>
+    <footer class="footer">
+      <div class="map-container">
+        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=afeIQSK3lal5Bc8L-8eaHbv1W5ZtwqTyvLzoEYsw1R4"></script>
+      </div>
+      <div class="footer-text">
+        Last updated Jan. 2026.
+      </div>
+    </footer>
   </div>
-  
-  <p class="footer-text">
-    Somehow it is still another <a href="https://jonbarron.info">Jon Barron</a>'s website.<br>
-    Last updated Feb. 2025.
-  </p>
-</div>
-
-
-
-      </td>
-    </tr>
-  </table>
 
   <script>
-  // 主题切换功能
-  const themeToggle = document.getElementById('theme-toggle');
-  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-  // 检查本地存储的主题设置
-  const currentTheme = localStorage.getItem('theme');
-  if (currentTheme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    themeToggle.checked = true;
-  } else if (currentTheme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    themeToggle.checked = false;
-  } else {
-    // 如果没有存储的设置，则使用系统偏好
-    if (prefersDarkScheme.matches) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      themeToggle.checked = true;
+    function togglePublications() {
+      const wrapper = document.getElementById('publicationsWrapper');
+      wrapper.classList.toggle('expanded');
     }
-  }
-
-  // 切换主题
-  themeToggle.addEventListener('change', function() {
-    if (this.checked) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', 'light');
-    }
-  });
-
-  // 添加滚动监听控制
-  let lastScrollTop = 0;
-  const switchWrapper = document.querySelector('.theme-switch-wrapper');
-  const scrollThreshold = 100; // 滚动多少距离后隐藏
-
-  window.addEventListener('scroll', () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-    // 当滚动超过阈值时隐藏
-    if (scrollTop > scrollThreshold) {
-      switchWrapper.classList.add('hidden');
-    } else {
-      switchWrapper.classList.remove('hidden');
-    }
-    
-    lastScrollTop = scrollTop;
-  });
-
-  // 添加双击跳转逻辑
-  document.addEventListener('DOMContentLoaded', () => {
-    const hiringTag = document.querySelector('.hiring-tag');
-    const link = hiringTag.querySelector('a');
-    let lastClickTime = 0;
-    
-    link.addEventListener('click', (e) => {
-      e.preventDefault(); // 阻止默认跳转
-      
-      const currentTime = new Date().getTime();
-      const timeDiff = currentTime - lastClickTime;
-      
-      if (timeDiff < 500) { // 如果两次点击间隔小于500ms，执行跳转
-        window.location.href = link.href;
-      }
-      
-      lastClickTime = currentTime;
-    });
-  });
   </script>
 </body>
-
 </html>
