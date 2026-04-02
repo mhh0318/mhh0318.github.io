@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Cocktail🍸</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/site.webmanifest">
+    <!-- <base href="/"> -->
+
+        <!--FACEBOOK-->
+    <meta property="og:image" content="🍸">
+    <meta property="og:image:type" content="🍸">
+    <meta property="og:image:width" content="682">
+    <meta property="og:image:height" content="682">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mhh0318.github.io/cocktail/"/>
+    <meta property="og:title" content="Cocktail🍸" />
+    <meta property="og:description" content="Project page for Cocktail🍸: Mixing Multi-Modality Controls for Text-Conditional Image Generation." />
+    <script type="module" src="https://unpkg.com/@google/model-viewer@2.0.1/dist/model-viewer.min.js"></script>
+
+
+<!--     <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+  <!-- <link rel="icon" type="image/png" href="img/seal_icon.png"> -->
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script type="text/x-mathjax-config">
+             MathJax.Hub.Config({
+               tex2jax: {
+                 skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+               }
+             });
+         
+             MathJax.Hub.Queue(function() {
+                 var all = MathJax.Hub.getAllJax(), i;
+                for(i=0; i < all.length; i += 1) {
+                    all[i].SourceElement().parentNode.className += ' has-jax';
+                }
+            });
+        </script>      
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+    <script src="js/app.js"></script>
+</head>
+    <body>
+        <div class="highlight-clean" style="padding-bottom: 10px;">
+            <div class="container" style="max-width: 768px;">
+                <h1 class="text-center"><b>Cocktail</b>🍸: Mixing Multi-Modality Controls for Text-Conditional Image Generation</h1>
+            </div>
+            <div class="container" style="max-width: 768px;">
+                <div class="row authors">
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io">Minghui Hu</a></h5>
+                        <h6 class="text-center">Nanyang Technological University</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://jabir-zheng.github.io/">Jianbin Zheng</a></h5>
+                        <h6 class="text-center">South China University of Technology</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://daqingliu.github.io/">Daqing Liu</a></h5>
+                        <h6 class="text-center">JD Explore Academy</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://chuanxiaz.com/">Chuanxia Zheng</a></h5>
+                        <h6 class="text-center">University of Oxford</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5 class="text-center"><a class="text-center" href="https://wang-chaoyue.github.io/">Chaoyue Wang</a></h5>
+                        <h6 class="text-center">University of Sydney</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5 class="text-center"><a class="text-center" href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a></h5>
+                        <h6 class="text-center">University of Sydney</h6>
+                    </div>
+                    <div class="col-sm-4">
+                        <h5 class="text-center"><a class="text-center" href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a></h5>
+                        <h6 class="text-center">Nanyang Technological University</h6>
+                    </div>
+                </div>    
+            </div>
+            <div class="container" style="max-width: 768px;">
+                <!-- PDF Link. -->
+                <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+                <a href="https://arxiv.org/abs/2306.00964" target="_blank" class="link-block btn btn-outline-dark text-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-pdf-fill" viewBox="0 0 16 16">
+                        <path d="M5.523 12.424c.14-.082.293-.162.459-.238a7.878 7.878 0 0 1-.45.606c-.28.337-.498.516-.635.572a.266.266 0 0 1-.035.012.282.282 0 0 1-.026-.044c-.056-.11-.054-.216.04-.36.106-.165.319-.354.647-.548zm2.455-1.647c-.119.025-.237.05-.356.078a21.148 21.148 0 0 0 .5-1.05 12.045 12.045 0 0 0 .51.858c-.217.032-.436.07-.654.114zm2.525.939a3.881 3.881 0 0 1-.435-.41c.228.005.434.022.612.054.317.057.466.147.518.209a.095.095 0 0 1 .026.064.436.436 0 0 1-.06.2.307.307 0 0 1-.094.124.107.107 0 0 1-.069.015c-.09-.003-.258-.066-.498-.256zM8.278 6.97c-.04.244-.108.524-.2.829a4.86 4.86 0 0 1-.089-.346c-.076-.353-.087-.63-.046-.822.038-.177.11-.248.196-.283a.517.517 0 0 1 .145-.04c.013.03.028.092.032.198.005.122-.007.277-.038.465z"/>
+                        <path fill-rule="evenodd" d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3zM4.165 13.668c.09.18.23.343.438.419.207.075.412.04.58-.03.318-.13.635-.436.926-.786.333-.401.683-.927 1.021-1.51a11.651 11.651 0 0 1 1.997-.406c.3.383.61.713.91.95.28.22.603.403.934.417a.856.856 0 0 0 .51-.138c.155-.101.27-.247.354-.416.09-.181.145-.37.138-.563a.844.844 0 0 0-.2-.518c-.226-.27-.596-.4-.96-.465a5.76 5.76 0 0 0-1.335-.05 10.954 10.954 0 0 1-.98-1.686c.25-.66.437-1.284.52-1.794.036-.218.055-.426.048-.614a1.238 1.238 0 0 0-.127-.538.7.7 0 0 0-.477-.365c-.202-.043-.41 0-.601.077-.377.15-.576.47-.651.823-.073.34-.04.736.046 1.136.088.406.238.848.43 1.295a19.697 19.697 0 0 1-1.062 2.227 7.662 7.662 0 0 0-1.482.645c-.37.22-.699.48-.897.787-.21.326-.275.714-.08 1.103z"/>
+                      </svg>
+                    Paper
+                </a>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+                <!-- video link. -->
+                <a href="https://youtu.be/cy0fDO3-QSA" target="_blank" class="link-block btn btn-outline-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-play-fill" viewBox="0 0 16 16">
+                        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM6 6.883a.5.5 0 0 1 .757-.429l3.528 2.117a.5.5 0 0 1 0 .858l-3.528 2.117a.5.5 0 0 1-.757-.43V6.884z"/>
+                      </svg>
+                    Video 
+                </a>
+            </div>
+                <!-- code link. -->
+                <div class="col-xs-12 col-sm-4 col-md-4 text-center">
+                <a href="https://github.com/mhh0318/Cocktail" target="_blank" class="link-block btn btn-outline-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                      </svg>
+                    Code 
+                </a>
+            </div>
+        </div>
+        <!-- <image src="img/0_sample_0.jpg" class="img-responsive" alt="overview"><br> -->
+
+        <section class="container text-justify" style="max-width: 1024px;">
+            <div class="grid-container-video" style="width: 90%; margin-left: auto; margin-right: auto">
+                <h5 class="text-center"><b>Video</b></h5>
+                <div class="embed-responsive embed-responsive-16by9" style="margin: 0;">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cy0fDO3-QSA"
+                        allowfullscreen></iframe>
+                </div>
+                <hr>
+            </div>
+        </section>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <image src="img/3_sample_0_mark.jpg" class="img-responsive" alt="overview"><br>
+                <h6 class="caption">James Bond is drinking <em>Cocktail</em>🍸.</h6>
+        </div>
+
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Abstract</h2>
+                    <p>
+                        <!-- <strong> -->
+                            Text-conditional diffusion models are able to generate high-fidelity images with diverse contents.However, linguistic representations frequently exhibit ambiguous descriptions of the envisioned objective imagery, requiring the incorporation of additional control signals to bolster the efficacy of text-guided diffusion models. In this work, we propose Cocktail, a pipeline to mix various modalities into one embedding, amalgamated with a generalized ControlNet (gControlNet), a controllable normalisation (ControlNorm), and a spatial guidance sampling method, to actualize multi-modal and spatially-refined control for text-conditional diffusion models. Specifically, we introduce a hyper-network gControlNet, dedicated to the alignment and infusion of the control signals from disparate modalities into the pre-trained diffusion model. gControlNet is capable of accepting flexible modality signals, encompassing the simultaneous reception of any combination of modality signals, or the supplementary fusion of multiple modality signals. The control signals are then fused and injected into the backbone model according to our proposed ControlNorm. Furthermore, our advanced spatial guidance sampling methodology proficiently incorporates the control signal into the designated region, thereby circumventing the manifestation of undesired objects within the generated image. We demonstrate the results of our method in controlling various modalities, proving high-quality synthesis and fidelity to multiple external signals.
+                        <!-- </strong> -->
+                    </p>
+                    <image src="img/teaser.jpg" class="img-responsive" alt="overview"><br>
+                    <h6 class="caption">Our approach requires only one generalized model, unlike previous that needed multiple models for multiple modalities. Given a text prompt along with various modality signals, our approach is able to synthesize images that satisfy all input conditions or any arbitrary subset of these conditions. The prompt is: A girl holding a cat.</h6>
+                </div>
+            </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Overall Pipeline</h2>
+                    <p>
+                        Our approach requires only one generalized model, unlike previous that needed multiple models for multiple modalities. 
+                        Different from currently existing schemes, our scheme does not require modifications to the modal prior of the base model <strong>Fig.(a)</strong>, which results in a significant reduction in cost. Also in the face of multiple modalities we do not need multiple models demonstrated in <strong>Fig.(b)</strong>. Cocktail🍸 fuse the information from multiple modalities like <strong>Fig.(c)</strong> shown.
+                    </p>
+                    <image src="img/cktl.png" class="img-responsive" alt="overview"><br>
+                    <p>
+                        <!-- <strong> -->
+                        The noise-perturbed images are injected into the gControlNet via the ControlNorm, which also channels the dimensionally distinct control signals obtained from the gControlNet into the pre-trained network with rich semantic information.
+                        <!-- </strong> -->
+                    </p>
+                    <image src="img/ppl.jpg" class="img-responsive" alt="overview"><br>
+                    <h6 class="caption">The parameters indicated by the yellow sections are sourced from the pre-trained model and stay constant, while only those in the blue sections are updated during training, with the gradient back-propagated along the blue arrows. The noise-perturbed images are injected into the gControlNet via the ControlNorm, which also channels the dimensionally distinct control signals obtained from the gControlNet into the pre-trained network with rich semantic information. The light grey dashed sections signify additional operations that occur solely during the inference process, specifically, the process of storing attention maps derived from the gControlNet for the sampling stage. </h6>
+                </div>
+            </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Generalized ControlNet</h2>
+                    <p>
+                        <!-- <strong> -->
+                            Given a trained backbone network block \(\mathcal{F}(\cdot;\boldsymbol{\theta})\) with parameter\(\boldsymbol{\theta}\), the input feature\(\boldsymbol{x}\) can be mapped to \(\boldsymbol{y}\). For the branched part, we duplicate the parameter \(\boldsymbol{\theta}\) to create a trainable copy \(\boldsymbol{\theta}_t\), which is then trained using the supplementary modality. Preserving the original weights helps retain the information stored in the initial model after training on large-scale datasets, which ensures that the quality and diversity of the generated images do not degrade. Mathematically, the output from the trained network block can be expressed as:
+                        <!-- </strong> -->
+                    </p>
+                    \[
+                    \boldsymbol{y} = \mathcal{F}(\boldsymbol{x}; \boldsymbol{\theta}) + \mathcal{Z}\left(\mathcal{F}(\boldsymbol{x}+\mathcal{Z}(\boldsymbol{c}_m) ; \boldsymbol{\theta}_t)\right) \leftarrow \mathcal{F} (\boldsymbol{x} ; \boldsymbol{\theta})  ,
+                    \]
+                    <p>To accomplish the goals of accepting multiple external modalities as input and balancing signals from different modalities, we have devised a modified framework that adeptly merges these varied sources of information. 
+                        At the top of our network, we adopt a simple downsampling network \(\mathcal{M}(\cdot)\) to convert external conditional signals to the latent space, allowing the conditional signals to be directly injected into the latent space. It is worth noting that \(\mathcal{M}(\cdot)\) is versatile and can adapt to different types of external signals. Given \(k\) different modalities, the converted conditional features are \(\boldsymbol{c}_m ^ k = \mathcal{M} (C ^ k)\).  
+                    </p>
+                    <!-- <image src="img/mutual.png" class="img-responsive" alt="overview"><br> -->
+                    <!-- <h6 class="caption"> Illustration of mutual attention blocks. A unified transformer is composed of several blocks stacked on top of one another. </h6> -->
+                </div>
+            </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Controllable Normalisation</h2>
+                    <p>
+                        <!-- <strong> -->
+                            Instead of directly passing the sum of conditional features via a zero-initialized layer to the network block \(\mathcal{F}(\cdot;\boldsymbol{\theta}_t)\), i.e., \(\hat{\boldsymbol{c}}_m = \mathcal{Z}(\sum_i\boldsymbol{c}^i)\), we instead introduce a controllable normalisation (ControlNorm), which has an additional layer to generate two sets of learnable parameters, \(\boldsymbol {\gamma}(\hat{\boldsymbol{c}}_m)\) and \(\boldsymbol {\beta}(\hat{\boldsymbol{c}}_m)\), conditioned on all\(k\) modalities. These two sets of parameters are used in the conditional normalisation layer to fuse the external conditional signals and the original signals. 
+                        <!-- </strong> -->
+                    </p>
+                    \[
+                    \left(\boldsymbol {I}+\mathcal{Z}(\boldsymbol {\gamma}\left(\hat{\boldsymbol{c}}_m\right))\right) \odot \frac{\boldsymbol{x} -  \mu_c(\boldsymbol{x})}{\sigma_c(\boldsymbol{x})} \oplus \mathcal{Z}(\boldsymbol {\beta}(\hat{\boldsymbol{c}}_m)) \leftarrow \boldsymbol{x} +\mathcal{Z}(\boldsymbol{c}_m),
+                    \]
+                    <p>In fact, our controllable normalisation is a generalized version of conditional normalisation. 
+                        After changing the mean and variance calculation dimension and replacing the external signal by a mask image, real image, or class labels, we can derive the various forms of SPADE, AdaIN, CIN and MoVQ. 
+                        More interestingly, our controllable normalisation method not only enables the use of external signals as conditions, but also allows intermediate layer signals to act as constraints.
+                    </p>
+                    <p>
+                        Our proposed gControlNet shares the same objective function as the diffusion model, aiming to predict the noise added at time t. The only distinction lies in the incorporation of multimodal information:
+                    </p>
+                    \[
+                    \mathcal{L} = \mathbb{E}_{\boldsymbol{z}_{0}, t, \boldsymbol{c}_p, \hat{\boldsymbol{c}}_m, \epsilon \sim \mathcal{N}(0,1)} \left[ \Vert \epsilon - \epsilon_{\theta}\left(\boldsymbol{z}_t, t, \boldsymbol{c}_p,\hat{\boldsymbol{c}}_m \right) \Vert ^2_2 \right]
+                    \]
+                    <!-- <image src="img/tm.png" class="img-responsive" alt="overview"><br> -->
+                    <!-- <h6 class="caption"> </h6> -->
+                </div>
+            </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Spatial Guidance Sampling</h2>
+                    <p>
+                        <!-- <strong> -->
+                            We apply a masking strategy to the corresponding attention maps. In detail, we construct two sets of attention masks \(M^{\text{pos}(n)}\) and \(M^{\text{neg}(n)} \in \mathbb{R}^{(N_i,N_t)}\). Each column \(M^{\text{pos}(n)}_j\) and \(M^{\text{neg}(n)}_j\) is a flattened alpha mask, which is determined by the visibility of the corresponding text token \(K_j\). The values of \(M^{\text{pos}(n)}_{ij}\) and \(M^{\text{neg}(n)}_{ij}\) are determined based on the relationship between image token \(Q_i\) and text token \(K_j\). Specifically, if image token \(Q_i\) corresponds to a region of the image that should be influenced by text token \(K_j\), \(M^{\text{pos}(n)}_{ij}\) is assigned the value of 1. On the other hand, if image token \(Q_i\) corresponds to a region of the image that should not be influenced by text token \(K_j\), \(M^{\text{neg}(n)}_{ij}\) is set to 1. The mask components \(M^{\text{pos}(n)}\) and \(M^{\text{neg}(n)}\) are incorporated into the cross-attention computation process:
+                        <!-- </strong> -->
+                        \[
+                        \tilde{A}^{(n)}_{ij|\boldsymbol{\theta}^{(n)}}  = \frac{\text{exp}\langle Q^{(n)}_i,K_j\rangle + \omega^{\text{pos}} M^{\text{pos}(n)} - \omega^{\text{neg}} M^{\text{neg}(n)} }{\sum_{k=1} \text{exp} \langle Q^{(n)}_i,K_k \rangle}.
+                        \] 
+                    <!-- <image src="img/tm.png" class="img-responsive" alt="overview"><br> -->
+                    <!-- <h6 class="caption"> </h6> -->
+                </div>
+            </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Experimental Results</h2>
+                    <h3>Multi-Modality Generation</h3>
+                    <p>
+                        <strong>
+                            Cocktail🍸 is proficient in seamlessly supporting multiple control inputs and autonomously fusing them, thereby eliminating the necessity for manual intervention to equilibrate diverse modalities.
+                            This unique property empowers users to easily incorporate a variety of modalities, resulting in more flexible multi-modal control.
+                        </strong>
+                    </p> 
+                    <image src="img/fig1.jpg" class="img-responsive" alt="overview"><br>
+                    <image src="img/fig2.jpg" class="img-responsive" alt="overview"><br>
+                    <h6 class="caption"> Our model can generate images with the provided prompts and multi-modality information (e.g., edge, pose, and segmentation map) across various scales. The conditional signals can be overlap or disjoint. </h6>   
+                    <hr class="divider" />                    
+                    <h3>Multi-Modality Comparision</h3>
+                    <p>
+                        Our proposed Cocktail🍸 can generate a structural image that closely resembles the ground truth image and aligns better with the input conditions, establishing its superiority. 
+                    </p> 
+                    <image src="img/fig4.jpg" class="img-responsive" alt="overview"><br>
+                    <image src="img/fig5.jpg" class="img-responsive" alt="overview"><br>
+                    <h6 class="caption"> Cocktail🍸 can address the imbalance among various modalities.</h6>
+                    <image src="img/free.jpg" class="img-responsive" alt="overview"><br>
+                        <h6 class="caption"> Cocktail🍸 also accepts arbitrary combinations of the given modalities. </h6>
+                    <hr class="divider" />                    
+                    <h3>Uni-Modality Comparision</h3>
+                    <p>
+                        <strong>Our method also performs well on uni-modality translation.
+                        </strong>
+                    </p>
+                    <image src="img/fig3.jpg" class="img-responsive" alt="overview"><br>
+                    <h6 class="capable"> Qualitative comparison of Uni-Modality on the COCO validation set.</h6>
+                    <h3> Quantitative Evaluation</h3>
+                    <!-- <table style="border: 1px #000000 solid", cellpadding="2", cellspacing="1", width="100%">
+                        <thead>
+                            <tr>
+                                <th style="border: 1px #000000 solid">Methods</th>
+                                <th style="border: 1px #000000 solid">Similarity / LPIPS ↓</th>
+                                <th style="border: 1px #000000 solid">Sketch Map / L2 ↓</th>
+                                <th style="border: 1px #000000 solid">Segmentation / mPA ↑</th>
+                                <th style="border: 1px #000000 solid">Segmentation / mIoU ↑</th>
+                                <th style="border: 1px #000000 solid">Pose Map / mAP ↑</th>
+                            </tr>
+                        </thead> -->
+                        <style type="text/css">
+                            .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+                            .tg td{background-color:#fff;border-bottom-width:1px;border-color:#ccc;border-style:solid;border-top-width:1px;
+                            border-width:0px;color:#333;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;
+                            word-break:normal;}
+                            .tg th{background-color:#f0f0f0;border-bottom-width:1px;border-color:#ccc;border-style:solid;border-top-width:1px;
+                            border-width:0px;color:#333;font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;
+                            padding:10px 5px;word-break:normal;}
+                            .tg .tg-cly1{text-align:left;vertical-align:middle}
+                            .tg .tg-cly2{text-align:left;vertical-align:middle;font-weight:bold}
+                            .tg .tg-0pky{border-color:#333;text-align:middle;font-size: 14;font-weight: bold; }
+                            </style>
+                            <table class="tg">
+                                <thead>
+                                    <tr>
+                                        <th class="tg-0pky" >Methods</th>
+                                        <th  class="tg-0pky" >Similarity / LPIPS ↓</th>
+                                        <th class="tg-0pky"  >Sketch Map / L2 ↓</th>
+                                        <th class="tg-0pky"  >Segmentation / mPA ↑</th>
+                                        <th class="tg-0pky"  >Segmentation / mIoU ↑</th>
+                                        <th class="tg-0pky"  >Pose Map / mAP ↑</th>
+                                    </tr>
+                            </thead>    
+                            <tbody>
+                              <tr>
+                                <td class="tg-cly1">Multi-ControlNet</td>
+                                <td class="tg-cly1">0.66527 ± 0.00145</td>
+                                <td class="tg-cly1">7.59721 ± 0.01516</td>
+                                <td class="tg-cly1">0.36592 ± 0.00273</td>
+                                <td class="tg-cly1">0.22696 ± 0.00229</td>
+                                <td class="tg-cly1">0.38189 ± 0.00761</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-cly1">Multi-Adapter</td>
+                                <td class="tg-cly1">0.72716 ± 0.00120</td>
+                                <td class="tg-cly1">7.93310 ± 0.01392</td>
+                                <td class="tg-cly1">0.26304 ± 0.00242</td>
+                                <td class="tg-cly1">0.13981 ± 0.00177</td>
+                                <td class="tg-cly1">0.40018 ± 0.00761</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-cly1">Ours w/o ControlNorm</td>
+                                <td class="tg-cly1">0.48999 ± 0.00141</td>
+                                <td class="tg-cly2">7.18413 ± 0.01453</td>
+                                <td class="tg-cly1">0.48263 ± 0.00287</td>
+                                <td class="tg-cly1">0.32661 ± 0.00272</td>
+                                <td class="tg-cly1">0.61931 ± 0.00775</td>
+                              </tr>
+                              <tr>
+                                <td class="tg-cly2">Cocktail🍸</td>
+                                <td class="tg-cly2">0.48357 ± 0.00133</td>
+                                <td class="tg-cly1">7.28929 ± 0.01385</td>
+                                <td class="tg-cly2">0.49203 ± 0.00289</td>
+                                <td class="tg-cly2">0.33267 ± 0.00271</td>
+                                <td class="tg-cly2">0.61990 ± 0.00778</td>
+                              </tr>
+
+                            </tbody>
+                            </table>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider" />
+       
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Citation</h2>
+                    <code>
+                        @article{hu2023cocktail,<br>
+                        &nbsp; title  = {Cocktail: Mixing Multi-Modality Controls for Text-Conditional Image Generation},<br>
+                        &nbsp; author = {Hu, Minghui and Zheng, Jianbin and Liu, Daqing and Zheng, Chuanxia and Wang, Chaoyue and Tao, Dacheng and Cham, Tat-Jen},<br>
+                        &nbsp; journal = {arXiv},<br>
+                        &nbsp; year   = {2023},<br>
+                    }</code>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>
+                        Acknowledgements
+                    </h3>
+                    <p class="text-justify">
+                    The website template was borrowed from <a href="https://dreamfusion3d.github.io/">DreamFusion</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://polyfill.io/v3/polyfill.js?features=IntersectionObserver"></script>
+        <script src="/assets/js/yall.js"></script>
+        <script>
+            yall(
+                {
+                    observeChanges: true
+                }
+            );
+        </script>
+        <script src="/assets/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/js/webflow.fd002feec.js"></script>
+        <!-- Import the component -->
+    </body>
+</html>

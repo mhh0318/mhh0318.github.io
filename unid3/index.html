@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>UniD3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,500,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="/site.webmanifest">
+    <!-- <base href="/"> -->
+
+        <!--FACEBOOK-->
+    <meta property="og:image" content="https://mhh0318.github.io/unid3/img/icon.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="682">
+    <meta property="og:image:height" content="682">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mhh0318.github.io/unid3/"/>
+    <meta property="og:title" content="UniD3" />
+    <meta property="og:description" content="Project page for UniD3: Unified Discrete Diffusion for Simultaneous Vision-Language Generation." />
+    <script type="module" src="https://unpkg.com/@google/model-viewer@2.0.1/dist/model-viewer.min.js"></script>
+
+
+<!--     <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+  <!-- <link rel="icon" type="image/png" href="img/seal_icon.png"> -->
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    
+    <script src="js/app.js"></script>
+</head>
+    <body>
+        <div class="highlight-clean" style="padding-bottom: 10px;">
+            <div class="container" style="max-width: 768px;">
+                <h1 class="text-center"><b>UniD3</b>: Unified Discrete Diffusion for Simultaneous Vision-Language Generation</h1>
+            </div>
+            <div class="container" style="max-width: 768px;">
+                <div class="row authors">
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://mhh0318.github.io">Minghui Hu</a></h5>
+                        <h6 class="text-center">Nanyang Technological University</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://chuanxiaz.com/">Chuanxia Zheng</a></h5>
+                        <h6 class="text-center">University of Oxford</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://scholar.google.com/citations?user=VRgciTQAAAAJ&hl">Heliang Zheng</a></h5>
+                        <h6 class="text-center">JD Explore Academy</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://personal.ntu.edu.sg/astjcham/">Tat-Jen Cham</a></h5>
+                        <h6 class="text-center">Nanyang Technological University</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://wang-chaoyue.github.io/">Chaoyue Wang</a></h5>
+                        <h6 class="text-center">JD Explore Academy</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://dblp.org/pid/254/9451.html">Zuopeng Yang</a></h5>
+                        <h6 class="text-center">Shanghai Jiao Tong University</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://www.sydney.edu.au/engineering/about/our-people/academic-staff/dacheng-tao.html">Dacheng Tao</a></h5>
+                        <h6 class="text-center">JD Explore Academy</h6>
+                    </div>
+                    <div class="col-sm-3">
+                        <h5 class="text-center"><a class="text-center" href="https://www3.ntu.edu.sg/home/epnsugan/">P.N.Suganthan</a></h5>
+                        <h6 class="text-center">Qatar University</h6>
+                    </div>
+                </div>    
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-12 col-md-offset-5 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://openreview.net/pdf?id=Qb-AoSw4Jnm">
+                            <image src="img/paperclip.png" height="60px">
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://recorder-v3.slideslive.com/?share=75742&s=46fd4642-e778-4156-bc73-151f85156f30">
+                            <image src="img/youtube_icon.png" height="60px">
+                                <h4><strong>Video</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/lyndonzheng/TFill">
+                            <image src="img/github.png" height="60px">
+                                <h4><strong>Code</strong></h4>
+                            </a>
+                        </li>
+                         <li>
+                            <a href="TODO">
+                            <image src="img/github.png" height="60px">
+                                <h4><strong>Code</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Abstract</h2>
+                    <p>
+                        <!-- <strong> -->
+                            The recently developed discrete diffusion models perform extraordinarily well in the text-to-image task, showing significant promise for handling the multi-modality signals. In this work, we harness these traits and present a unified multimodal generation model that can conduct both the "modality translation" and "multi-modality generation" tasks using a single model, performing text-based, image-based, and even vision-language simultaneous generation. Specifically, we unify the discrete diffusion process for multimodal signals by proposing a unified transition matrix. Moreover, we design a mutual attention module with fused embedding layer and a unified objective function to emphasise the inter-modal linkages, which are vital for multi-modality generation. Extensive experiments indicate that our proposed method can perform comparably to the state-of-the-art solutions in various generation tasks.
+                        <!-- </strong> -->
+                    </p>
+                    <image src="img/tasks.jpg" class="img-responsive" alt="overview"><br>
+                    <h6 class="caption">Once trained, UniD3 can not only inherit the ability to manipulate the provided text or image, but is also able to unify the text and image generation, e.g., unconditional vision-language pairings generation, cross modal manipulation, text guided image completion, and image conditional text caption.</h6>
+                </div>
+            </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Overall Pipeline</h2>
+                    <p>
+                        <!-- <strong> -->
+                            The pipeline of UniD3. With an offline model (red background part), the given inputs
+                            are represented by discrete token sequence in separate domain. The fusion embedding concatenate
+                            the tokens in different modal and embed them to the same space. The unified diffusion (in blue
+                            background) will construct the joint distribution of all modalities based on the fused embedding
+                            with a fixed unified Markov transition matrix.
+                        <!-- </strong> -->
+                    </p>
+                    <image src="img/UniD3.png" class="img-responsive" alt="overview"><br>
+                    <h6 class="caption">(1) An offline model to generate a compact yet expressive discrete representation for both images and texts via discrete VAE (dVAE) and Byte-Pair Encoding (BPE), respectively (the pink part in Figure). <br>(2) A novel unified discrete diffusion model to estimate the joint distribution of such latent visual and language codes (the cyan part in Figure).</br> </h6>
+                </div>
+            </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Mutual Attention</h2>
+                    <p>
+                        <!-- <strong> -->
+                            The input to the neural network covers all modalities, and a simple self-attention mechanism can scarcely highlight the inter-modal linkages. In order to solve this problem, we propose a mutual attention module to capture the inter-modal linkages as well as the cross-modal connections. The mutual attention block consists of one self-attention, two parallel mutual attention operations and one feed-forward module. Each block receives a sequence of mixed-modal tokens as input that traverses a layer of self-attention to capture the inherent connection within the modalities.
+                        <!-- </strong> -->
+                    </p>
+                    <image src="img/mutual.png" class="img-responsive" alt="overview"><br>
+                    <h6 class="caption"> Illustration of mutual attention blocks. A unified transformer is composed of several blocks stacked on top of one another. </h6>
+                </div>
+            </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Transition Matrix</h2>
+                    <p>
+                        <!-- <strong> -->
+                            The presence of a transition matrix determines the nature of the discrete diffusion model, which also provides us with more choices for
+                            token evolution. Thus we may wonder if it is feasible to design transition matrices that capture the global connections between various modalities.
+                        <!-- </strong> -->
+                    </p>
+                    <p>The Markov transition matrix of the discrete diffusion model should satisfy the following requirements:
+                        <br>1. each column in Q_t should sum to one to conserve probability mass; 
+                        <br>2. each column in the cumulative-product Q'_t should converge to either a known stationary distribution or a learnt prior when t becomes large.
+                    </p>
+                    <p> On the basis of these criteria, we construct a unified transition matrix Q_t capable of encapsulating discrete representations among various modalities. 
+                    </p>    
+                    <image src="img/tm.png" class="img-responsive" alt="overview"><br>
+                    <!-- <h6 class="caption"> </h6> -->
+                </div>
+            </div>
+        </div>
+        <hr class="divider" />
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>More Results</h2>
+                    <h3>Generated vision-language Pairs from CUB-200 and MSCOCO.</h3>
+                    <p>
+                        <!-- <strong> -->
+                             Both the image and caption are generated simultaneously. The quality of the created photos and text is comprehensible, and there is a correlation between the descriptions and the visuals.
+                        <!-- </strong> -->
+                    </p> 
+                    <image src="img/001.jpg" class="img-responsive" alt="overview"><br>
+                    <!-- <h6 class="caption"> </h6> -->
+                    <hr class="divider" />                    
+                    <h3>Image Captions on CUB</h3>
+                    <!-- <p>
+                        <strong> -->
+                        <!-- </strong>
+                    </p>  -->
+                    <image src="img/002.jpg" class="img-responsive" alt="overview"><br>
+                    <hr class="divider" />                    
+                    <h3>Cross Modal Inpainting</h3>
+                    <p>
+                        In this experiment, we obscured a portion of the image and modified the text description as well. Depending on the unmasked images, our model may supplement the caption that is derived from a portion of the image. Moreover, based on the amended description, the model may enhance the appearance of the masked component.
+                    </p> 
+                    <image src="img/003.jpg" class="img-responsive" alt="overview"><br>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider" />
+       
+        <div class="container" style="max-width: 768px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Citation</h2>
+                    <code>
+                        @article{hu2022unified,<br>
+                        &nbsp; title  = {Unified Discrete Diffusion for Simultaneous Vision-Language Generation},<br>
+                        &nbsp; author = {Hu, Minghui and Zheng, Chuanxia and Zheng, Heliang and Cham, Tat-Jen and Wang, Chaoyue and Yang, Zuopeng and Tao, Dacheng and Suganthan, Ponnuthurai N},<br>
+                        &nbsp; journal = {arXiv},<br>
+                        &nbsp; year   = {2022},<br>
+                    }</code>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>
+                        Acknowledgements
+                    </h3>
+                    <p class="text-justify">
+                    The website template was borrowed from <a href="https://dreamfusion3d.github.io/">DreamFusion</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://polyfill.io/v3/polyfill.js?features=IntersectionObserver"></script>
+        <script src="/assets/js/yall.js"></script>
+        <script>
+            yall(
+                {
+                    observeChanges: true
+                }
+            );
+        </script>
+        <script src="/assets/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+        <script src="https://uploads-ssl.webflow.com/51e0d73d83d06baa7a00000f/js/webflow.fd002feec.js"></script>
+        <!-- Import the component -->
+    </body>
+</html>

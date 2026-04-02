@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minghui Hu</title>
+  <link rel="icon" type="image/webp" href="https://spellbrush.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.f1ddcf09.webp&w=1080&q=75">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #FFFFFF;
+      --foreground: #1a1a1a;
+      --muted: #fafafa;
+      --muted-foreground: #737373;
+      --border: #e5e5e5;
+      --border-dark: #1a1a1a;
+    }
+
+    body {
+      background: var(--background);
+      color: var(--foreground);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+    }
+
+    /* Subtle Noise Texture */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.015;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 40px 80px;
+    }
+
+    header {
+      margin-bottom: 80px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: var(--foreground);
+    }
+
+    .intro {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--foreground);
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    .intro p {
+      margin-bottom: 1em;
+    }
+
+    .intro p:last-child {
+      margin-bottom: 0;
+    }
+
+    .intro a {
+      color: var(--foreground);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 200ms;
+    }
+
+    .intro a:hover {
+      border-bottom-color: var(--foreground);
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--muted-foreground);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+
+    .links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      font-weight: 400;
+      font-size: 14px;
+      transition: color 200ms;
+      letter-spacing: 0.01em;
+    }
+
+    .links a:hover {
+      color: var(--foreground);
+    }
+
+    .section {
+      margin-bottom: 70px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      color: var(--foreground);
+    }
+
+    .section-title.small {
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    /* Services Section */
+    .services {
+      display: grid;
+      gap: 24px;
+    }
+
+    .service-category {
+      display: flex;
+      gap: 16px;
+      line-height: 1.8;
+    }
+
+    .service-label {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--foreground);
+      flex-shrink: 0;
+      min-width: 100px;
+    }
+
+    .service-list {
+      font-size: 15px;
+      line-height: 1.8;
+      font-weight: 300;
+      color: var(--muted-foreground);
+      flex: 1;
+    }
+
+    /* Publications Collapsible Section */
+    .publications-wrapper {
+      margin-bottom: 80px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .publications-toggle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      padding: 16px 0;
+      transition: opacity 200ms;
+    }
+
+    .publications-toggle:hover {
+      opacity: 0.6;
+    }
+
+    .publications-toggle-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted-foreground);
+    }
+
+    .publications-toggle-icon {
+      font-size: 16px;
+      color: var(--muted-foreground);
+      transition: transform 300ms;
+    }
+
+    .publications-wrapper.expanded .publications-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .publications-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 500ms ease;
+    }
+
+    .publications-wrapper.expanded .publications-content {
+      max-height: 10000px;
+    }
+
+    .publications-list {
+      padding-top: 16px;
+      list-style: none;
+    }
+
+    .publication {
+      margin-bottom: 24px;
+    }
+
+    .publication:last-child {
+      margin-bottom: 0;
+    }
+
+    .pub-content {
+      width: 100%;
+    }
+
+    .pub-title {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .pub-title a {
+      color: var(--foreground);
+      text-decoration: none;
+      transition: color 200ms;
+    }
+
+    .pub-title a:hover {
+      color: var(--muted-foreground);
+    }
+
+    .pub-meta {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted-foreground);
+      font-weight: 300;
+    }
+
+    .pub-meta strong {
+      font-weight: 400;
+      color: var(--foreground);
+    }
+
+    .pub-venue {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--foreground);
+    }
+
+    .pub-links {
+      display: inline;
+      font-size: 13px;
+    }
+
+    .pub-links::before {
+      content: " · ";
+      color: var(--muted-foreground);
+    }
+
+    .pub-links a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      transition: color 200ms;
+      border-bottom: 1px solid transparent;
+    }
+
+    .pub-links a:hover {
+      color: var(--foreground);
+      border-bottom-color: var(--foreground);
+    }
+
+    .pub-links a:not(:last-child)::after {
+      content: " · ";
+      color: var(--muted-foreground);
+      border: none;
+    }
+
+    .footer {
+      margin-top: 60px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .map-container {
+      width: 120px;
+      height: 120px;
+      opacity: 0.5;
+      transition: opacity 200ms;
+    }
+
+    .map-container:hover {
+      opacity: 0.8;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      text-align: center;
+      line-height: 1.7;
+      font-weight: 300;
+      color: var(--muted-foreground);
+      letter-spacing: 0.01em;
+    }
+
+    .footer-text a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms;
+    }
+
+    .footer-text a:hover {
+      border-bottom-color: var(--muted-foreground);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 60px 28px 80px;
+      }
+
+      h1 {
+        font-size: 36px;
+        margin-bottom: 24px;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .section {
+        margin-bottom: 80px;
+      }
+
+      header {
+        margin-bottom: 80px;
+      }
+
+      .contact {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .publications-wrapper {
+        margin-bottom: 60px;
+      }
+
+      .map-container {
+        width: 100px;
+        height: 100px;
+      }
+
+      .pub-title {
+        font-size: 15px;
+      }
+
+      .pub-meta {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Minghui Hu</h1>
+
+      <div class="intro">
+        <p>Researcher at <a href="https://www.spellbrush.com"><strong>SpellBrush</strong></a>, focusing on visual generative models.</p>
+        <p>Core contributor of <a href="https://nijijourney.com"><strong>niji journey</strong></a> and <a href="https://www.midjourney.com"><strong>Midjourney</strong></a> Video. Contributed to Midjourney v7 Draft.</p>
+        <p>Previously: <a href="https://www.sensetime.com">Sensetime</a>, <a href="https://www.minimaxi.com/en">MiniMax</a></p>
+        <p>PhD from <a href="https://www.ntu.edu.sg">Nanyang Technological University</a>, supervised by <a href="https://www3.ntu.edu.sg/home/epnsugan/">Prof. P. N. Suganthan</a> and <a href="https://personal.ntu.edu.sg/astjcham/">Prof. Tat-Jen Cham</a>.</p>
+      </div>
+
+      <div class="contact">
+        <span class="email">minghui [at] spellbrush [dot] com</span>
+        <div class="links">
+          <a href="https://scholar.google.com/citations?user=9jfGj64AAAAJ&hl">Scholar</a>
+          <a href="https://github.com/mhh0318/">GitHub</a>
+          <a href="https://www.linkedin.com/in/minghui-hu-b62626168/">LinkedIn</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <h2 class="section-title small">Academic Services</h2>
+      <div class="services">
+        <div class="service-category">
+          <div class="service-label">Conferences</div>
+          <div class="service-list">
+            CVPR (2022–26, Outstanding Reviewer 2025) · ICCV (2023, 2025) · ECCV (2024, 2026) · NeurIPS (2023–26) · ICLR (2023–26) · ICML (2025-26) · etc.
+          </div>
+        </div>
+        <div class="service-category">
+          <div class="service-label">Journals</div>
+          <div class="service-list">
+            T-PAMI · T-NNLS · T-Cyb · IJCV · Pattern Recognition · etc.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="publications-wrapper" id="publicationsWrapper">
+      <div class="publications-toggle" onclick="togglePublications()">
+        <span class="publications-toggle-title">View Publications</span>
+        <span class="publications-toggle-icon">↓</span>
+      </div>
+      <div class="publications-content">
+        <ol class="publications-list">
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://openreview.net/forum?id=d7itDxMD1n">Monocular Normal Estimation via Shading Sequence Estimation</a>
+              </div>
+              <div class="pub-meta">
+                Zongrui Li, Xinhua Ma, <strong>Minghui Hu</strong>, Yunqing Zhao, Yingchen Yu, Qian Zheng, Chang Liu, Xudong Jiang, Song Bai
+              </div>
+              <div class="pub-venue">
+                ICLR 2026 (Oral)<span class="pub-links"><a href="https://openreview.net/forum?id=d7itDxMD1n">OpenReview</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://doi.ieeecomputersociety.org/10.1109/TPAMI.2026.3652081">Incremental online learning of randomized neural network with forward regularization</a>
+              </div>
+              <div class="pub-meta">
+                Junda Wang, <strong>Minghui Hu</strong>, Ning Li, Abdulaziz Al-Ali, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                IEEE T-PAMI
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://mhh0318.github.io/">Semantix: An Energy-guided Sampler for Semantic Style Transfer</a>
+              </div>
+              <div class="pub-meta">
+                Huiang He*, <strong>Minghui Hu*</strong>, Chuanxia Zheng, Chaoyue Wang, Tat-Jen Cham
+              </div>
+              <div class="pub-venue">
+                ICLR 2025<span class="pub-links"><a href="https://openreview.net/forum?id=si37wk8U5D">OpenReview</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://zongrui.page/ECCV2024-GCS-BEG/">Connecting Consistency Distillation to Score Distillation for Text-to-3D Generation</a>
+              </div>
+              <div class="pub-meta">
+                Zongrui Li*, <strong>Minghui Hu*</strong>, Qian Zheng, Xudong Jiang
+              </div>
+              <div class="pub-venue">
+                ECCV 2024<span class="pub-links"><a href="https://zongrui.page/ECCV2024-GCS-BEG/">Project</a><a href="https://arxiv.org/abs/2407.13584">arXiv</a><a href="https://github.com/LMozart/ECCV2024-GCS-BEG">Code</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://mhh0318.github.io/tcd/">Trajectory Consistency Distillation</a>
+              </div>
+              <div class="pub-meta">
+                Jianbin Zheng*, <strong>Minghui Hu*</strong>, Zhongyi Fan, Chaoyue Wang, Changxing Ding, Dacheng Tao, Tat-Jen Cham
+              </div>
+              <div class="pub-venue">
+                Tech Report 2024<span class="pub-links"><a href="https://mhh0318.github.io/tcd/">Project</a><a href="https://arxiv.org/abs/2402.19159">arXiv</a><a href="https://github.com/jabir-zheng/TCD">Code</a><a href="https://huggingface.co/h1t/TCD-SDXL-LoRA">Model</a><a href="https://huggingface.co/spaces/h1t/TCD">Demo</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://jabir-zheng.github.io/OneMoreStep/">One More Step: A Versatile Plug-and-Play Module for Rectifying Diffusion Schedule Flaws and Enhancing Low-Frequency Controls</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, Jianbin Zheng, Chuanxia Zheng, Chaoyue Wang, Dacheng Tao, Tat-Jen Cham
+              </div>
+              <div class="pub-venue">
+                CVPR 2024<span class="pub-links"><a href="https://jabir-zheng.github.io/OneMoreStep/">Project</a><a href="http://arxiv.org/abs/2311.15744">arXiv</a><a href="https://github.com/mhh0318/OneMoreStep">Code</a><a href="https://huggingface.co/h1t/oms_b_openclip_xl">Model</a><a href="https://huggingface.co/spaces/h1t/oms_sdxl_lcm">Demo</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://mhh0318.github.io/cocktail/">Cocktail: Mixing Multi-Modality Controls for Text-Conditional Image Generation</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, Jianbin Zheng, Daqing Liu, Chuanxia Zheng, Chaoyue Wang, Dacheng Tao, Tat-Jen Cham
+              </div>
+              <div class="pub-venue">
+                NeurIPS 2023<span class="pub-links"><a href="https://mhh0318.github.io/cocktail/">Project</a><a href="https://arxiv.org/abs/2306.00964">arXiv</a><a href="https://github.com/mhh0318/Cocktail">Code</a><a href="https://huggingface.co/h1t/cocktail">Model</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10220213/">Self-Distillation for Randomized Neural Networks</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, Ruobin Gao, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                IEEE T-NNLS<span class="pub-links"><a href="https://ieeexplore.ieee.org/abstract/document/10220213/">IEEE</a><a href="https://github.com/mhh0318/KDRVFL">Code</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://jabir-zheng.github.io/MMoT/">MMoT: Mixture-of-Modality-Tokens Transformer for Composed Multimodal Conditional Image Synthesis</a>
+              </div>
+              <div class="pub-meta">
+                Jianbin Zheng, Daqing Liu, Chaoyue Wang, <strong>Minghui Hu</strong>, Zuopeng Yang, Changxing Ding, Dacheng Tao
+              </div>
+              <div class="pub-venue">
+                IJCV<span class="pub-links"><a href="https://jabir-zheng.github.io/MMoT/">Project</a><a href="https://arxiv.org/abs/2305.05992">arXiv</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://ieeexplore.ieee.org/document/10105944">Versatile LiDAR-Inertial Odometry with SE(2) Constraints for Ground Vehicles</a>
+              </div>
+              <div class="pub-meta">
+                Jiaying Chen, Han Wang, <strong>Minghui Hu</strong>, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                RA-L & IROS 2023<span class="pub-links"><a href="https://ieeexplore.ieee.org/document/10105944">IEEE</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://ieeexplore.ieee.org/abstract/document/10094960">Class-Incremental Learning on Multivariate Time Series Via Shape-Aligned Temporal Distillation</a>
+              </div>
+              <div class="pub-meta">
+                Zhongzheng Qiao, <strong>Minghui Hu</strong>, Xudong Jiang, P.N. Suganthan, Ramasamy Savitha
+              </div>
+              <div class="pub-venue">
+                ICASSP 2023<span class="pub-links"><a href="https://ieeexplore.ieee.org/abstract/document/10094960">IEEE</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://mhh0318.github.io/unid3/">Unified Discrete Diffusion for Simultaneous Vision-Language Generation</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, Chuanxia Zheng, Zuopeng Yang, Tat-Jen Cham, Chaoyue Wang, Dacheng Tao, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                ICLR 2023<span class="pub-links"><a href="https://mhh0318.github.io/unid3/">Project</a><a href="https://arxiv.org/abs/2211.14842">arXiv</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://www.sciencedirect.com/science/article/abs/pii/S0031320322002254">Representation Learning Using Deep Random Vector Functional Link Networks for Clustering</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                Pattern Recognition<span class="pub-links"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0031320322002254">Elsevier</a></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="publication">
+            <div class="pub-content">
+              <div class="pub-title">
+                <a href="https://mhh0318.github.io/VQDDM/">Global Context with Discrete Diffusion in Vector Quantised Modelling for Image Generation</a>
+              </div>
+              <div class="pub-meta">
+                <strong>Minghui Hu</strong>, Yujie Wang, Tat-Jen Cham, Jianfei Yang, P.N. Suganthan
+              </div>
+              <div class="pub-venue">
+                CVPR 2022<span class="pub-links"><a href="https://arxiv.org/abs/2112.01799">arXiv</a></span>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="map-container">
+        <script type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=afeIQSK3lal5Bc8L-8eaHbv1W5ZtwqTyvLzoEYsw1R4"></script>
+      </div>
+      <div class="footer-text">
+        Last updated Jan. 2026.
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function togglePublications() {
+      const wrapper = document.getElementById('publicationsWrapper');
+      wrapper.classList.toggle('expanded');
+    }
+  </script>
+</body>
+</html>
