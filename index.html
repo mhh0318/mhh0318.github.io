@@ -680,7 +680,15 @@
   const C=document.getElementById('c'),X=C.getContext('2d');
   let on=true;
 
-  function fit(){C.width=innerWidth;C.height=innerHeight}
+  // Mobile detection & DPR-aware canvas
+  const isMobile='ontouchstart'in window||navigator.maxTouchPoints>0||innerWidth<768;
+  const dpr=Math.min(devicePixelRatio,2);
+
+  function fit(){
+    C.width=innerWidth*dpr;C.height=innerHeight*dpr;
+    C.style.width=innerWidth+'px';
+    C.style.height=innerHeight+'px';
+  }
   addEventListener('resize',fit);fit();
 
   function lerp(a,b,t){return a+(b-a)*t}
@@ -704,6 +712,7 @@
     offscreenCache[key]=nc;return nc;
   }
 
+  const numSlats=18;
   let fadeVal=1,fadeTarget=1,lastTime=0;
 
   function draw(now){
@@ -732,16 +741,18 @@
     X.fillStyle=`rgb(${st[0]},${st[1]},${st[2]})`;
     X.fillRect(0,0,w,h);
 
-    const projW=Math.min(w*0.58,420)*stretch;
-    const projH=Math.min(h*0.72,500)*stretch*0.78;
+    // DPR-aware projection, adapted for mobile screen ratio
+    const cw=innerWidth*dpr,ch=innerHeight*dpr;
+    const projW=Math.min(cw*(isMobile?0.75:0.58),420*dpr)*stretch;
+    const projH=Math.min(ch*(isMobile?0.55:0.72),500*dpr)*stretch*0.78;
 
-    const bx=Math.sin(now*0.00009)*5+Math.sin(now*0.00025)*2.5;
-    const by=Math.cos(now*0.00011)*3.5+Math.cos(now*0.00022)*1.8;
-    const px=lerp(w*0.01,w*0.06,n)+bx;
-    const py=lerp(h*0.01,h*0.03,n)+by;
+    const bx=(Math.sin(now*0.00009)*5+Math.sin(now*0.00025)*2.5)*dpr;
+    const by=(Math.cos(now*0.00011)*3.5+Math.cos(now*0.00022)*1.8)*dpr;
+    const px=lerp(cw*0.01,cw*0.06,n)+bx;
+    const py=lerp(ch*0.01,ch*0.03,n)+by;
 
-    const frameT=lerp(10,7,n);
-    const numSlats=18,innerH=projH-frameT*2;
+    const frameT=lerp(10,7,n)*dpr;
+    const innerH=projH-frameT*2;
     const spacing=innerH/numSlats;
     const slatThick=spacing*lerp(0.88,0.12,open);
     const gapH=spacing-slatThick;
@@ -750,7 +761,7 @@
 
     X.save();X.translate(px,py);X.transform(1,skewY,skewX,1,0,0);
 
-    const offW=Math.ceil(projW+80),offH=Math.ceil(projH+80);
+    const offW=Math.ceil(projW+80*dpr),offH=Math.ceil(projH+80*dpr);
     const OC=getOff('off',offW,offH),OX=OC.getContext('2d');
     OX.clearRect(0,0,offW,offH);
 
@@ -800,7 +811,7 @@
     hg.addColorStop(0.85,'rgba(255,255,255,1)');hg.addColorStop(1,'rgba(255,255,255,0)');
     OX.fillStyle=hg;OX.fillRect(0,my-mullW-mullSoft,projW,(mullW+mullSoft)*2);
 
-    const cordX=projW*0.73+Math.sin(now*0.00025)*2.5,cordW=1.5,cordSoft=baseSoft*0.4;
+    const cordX=projW*0.73+Math.sin(now*0.00025)*2.5*dpr,cordW=1.5*dpr,cordSoft=baseSoft*0.4;
     const cG=OX.createLinearGradient(cordX-cordW-cordSoft,0,cordX+cordW+cordSoft,0);
     cG.addColorStop(0,'rgba(255,255,255,0)');cG.addColorStop(0.25,'rgba(255,255,255,0.6)');
     cG.addColorStop(0.75,'rgba(255,255,255,0.6)');cG.addColorStop(1,'rgba(255,255,255,0)');
@@ -841,6 +852,9 @@
     btn.style.transform=`rotate(${rotDeg}deg)`;
     btn.querySelectorAll('.ray').forEach(r=>{r.style.opacity=on?'1':'0.35'});
   }
+
+  // Pause animation when tab is hidden to save battery
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)lastTime=0;});
 
   requestAnimationFrame(draw);
   </script>
