@@ -36,15 +36,98 @@
       position: relative;
     }
 
-    /* Window shade light canvas */
-    canvas#c {
+    /* Dappled sunlight — pure CSS: a multiply-blended shadow layer
+       with a patch of light cut out via gradient masks, scattered into
+       soft foliage-like spots. Soft edges come from gradient ramps,
+       not blur filters. */
+    #shade {
       position: fixed;
       inset: 0;
-      width: 100%;
-      height: 100%;
       pointer-events: none;
       z-index: 100;
+      background: rgb(229, 215, 203);
       mix-blend-mode: multiply;
+      transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
+    }
+
+    #shade.off {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 1.8s;
+    }
+
+    .shade-pos {
+      position: absolute;
+      left: 3vw;
+      top: 1vh;
+      width: min(56vw, 800px);
+      height: min(80vh, 760px);
+      transform: skew(12deg, 5deg);
+      transform-origin: top left;
+      animation: shade-sway 45s ease-in-out infinite;
+    }
+
+    @keyframes shade-sway {
+      0%, 100% { translate: 0 0; rotate: 0deg; }
+      25% { translate: 9px -6px; rotate: 0.4deg; }
+      50% { translate: -6px 4px; rotate: -0.3deg; }
+      75% { translate: 5px 7px; rotate: 0.25deg; }
+    }
+
+    .shade-fh,
+    .shade-fv {
+      position: absolute;
+      inset: 0;
+    }
+
+    /* Horizontal falloff: light fades toward the window's far edge */
+    .shade-fh {
+      -webkit-mask-image: linear-gradient(to right, rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.55) 6%, #000 15%, #000 50%, rgb(0 0 0 / 0.8) 72%, rgb(0 0 0 / 0.35) 85%, rgb(0 0 0 / 0.12) 94%, rgb(0 0 0 / 0.02));
+      mask-image: linear-gradient(to right, rgb(0 0 0 / 0.1), rgb(0 0 0 / 0.55) 6%, #000 15%, #000 50%, rgb(0 0 0 / 0.8) 72%, rgb(0 0 0 / 0.35) 85%, rgb(0 0 0 / 0.12) 94%, rgb(0 0 0 / 0.02));
+    }
+
+    /* Vertical falloff */
+    .shade-fv {
+      -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.08), rgb(0 0 0 / 0.6) 5%, #000 12%, rgb(0 0 0 / 0.85) 75%, rgb(0 0 0 / 0.35) 88%, rgb(0 0 0 / 0.1) 95%, rgb(0 0 0 / 0.02));
+      mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.08), rgb(0 0 0 / 0.6) 5%, #000 12%, rgb(0 0 0 / 0.85) 75%, rgb(0 0 0 / 0.35) 88%, rgb(0 0 0 / 0.1) 95%, rgb(0 0 0 / 0.02));
+    }
+
+    /* The light itself: golden-hour gradient (gold → rose → lavender)
+       dappled into irregular soft spots by a mask of scattered radial
+       gradients — sunlight through foliage (komorebi), with a slow
+       "breathing" of intensity. */
+    .shade-light {
+      /* Dapples from SVG fractal noise: feTurbulence alpha is pushed
+         through a steep ramp (12a - 6.1 → light where noise > ~0.5,
+         ~1/3 coverage) then blurred for soft penumbra. Knobs:
+         baseFrequency = dapple scale, the -6.1 intercept = coverage
+         (lower → more light), stdDeviation = edge softness, seed =
+         relayout. */
+      --dapple: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='760'%3E%3Cfilter id='f' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.011 0.013' numOctaves='3' seed='11'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 12 -6.1'/%3E%3CfeGaussianBlur stdDeviation='5'/%3E%3C/filter%3E%3Crect width='800' height='760' filter='url(%23f)'/%3E%3C/svg%3E");
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(95% 80% at 35% 40%, rgb(255 212 160 / 0.34), rgb(255 194 188 / 0.18) 45%, rgb(214 198 255 / 0.1) 75%, rgb(255 235 220 / 0.02) 100%),
+        #fff;
+      -webkit-mask-image: var(--dapple);
+      mask-image: var(--dapple);
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      animation: shade-breathe 18s ease-in-out infinite;
+    }
+
+    @keyframes shade-breathe {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.65; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .shade-pos,
+      .shade-light {
+        animation: none;
+      }
     }
 
     .container {
@@ -354,6 +437,14 @@
     }
 
     @media (max-width: 768px) {
+      .shade-pos {
+        left: -6vw;
+        top: 0;
+        width: 135vw;
+        height: 60vh;
+        transform: skew(14deg, 5deg);
+      }
+
       .container {
         padding: 60px 28px 80px;
       }
@@ -401,7 +492,15 @@
   </style>
 </head>
 <body>
-  <canvas id="c"></canvas>
+  <div id="shade" aria-hidden="true">
+    <div class="shade-pos">
+      <div class="shade-fh">
+        <div class="shade-fv">
+          <div class="shade-light"></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="container">
     <header>
       <h1>Minghui Hu</h1>
@@ -652,8 +751,7 @@
         <script defer type="text/javascript" id="clstr_globe" src="//clustrmaps.com/globe.js?d=afeIQSK3lal5Bc8L-8eaHbv1W5ZtwqTyvLzoEYsw1R4"></script>
       </div>
       <div class="footer-text">
-        Last updated Jan. 2026.<br>
-        Window shade effect inspired by <a href="https://masonjwang.com/">Mason Wang</a>.
+        Last updated Jan. 2026.
       </div>
       <svg id="shade-toggle" onclick="tog()" style="cursor:pointer;transition:transform 1.8s cubic-bezier(0.4,0,0.2,1);color:var(--muted-foreground)" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="4"/>
@@ -677,186 +775,14 @@
   </script>
 
   <script>
-  const C=document.getElementById('c'),X=C.getContext('2d');
-  let on=true;
-
-  // Mobile detection & DPR-aware canvas
-  const isMobile='ontouchstart'in window||navigator.maxTouchPoints>0||innerWidth<768;
-  const dpr=Math.min(devicePixelRatio,2);
-
-  function fit(){
-    C.width=innerWidth*dpr;C.height=innerHeight*dpr;
-    C.style.width=innerWidth+'px';
-    C.style.height=innerHeight+'px';
-  }
-  addEventListener('resize',fit);fit();
-
-  function lerp(a,b,t){return a+(b-a)*t}
-  function lc(a,b,t){return[Math.round(lerp(a[0],b[0],t)),Math.round(lerp(a[1],b[1],t)),Math.round(lerp(a[2],b[2],t))]}
-
-  function getAnimTime(now){
-    const period=120000;
-    const phase=(now%(period*2))/period;
-    const tri=phase<1?phase:2-phase;
-    return tri*0.1;
-  }
-  function getAnimOpen(now){
-    return 0.5+Math.sin(now*0.00006)*0.04+Math.sin(now*0.00015)*0.02;
-  }
-
-  const offscreenCache={};
-  function getOff(key,w,h){
-    const c=offscreenCache[key];
-    if(c&&c.width===w&&c.height===h)return c;
-    const nc=document.createElement('canvas');nc.width=w;nc.height=h;
-    offscreenCache[key]=nc;return nc;
-  }
-
-  const numSlats=18;
-  let fadeVal=1,fadeTarget=1,lastTime=0;
-
-  function draw(now){
-    const dt=lastTime?(now-lastTime)/1000:0.016;lastTime=now;
-    const speed=dt/1.8;
-    if(fadeVal<fadeTarget)fadeVal=Math.min(fadeVal+speed,1);
-    else if(fadeVal>fadeTarget)fadeVal=Math.max(fadeVal-speed,0);
-    const fadeEase=fadeVal*fadeVal*(3-2*fadeVal);
-
-    if(fadeVal===0&&fadeTarget===0){X.clearRect(0,0,C.width,C.height);requestAnimationFrame(draw);return}
-
-    const w=C.width,h=C.height;
-    const t=getAnimTime(now),open=getAnimOpen(now),n=t/0.35;
-
-    const shadowTarget=lc([228,214,196],[234,224,210],n);
-    const st=lc([255,255,255],shadowTarget,fadeEase);
-    const wlTarget=lc([255,215,155],[255,230,190],n);
-    const wl=lc([255,255,255],wlTarget,fadeEase);
-
-    const skewX=lerp(0.34,0.26,n),skewY=lerp(0.13,0.09,n);
-    const stretch=lerp(1.9,1.6,n);
-    const warmAlpha=lerp(0.28,0.17,n)*fadeEase;
-    const baseSoft=lerp(12,7,n);
-
-    X.clearRect(0,0,w,h);
-    X.fillStyle=`rgb(${st[0]},${st[1]},${st[2]})`;
-    X.fillRect(0,0,w,h);
-
-    // DPR-aware projection, adapted for mobile screen ratio
-    const cw=innerWidth*dpr,ch=innerHeight*dpr;
-    const projW=Math.min(cw*(isMobile?0.75:0.58),420*dpr)*stretch;
-    const projH=Math.min(ch*(isMobile?0.55:0.72),500*dpr)*stretch*0.78;
-
-    const bx=(Math.sin(now*0.00009)*5+Math.sin(now*0.00025)*2.5)*dpr;
-    const by=(Math.cos(now*0.00011)*3.5+Math.cos(now*0.00022)*1.8)*dpr;
-    const px=lerp(cw*0.01,cw*0.06,n)+bx;
-    const py=lerp(ch*0.01,ch*0.03,n)+by;
-
-    const frameT=lerp(10,7,n)*dpr;
-    const innerH=projH-frameT*2;
-    const spacing=innerH/numSlats;
-    const slatThick=spacing*lerp(0.88,0.12,open);
-    const gapH=spacing-slatThick;
-
-    if(gapH<0.3){requestAnimationFrame(draw);return}
-
-    X.save();X.translate(px,py);X.transform(1,skewY,skewX,1,0,0);
-
-    const offW=Math.ceil(projW+80*dpr),offH=Math.ceil(projH+80*dpr);
-    const OC=getOff('off',offW,offH),OX=OC.getContext('2d');
-    OX.clearRect(0,0,offW,offH);
-
-    for(let i=0;i<numSlats;i++){
-      const baseY=frameT+i*spacing+slatThick;
-      const wb=Math.sin(now*0.00008+i*0.53)*1.1+Math.sin(now*0.00019+i*0.79)*0.6;
-      const sy=baseY+wb;
-      const vertPos=i/numSlats,slatSoft=baseSoft*(0.55+vertPos*1.0);
-      const distFromCenter=Math.abs(i-numSlats/2)/(numSlats/2);
-      const slatAlpha=1.0-distFromCenter*0.1;
-      const padY=slatSoft*1.2;
-      const g=OX.createLinearGradient(0,sy-padY,0,sy+gapH+padY);
-      g.addColorStop(0,'rgba(255,255,255,0)');
-      g.addColorStop(padY/(gapH+padY*2),`rgba(255,255,255,${slatAlpha})`);
-      g.addColorStop(1-padY/(gapH+padY*2),`rgba(255,255,255,${slatAlpha})`);
-      g.addColorStop(1,'rgba(255,255,255,0)');
-      OX.fillStyle=g;OX.fillRect(frameT,sy-padY,projW-frameT*2,gapH+padY*2);
-    }
-
-    OX.globalCompositeOperation='destination-in';
-    const hV=OX.createLinearGradient(frameT,0,projW-frameT,0);
-    hV.addColorStop(0,'rgba(255,255,255,0.1)');hV.addColorStop(0.06,'rgba(255,255,255,0.55)');
-    hV.addColorStop(0.15,'rgba(255,255,255,1)');hV.addColorStop(0.5,'rgba(255,255,255,1)');
-    hV.addColorStop(0.72,'rgba(255,255,255,0.8)');hV.addColorStop(0.85,'rgba(255,255,255,0.35)');
-    hV.addColorStop(0.94,'rgba(255,255,255,0.12)');hV.addColorStop(1,'rgba(255,255,255,0.02)');
-    OX.fillStyle=hV;OX.fillRect(0,0,offW,offH);
-
-    const vV=OX.createLinearGradient(0,frameT,0,projH-frameT);
-    vV.addColorStop(0,'rgba(255,255,255,0.08)');vV.addColorStop(0.05,'rgba(255,255,255,0.6)');
-    vV.addColorStop(0.12,'rgba(255,255,255,1)');vV.addColorStop(0.75,'rgba(255,255,255,0.85)');
-    vV.addColorStop(0.88,'rgba(255,255,255,0.35)');vV.addColorStop(0.95,'rgba(255,255,255,0.1)');
-    vV.addColorStop(1,'rgba(255,255,255,0.02)');
-    OX.fillStyle=vV;OX.fillRect(0,0,offW,offH);
-    OX.globalCompositeOperation='source-over';
-
-    OX.globalCompositeOperation='destination-out';
-    const mullW=frameT*0.5,mullSoft=baseSoft*0.9;
-    const mx=projW*0.47;
-    const mg=OX.createLinearGradient(mx-mullW-mullSoft,0,mx+mullW+mullSoft,0);
-    mg.addColorStop(0,'rgba(255,255,255,0)');mg.addColorStop(0.15,'rgba(255,255,255,1)');
-    mg.addColorStop(0.85,'rgba(255,255,255,1)');mg.addColorStop(1,'rgba(255,255,255,0)');
-    OX.fillStyle=mg;OX.fillRect(mx-mullW-mullSoft,0,(mullW+mullSoft)*2,projH);
-
-    const my=projH*0.4;
-    const hg=OX.createLinearGradient(0,my-mullW-mullSoft,0,my+mullW+mullSoft);
-    hg.addColorStop(0,'rgba(255,255,255,0)');hg.addColorStop(0.15,'rgba(255,255,255,1)');
-    hg.addColorStop(0.85,'rgba(255,255,255,1)');hg.addColorStop(1,'rgba(255,255,255,0)');
-    OX.fillStyle=hg;OX.fillRect(0,my-mullW-mullSoft,projW,(mullW+mullSoft)*2);
-
-    const cordX=projW*0.73+Math.sin(now*0.00025)*2.5*dpr,cordW=1.5*dpr,cordSoft=baseSoft*0.4;
-    const cG=OX.createLinearGradient(cordX-cordW-cordSoft,0,cordX+cordW+cordSoft,0);
-    cG.addColorStop(0,'rgba(255,255,255,0)');cG.addColorStop(0.25,'rgba(255,255,255,0.6)');
-    cG.addColorStop(0.75,'rgba(255,255,255,0.6)');cG.addColorStop(1,'rgba(255,255,255,0)');
-    OX.fillStyle=cG;OX.fillRect(cordX-cordW-cordSoft,frameT,(cordW+cordSoft)*2,projH-frameT*2);
-    OX.globalCompositeOperation='source-over';
-
-    X.globalCompositeOperation='destination-out';X.drawImage(OC,0,0);
-    X.globalCompositeOperation='source-over';
-
-    const WC=getOff('warm',offW,offH),WX=WC.getContext('2d');WX.clearRect(0,0,offW,offH);
-    const wG=WX.createRadialGradient(projW*0.4,projH*0.45,0,projW*0.4,projH*0.45,projW*0.8);
-    wG.addColorStop(0,`rgba(${wl[0]},${wl[1]},${wl[2]},${warmAlpha*0.9})`);
-    wG.addColorStop(0.5,`rgba(${wl[0]},${wl[1]},${wl[2]},${warmAlpha*0.6})`);
-    wG.addColorStop(1,`rgba(${wl[0]},${wl[1]},${wl[2]},${warmAlpha*0.15})`);
-    WX.fillStyle=wG;WX.fillRect(0,0,offW,offH);
-    WX.globalCompositeOperation='destination-in';WX.drawImage(OC,0,0);
-    WX.globalCompositeOperation='source-over';X.drawImage(WC,0,0);
-
-    const GC=getOff('glow',offW,offH),GX=GC.getContext('2d');GX.clearRect(0,0,offW,offH);
-    const glowX=projW*0.38,glowY=projH*0.42;
-    const gl=GX.createRadialGradient(glowX,glowY,0,glowX,glowY,projW*0.7);
-    gl.addColorStop(0,`rgba(255,220,160,${warmAlpha*0.35})`);
-    gl.addColorStop(0.5,`rgba(255,228,180,${warmAlpha*0.15})`);
-    gl.addColorStop(1,'rgba(255,235,200,0)');
-    GX.fillStyle=gl;GX.fillRect(0,0,offW,offH);
-    GX.globalCompositeOperation='destination-in';GX.drawImage(OC,0,0);
-    GX.globalCompositeOperation='source-over';X.drawImage(GC,0,0);
-
-    X.restore();
-    requestAnimationFrame(draw);
-  }
-
   let rotDeg=0;
   function tog(){
-    on=!on;fadeTarget=on?1:0;
+    const off=document.getElementById('shade').classList.toggle('off');
     const btn=document.getElementById('shade-toggle');
     rotDeg+=360;
     btn.style.transform=`rotate(${rotDeg}deg)`;
-    btn.querySelectorAll('.ray').forEach(r=>{r.style.opacity=on?'1':'0.35'});
+    btn.querySelectorAll('.ray').forEach(r=>{r.style.opacity=off?'0.35':'1'});
   }
-
-  // Pause animation when tab is hidden to save battery
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)lastTime=0;});
-
-  requestAnimationFrame(draw);
   </script>
 </body>
 </html>
